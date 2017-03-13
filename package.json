@@ -1,0 +1,44 @@
+{
+  "name": "codeevalclone",
+  "version": "1.0.0",
+  "description": "\"A clone of the website code eval\"",
+  "author": "Riley Littlefield",
+  "scripts": {
+    "postinstall": "gulp run-tests && gulp compile-scripts && gulp compile-sass"
+  },
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-mocks": "^1.4.7",
+    "angular-sanitize": "^1.4.7",
+    "angular-ui-router": "^0.3.2",
+    "ng-redux": "^3.4.0-beta.1",
+    "redux": "^3.6.0",
+
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.3.0",
+    "gulp": "^3.9.1",
+
+    "gulp-ng-annotate": "^1.1.0",
+
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "jasmine-core": "^2.5.2",
+    "jasmine-jquery": "^2.1.1",
+    "jquery": "^3.1.1",
+    "karma": "^1.3.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "partialify": "^3.1.6",
+    "phantomjs": "^2.1.7",
+
+    "redux": "^3.6.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.8.0"
+  }
+}
