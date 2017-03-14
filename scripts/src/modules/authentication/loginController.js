@@ -1,4 +1,4 @@
-export default function LoginController(authRequests) {
+export default function LoginController(authRequests, $ngRedux) {
   let vm = this;
 
   vm.username = "";
