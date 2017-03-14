@@ -1,9 +1,9 @@
-export default class LoginController {
-  constructor() {
-    this.username = "";
-  }
+export default function LoginController(authRequests) {
+  let vm = this;
 
-  submitCredentials() {
-    
+  vm.username = "";
+
+  vm.submitCredentials = function() {
+    authRequests.signIn({ username: vm.username });
   }
 }
