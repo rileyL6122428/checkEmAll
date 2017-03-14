@@ -1,6 +1,7 @@
 function routesConfig($stateProvider, $urlRouterProvider) {
   'ngInject';
 
+  debugger
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
@@ -8,6 +9,12 @@ function routesConfig($stateProvider, $urlRouterProvider) {
       url: '/',
       template: "<div>THIS IS THE HOME TEMPLATE</div>",
     });
+
+  // $stateProvider
+  //   .state('login', {
+  //     url: '/login',
+  //     template: "<div>THIS IS THE login TEMPLATE</div>",
+  //   });
 
 }
 
