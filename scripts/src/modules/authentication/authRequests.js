@@ -1,4 +1,6 @@
-export default function AuthRequests($http, $q) {
+import { setCurrentUser } from "../../redux/actions/user.action.js";
+
+export default function AuthRequests($http, $q, $ngRedux) {
   'ngInject';
 
   function signIn(credentials) {
@@ -8,13 +10,13 @@ export default function AuthRequests($http, $q) {
       params: credentials
     }).then(
       function success(response) {
-
+        $ngRedux.dispatch(setCurrentUser(response.data));
       },
       function failure(response) {
-        //RETURN FAILED PROMISE
+        return $q.reject(response)
       }
     );
   }
 
-  return { signIn }
+  return { signIn };
 }
