@@ -8,10 +8,11 @@
 
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" />
+            <input ng-model="vm.username" type="text" class="form-control" id="username" />
           </div>
 
-          <button id="submit-login" type="submit" class="btn btn-default">Submit</button>
+          <button id="submit-login" type="submit" ng-click="vm.submitCredentials()" class="btn btn-default">Submit</button>
+
         </form>
       </div>
     </div>

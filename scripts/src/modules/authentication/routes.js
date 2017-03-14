@@ -6,5 +6,6 @@ export default function routesConfig($stateProvider){
         .state('login', {
             url: '/login',
             template: loginTemplate,
+            controller: 'loginController as vm'
         });
 }
