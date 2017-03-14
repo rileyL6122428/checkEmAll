@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = { "com.manifest.server.repository" })
-@EntityScan(basePackages = { "com.manifest.server.model", "com.manifest.server.controller", "com.manifest.server.services", "com.manifest.server.doconverter" })
+@EntityScan(basePackages = { "com.manifest.todo" })
 public class TodoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TodoApplication.class, args);
