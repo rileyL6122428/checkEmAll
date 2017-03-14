@@ -1,13 +1,14 @@
 package com.manifest.todo.server.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Todo {
 	@Id
-	private
-	long id;
+	@GeneratedValue
+	private long id;
 	
 	public long getId() {
 		return id;

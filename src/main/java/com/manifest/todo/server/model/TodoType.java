@@ -6,8 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class TodoType {
 	@Id
-	private
-	long id;
+	private long id;
 
 	public long getId() {
 		return id;
