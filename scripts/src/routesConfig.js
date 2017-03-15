@@ -16,6 +16,7 @@ function appConfig($urlRouterProvider, $stateProvider) {
       .state('todosIndex', {
           url: '/todos',
           template: todoIndexTemplate,
+          controller: 'todosController as vm',
           requireLogin: true
       });
 }
