@@ -9,12 +9,14 @@ function appConfig($urlRouterProvider, $stateProvider) {
       .state('login', {
           url: '/login',
           template: loginTemplate,
-          controller: 'loginController as vm'
+          controller: 'loginController as vm',
+          requireLogin: false
       })
 
       .state('todosIndex', {
           url: '/todos',
-          template: todoIndexTemplate
+          template: todoIndexTemplate,
+          requireLogin: true
       });
 }
 
