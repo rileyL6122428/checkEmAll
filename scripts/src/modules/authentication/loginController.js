@@ -14,6 +14,6 @@ export default function LoginController(authRequests, $ngRedux, $state) {
     if(currentUser) {
       $state.go('todosIndex');
       vm.unsubscribe();
-    };
+    }
   }
 }
