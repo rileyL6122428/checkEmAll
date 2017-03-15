@@ -1,0 +1,88 @@
+section#todos {
+  h1 {
+    text-align: center;
+  }
+
+  div.todo-info {
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  input#search-todos {
+    display: block;
+  }
+
+  button#add-todo {
+    display: block;
+    position: relative;
+    height: 35px;
+    width: 35px;
+    margin: 10px auto 0;
+
+    background: none;
+    border: 1px solid gray;
+    border-radius: 20px;
+
+    text-align: center;
+    font-size: 28px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+  }
+
+  button#add-todo > div {
+    position: absolute;
+    top: -6px;
+    left: 8.55px;
+  }
+
+  $light-gray-border: rgba(0, 0, 0, .3);
+  ul#todos-list {
+
+    margin-top: 15px;
+
+    > li.todo-list-item:first-child > button {
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+    }
+
+    > li.todo-list-item:last-child > button {
+      border-bottom: 1px solid $light-gray-border;
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+    }
+  }
+
+  li.todo-list-item {
+    list-style: none;
+
+    > button {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      border-top: 1px solid $light-gray-border;
+      border-left: 1px solid $light-gray-border;
+      border-right: 1px solid $light-gray-border;
+      border-bottom: none;
+
+      background-color: white;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    div.todo-name {
+      text-align: left;
+    }
+
+    div.status {
+      text-align: left;
+    }
+  }
+}

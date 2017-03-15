@@ -1,8 +1,8 @@
-<section id="todos" class="contain">
+<section id="todos" class="container">
   <h1>TODOS</h1>
 
-  <row>
-    <div class="col-sm-6">
+  <div class="row">
+    <div class="col-sm-6 todo-info">
       <div id="show-todo">
         <div class="edit-todo-buttons">
           <div class="row">
@@ -26,36 +26,40 @@
 
     <div class="col-sm-6">
       <h2>From This Week</h2>
-      <input type="text" placeholder="search..."/>
-      <button>+</button>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <input id="search-todos" class="form-control" type="text" placeholder="search..."/>
+        </div>
+      </div>
+      <button id="add-todo"><div>+</div></button>
       <ul id="todos-list">
-        <li>
+        <li class="todo-list-item">
           <button>
             <div class="row">
               <div class="todo-name col-xs-9">Work task 1</div>
-              <div class="todo-task-type col-xs-1 col-cs-offset-2">blue</div>
+              <div class="todo-task-type col-xs-3">blue</div>
             </div>
 
             <div class="status">Pending</div>
           </button>
         </li>
 
-        <li>
+        <li class="todo-list-item">
           <button>
             <div class="row">
               <div class="todo-name col-xs-9">Work task 2</div>
-              <div class="todo-task-type col-xs-1 col-cs-offset-2">red</div>
+              <div class="todo-task-type col-xs-3">red</div>
             </div>
 
             <div class="status">Finished</div>
           </button>
         </li>
 
-        <li>
+        <li class="todo-list-item">
           <button>
             <div class="row">
               <div class="todo-name col-xs-9">Work task 3</div>
-              <div class="todo-task-type col-xs-1 col-cs-offset-2">red</div>
+              <div class="todo-task-type col-xs-3">red</div>
             </div>
 
             <div class="status">Finished</div>
@@ -63,5 +67,5 @@
         </li>
       </ul>
     </div>
-</row>
+  </div class="row">
 </section>
