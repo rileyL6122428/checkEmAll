@@ -1,18 +1,1 @@
-section#login {
-
-  h1 {
-    text-align: center;
-  }
-
-  form {
-    padding-bottom: 15px;
-    margin-top: 25px;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-  }
-
-  button#submit-login {
-    display: block;
-    margin: auto;
-  }
-}
+@import "./pages/logins.scss";
