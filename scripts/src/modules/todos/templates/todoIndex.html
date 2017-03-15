@@ -4,17 +4,23 @@
   <div class="row">
     <div class="col-sm-6 todo-info">
       <div id="show-todo">
-        <div class="edit-todo-buttons">
           <div class="row">
             <div class="todo-name col-xs-9">Work task 1</div>
-            <div class="todo-task-type col-xs-1 col-cs-offset-2">blue</div>
+            <div class="todo-task-type col-xs-3">blue</div>
           </div>
-          <div class="description">
-            <p>THIS IS THE DESCRIPTION FOR THE HIGHLIGHTED TASK</p>
-          </div>
-          <div>Pending</div>
-          <button>Toggle</button>
-          <button>Delete</button>
+
+        <p class="todo-description">THIS IS THE DESCRIPTION FOR THE HIGHLIGHTED TASK</p>
+
+        <div class="todo-status">
+          <span class="completion-label">Completion: </span>
+          <span class="completion-status">Pending</span>
+        </div>
+
+        <div class="row">
+          <div class="edit-todo-buttons text-center">
+            <button class="btn btn-primary">Toggle</button>
+            <buttonn class="btn btn-danger">Delete</button>
+            </div>
         </div>
       </div>
 
