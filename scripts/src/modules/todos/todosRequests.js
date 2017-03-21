@@ -1,4 +1,6 @@
-export default function TodosRequests($http) {
+import { addTodos } from "../redux/actions/todo.action.js";
+
+export default function TodosRequests($http, $ngRedux) {
   'ngInject';
 
   return ({
@@ -9,14 +11,12 @@ export default function TodosRequests($http) {
         params: params,
       }).then(
         function success(response) {
-          let testResponse = response;
-          debugger
+          $ngRedux.dispatch(addTodos(response.data));
         },
         function failure(response) {
-          let testResponse = response;
-          debugger
+          console.log("AN ERROR OCCURRED WHILE ATTEMPTING TO GET TODOS");
         }
-      )
+      );
     }
   })
 }
