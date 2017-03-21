@@ -1,6 +1,6 @@
-export default function TodosController($ngRedux) {
+export default function TodosController($ngRedux, todosRequests) {
   'ngInject';
 
-  let testRedux = $ngRedux;
-  
+  todosRequests.getTodos({ userId: 1 });
+
 }
