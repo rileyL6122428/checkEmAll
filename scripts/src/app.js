@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 
 import authenticationModule from './modules/authentication/authenticationModule.js';
 import todoModule from './modules/todos/todoModule.js';
-import reduxModule from './redux/module.js';
+import reduxModule from './modules/redux/module.js';
 
 import authHooks from './authHooks.js';
 import appConfig from './routesConfig.js';

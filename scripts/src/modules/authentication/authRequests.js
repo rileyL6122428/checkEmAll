@@ -1,4 +1,4 @@
-import { setCurrentUser } from "../../redux/actions/user.action.js";
+import { setCurrentUser } from "../redux/actions/user.action.js";
 
 export default function AuthRequests($http, $q, $ngRedux) {
   'ngInject';

@@ -1,6 +1,6 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router';
-import reduxModule from '../../redux/module.js';
+import reduxModule from '../redux/module.js';
 
 import TodosController from './todosController.js';
 

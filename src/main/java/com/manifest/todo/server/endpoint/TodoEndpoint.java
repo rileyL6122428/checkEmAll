@@ -18,6 +18,7 @@ import com.manifest.todo.server.service.TodoService;
 @Controller
 @Path("/api")
 public class TodoEndpoint extends BaseEndpoint {
+	
 	private TodoService todoService;
 	
 	@Autowired
@@ -30,7 +31,9 @@ public class TodoEndpoint extends BaseEndpoint {
 	@Produces("application/json")
 	public Response index(@QueryParam("userId") long userId) {
 		try {
-			return todosResponse(todoService.getTodos(userId));
+			List<Todo> userTodos = todoService.getTodos(userId); 
+			return todosResponse(userTodos);
+			
 		} catch(NotFoundException notFoundException) {
 			return errorResponse(notFoundException);
 		}

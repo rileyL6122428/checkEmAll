@@ -3,6 +3,7 @@ import todoIndexTemplate from './modules/todos/templates/todoIndex.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
   'ngInject';
+  
   $urlRouterProvider.otherwise('/login');
 
   $stateProvider

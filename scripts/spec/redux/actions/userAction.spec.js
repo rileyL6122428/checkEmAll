@@ -1,5 +1,5 @@
-import { setCurrentUser } from "../../../src/redux/actions/user.action.js";
-import { CURRENT_USER } from "../../../src/redux/constants/user.js";
+import { setCurrentUser } from "../../../src/modules/redux/actions/user.action.js";
+import { CURRENT_USER } from "../../../src/modules/redux/constants/user.js";
 
 describe("UserActions", () => {
   describe("#setCurrentUser", () => {

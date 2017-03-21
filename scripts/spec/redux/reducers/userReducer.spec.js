@@ -1,5 +1,5 @@
-import { CurrentUserReducer } from "../../../src/redux/reducers/user.reducer.js";
-import { CURRENT_USER } from "../../../src/redux/constants/user.js";
+import { CurrentUserReducer } from "../../../src/modules/redux/reducers/user.reducer.js";
+import { CURRENT_USER } from "../../../src/modules/redux/constants/user.js";
 
 describe("CurrentUserReducer", () => {
   it("returns the payload when given an action of type 'SET_CURRENT_USER'", () => {
