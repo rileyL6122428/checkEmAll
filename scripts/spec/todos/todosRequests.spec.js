@@ -23,7 +23,7 @@ describe("TodoRequests", () => {
        $httpBackend.verifyNoOutstandingExpectation();
     });
 
-    it("dispatches an action to set the update the todos partition of the redux state upon success", () => {
+    xit("dispatches an action to set the update the todos partition of the redux state upon success", () => {
       let todos = [
         { id: 1, description: "MOCK DESCRIPTION 1"},
         { id: 2, description: "MOCK DESCRIPTION 2"},
