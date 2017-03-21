@@ -1,8 +1,8 @@
 export default function TodosController($scope, $ngRedux, todosRequests) {
   'ngInject';
+  let vm = this;
 
   _setupStoreListener();
-  debugger
   todosRequests.getTodos({ userId: 1 });
 
   function _setupStoreListener() {
@@ -12,6 +12,6 @@ export default function TodosController($scope, $ngRedux, todosRequests) {
 
   function _setState(state) {
     let test = $ngRedux;
-    debugger
+    vm.todos = Object.values($ngRedux.getState().todos);
   }
 }

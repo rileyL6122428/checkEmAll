@@ -11,7 +11,6 @@ export default function TodosRequests($http, $ngRedux) {
         params: params,
       }).then(
         function success(response) {
-          debugger
           $ngRedux.dispatch(addTodos(response.data));
         },
         function failure(response) {

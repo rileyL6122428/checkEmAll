@@ -39,38 +39,18 @@
       </div>
       <button id="add-todo"><div>+</div></button>
       <ul id="todos-list">
-        <li class="todo-list-item">
+
+        <li class="todo-list-item" ng-repeat="todo in vm.todos">
           <button>
             <div class="row">
-              <div class="todo-name col-xs-9">Work task 1</div>
+              <div class="todo-name col-xs-9">{{todo.name}}</div>
               <div class="todo-task-type col-xs-3">blue</div>
             </div>
 
-            <div class="status">Pending</div>
+            <div class="status">Finished: {{todo.finished}}</div>
           </button>
         </li>
 
-        <li class="todo-list-item">
-          <button>
-            <div class="row">
-              <div class="todo-name col-xs-9">Work task 2</div>
-              <div class="todo-task-type col-xs-3">red</div>
-            </div>
-
-            <div class="status">Finished</div>
-          </button>
-        </li>
-
-        <li class="todo-list-item">
-          <button>
-            <div class="row">
-              <div class="todo-name col-xs-9">Work task 3</div>
-              <div class="todo-task-type col-xs-3">red</div>
-            </div>
-
-            <div class="status">Finished</div>
-          </button>
-        </li>
       </ul>
     </div>
   </div class="row">
