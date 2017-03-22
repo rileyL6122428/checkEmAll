@@ -1,0 +1,12 @@
+<ul id="todos-list">
+  <li ng-repeat="todo in todos" class="todo-list-item">
+    <button>
+      <div class="row">
+        <div class="todo-name col-xs-9">{{todo.name}}</div>
+        <div class="todo-task-type col-xs-3">blue</div>
+      </div>
+
+      <div class="status">Finished: {{todo.finished}}</div>
+    </button>
+  </li>
+</ul>

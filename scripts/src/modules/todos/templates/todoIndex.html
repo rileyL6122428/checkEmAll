@@ -38,20 +38,7 @@
         </div>
       </div>
       <button id="add-todo"><div>+</div></button>
-      <ul id="todos-list">
-
-        <li class="todo-list-item" ng-repeat="todo in vm.todos">
-          <button>
-            <div class="row">
-              <div class="todo-name col-xs-9">{{todo.name}}</div>
-              <div class="todo-task-type col-xs-3">blue</div>
-            </div>
-
-            <div class="status">Finished: {{todo.finished}}</div>
-          </button>
-        </li>
-
-      </ul>
+      <todos-list todos="vm.todos"></todos-list>
     </div>
   </div class="row">
 </section>
