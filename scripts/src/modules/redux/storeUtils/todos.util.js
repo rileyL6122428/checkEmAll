@@ -20,14 +20,16 @@ export default function TodosStore($ngRedux, $rootScope) {
     },
 
     placeListener(listener) {
-      debugger
       let unsubscribeFromStore = $ngRedux.subscribe(listener);
       unsubscribeTokens.push(unsubscribeFromStore);
     },
 
     getUserTodos(params) {
       let todosMap = $ngRedux.getState().todos;
-      return Object.values(todosMap);
+      let todos = Object.values(todosMap);
+      let userTodos = todos.filter((todo) => { return todo.userId === params.userId; });
+
+      return userTodos;
     }
   });
 }
