@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
 import com.manifest.todo.server.model.Todo;
 import com.manifest.todo.server.service.TodoService;
 
@@ -37,6 +39,15 @@ public class TodoEndpoint extends BaseEndpoint {
 		} catch(NotFoundException notFoundException) {
 			return errorResponse(notFoundException);
 		}
+	}
+	
+	@POST
+	@Path("/todo")
+	@Produces("application/json")
+	public Response create(final NewTodoData todoFormData) {
+		Todo todo = todoService.saveTodo(todoFormData);
+		
+		return Response.status(201).entity(todo).build();
 	}
 	
 	private Response todosResponse(List<Todo> todos) {

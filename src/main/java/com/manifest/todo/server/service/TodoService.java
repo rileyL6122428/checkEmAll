@@ -8,6 +8,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
 import com.manifest.todo.server.model.Todo;
 import com.manifest.todo.server.model.User;
 import com.manifest.todo.server.repository.TodoRepository;
@@ -33,6 +34,18 @@ public class TodoService {
 		} else {
 			return todoRepository.findByUser(user);			
 		}	
+	}
+	
+	public Todo saveTodo(NewTodoData todoData) {
+		User user = userRepository.findOne(todoData.getUserId());
+		
+		Todo todo = new Todo();
+		todo.setUser(user);
+		todo.setDescription(todoData.getDescription());
+		todo.setFinished(todoData.isFinished());
+		todo.setName(todoData.getName());
+		
+		return todoRepository.save(todo);
 	}
 	
 }
