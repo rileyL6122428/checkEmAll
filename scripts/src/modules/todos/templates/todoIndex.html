@@ -3,26 +3,8 @@
 
   <div class="row">
     <div class="col-sm-6 todo-info">
-      <div id="show-todo" ng-if="vm.selectedTodo">
-          <div class="row">
-            <div class="todo-name col-xs-9">{{vm.selectedTodo.name}}</div>
-            <div class="todo-task-type col-xs-3">blue</div>
-          </div>
-
-        <p class="todo-description">{{vm.selectedTodo.description}}</p>
-
-        <div class="todo-status">
-          <span class="completion-label">Completed: </span>
-          <span class="completion-status">{{vm.selectedTodo.finished}}</span>
-        </div>
-
-        <div class="row">
-          <div class="edit-todo-buttons text-center">
-            <button class="btn btn-primary">Toggle</button>
-            <buttonn class="btn btn-danger">Delete</button>
-            </div>
-        </div>
-      </div>
+      
+      <todo-card todo="vm.selectedTodo"></todo-card>
 
       <div id="todo-stats">
         <div>TASK CATEGORIES PI GRAPH PLACE HOLDER</div>
