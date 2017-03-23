@@ -1,4 +1,4 @@
-export default function TodosController(todosStore, todosRequests) {
+export default function TodosController(todosStore, todosRequests, $state) {
   'ngInject';
   let vm = this;
 
@@ -6,4 +6,5 @@ export default function TodosController(todosStore, todosRequests) {
   todosRequests.getUserTodos();
 
   vm.setSelectedTodo = (todo) => { vm.selectedTodo = todo; }
+  vm.gotoNewTodoPage = () => { $state.go('newTodo'); }
 }

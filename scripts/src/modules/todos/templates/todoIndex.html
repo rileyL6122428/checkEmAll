@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-sm-6 todo-info">
-      
+
       <todo-card todo="vm.selectedTodo"></todo-card>
 
       <div id="todo-stats">
@@ -19,7 +19,7 @@
           <input id="search-todos" class="form-control" type="text" placeholder="search..."/>
         </div>
       </div>
-      <button id="add-todo"><div>+</div></button>
+      <button ng-click="vm.gotoNewTodoPage()" id="add-todo"><div>+</div></button>
       <todos-list select-todo="vm.setSelectedTodo(todo)" todos="vm.todos"></todos-list>
     </div>
   </div class="row">
