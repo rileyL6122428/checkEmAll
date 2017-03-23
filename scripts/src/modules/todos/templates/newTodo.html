@@ -8,7 +8,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="todo-name">Name</label>
-              <input type="text" class="form-control" id="todo-name" />
+              <input type="text" ng-model="vm.todoName" class="form-control" id="todo-name" />
             </div>
           </div>
         </div>
@@ -17,14 +17,14 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="completion-status">Finished</label>
-              <input type="checkbox" id="completion-status" />
+              <input type="checkbox" ng-model="vm.todoFinished" id="completion-status" />
             </div>
           </div>
 
           <div class="col-sm-6">
             <div class="form-group">
               <label for="todo-type">Type</label>
-              <select class="form-control" id="todo-type" >
+              <select ng-model="vm.todoTypeId" class="form-control" id="todo-type" >
                 <option value="0">Choose Type</option>
                 <option value="1">Work</option>
                 <option value="2">Chore</option>
@@ -42,12 +42,12 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="todo-description">Description</label>
-              <textarea class="form-control"></textarea>
+              <textarea ng-model="vm.description" class="form-control"></textarea>
             </div>
           </div>
         </div>
 
-        <button id="submit-new-todo" class="btn btn-default">Create</button>
+        <button ng-click="vm.submit()" id="submit-new-todo" class="btn btn-default">Create</button>
       </form>
     </div>
   </div>
