@@ -5,15 +5,15 @@
     <div class="col-sm-6 todo-info">
       <div id="show-todo">
           <div class="row">
-            <div class="todo-name col-xs-9">Work task 1</div>
+            <div class="todo-name col-xs-9">{{vm.selectedTodo.name}}</div>
             <div class="todo-task-type col-xs-3">blue</div>
           </div>
 
-        <p class="todo-description">THIS IS THE DESCRIPTION FOR THE HIGHLIGHTED TASK</p>
+        <p class="todo-description">{{vm.selectedTodo.description}}</p>
 
         <div class="todo-status">
-          <span class="completion-label">Completion: </span>
-          <span class="completion-status">Pending</span>
+          <span class="completion-label">Completed: </span>
+          <span class="completion-status">{{vm.selectedTodo.finished}}</span>
         </div>
 
         <div class="row">
@@ -38,7 +38,7 @@
         </div>
       </div>
       <button id="add-todo"><div>+</div></button>
-      <todos-list todos="vm.todos"></todos-list>
+      <todos-list select-todo="vm.setSelectedTodo(todo)" todos="vm.todos"></todos-list>
     </div>
   </div class="row">
 </section>
