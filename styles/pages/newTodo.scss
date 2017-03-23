@@ -1,0 +1,12 @@
+section#create-new-todo {
+
+  input#completion-status {
+      display: block;
+      margin-left: 22px;
+  }
+
+  button#submit-new-todo {
+    display: block;
+    margin: auto;
+  }
+}
