@@ -3,8 +3,8 @@ export default function TodosController(todosStore, todosRequests) {
   let vm = this;
 
   todosStore.placeListener(() => {
-    vm.todos = todosStore.getUserTodos({ userId: 1 });
+    vm.todos = todosStore.withdrawTodos();
   });
 
-  todosRequests.getTodos({ userId: 1 });
+  todosRequests.getUserTodos();
 }

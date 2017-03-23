@@ -1,12 +1,12 @@
-export default function TodosRequests($http, todosStore) {
+export default function TodosRequests($http, todosStore, $ngRedux) {
   'ngInject';
 
   return ({
-    getTodos(params) {
+    getUserTodos() {
       $http({
         url:"/api/todos",
         method: 'GET',
-        params: params,
+        params: { userId: $ngRedux.getState().currentUser.id },
       }).then(
         function success(response) {
           todosStore.depositTodos(response.data);

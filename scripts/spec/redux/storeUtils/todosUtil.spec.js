@@ -69,8 +69,8 @@ describe("TodosStore", () => {
       let userTodos = todosStore.getUserTodos({ userId: 1 });
 
       expect(userTodos.length).toEqual(2);
-      expect(userTodos).toContain(todo1);
-      expect(userTodos).toContain(todo2);
+      expect(userTodos).toContains(todo1);
+      expect(userTodos).toContains(todo2);
     });
   });
 });
