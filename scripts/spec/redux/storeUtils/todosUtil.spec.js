@@ -59,18 +59,19 @@ describe("TodosStore", () => {
     });
   });
 
-  describe("#getUserTodos", () => {
-    it("gets all todos for the current user", () => {
-      let todo1 = { id: 1, userId: 1 };
-      let todo2 = { id: 2, userId: 1 };
-      let todo3 = { id: 3, userId: 2 };
+  describe("#withdrawTodos", () => {
+    it("grabs all todos in the store", () => {
+      let todo1 = { id: 1 };
+      let todo2 = { id: 2 };
+      let todo3 = { id: 3 };
 
       todosStore.depositTodos([todo1, todo2, todo3]);
-      let userTodos = todosStore.getUserTodos({ userId: 1 });
+      let userTodos = todosStore.withdrawTodos();
 
-      expect(userTodos.length).toEqual(2);
-      expect(userTodos).toContains(todo1);
-      expect(userTodos).toContains(todo2);
+      expect(userTodos.length).toEqual(3);
+      expect(userTodos).toContain(todo1);
+      expect(userTodos).toContain(todo2);
+      expect(userTodos).toContain(todo3);
     });
   });
 });
