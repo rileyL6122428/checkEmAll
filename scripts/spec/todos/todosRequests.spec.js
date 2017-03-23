@@ -17,7 +17,7 @@ describe("TodoRequests", () => {
     $ngRedux = _$ngRedux_;
   }));
 
-  describe("#getTodos", () => {
+  describe("#getUserTodos", () => {
     beforeEach(() => spyOn($ngRedux, 'dispatch'));
 
     afterEach(() => {
@@ -31,8 +31,9 @@ describe("TodoRequests", () => {
         { id: 2, description: "MOCK DESCRIPTION 2"},
       ];
       $httpBackend.expectGET('/api/todos?userId=1').respond(200, todos);
+      spyOn($ngRedux, 'getState').and.returnValue({ currentUser: { id: 1 } });
 
-      todosRequests.getTodos({ userId: 1 });
+      todosRequests.getUserTodos({ userId: 1 });
       $httpBackend.flush();
 
       expect($ngRedux.dispatch).toHaveBeenCalledWith(addTodos(todos));
