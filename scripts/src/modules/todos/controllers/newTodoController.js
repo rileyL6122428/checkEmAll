@@ -14,6 +14,9 @@ export default function NewTodoController (todosRequests, $state) {
       finished: vm.todoFinished
     })
 
-    .then (() => $state.go('todosIndex'));
+    .then (() => {
+      debugger
+      $state.go('todosIndex')
+    });
   };
 }
