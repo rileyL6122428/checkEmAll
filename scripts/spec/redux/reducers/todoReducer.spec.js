@@ -24,6 +24,20 @@ describe("TodosReducer", () => {
     expect(nextState[todo3.id]).toBe(todo3);
   });
 
+  it("merges the action payload when the supplied action type is 'ADD_TODO'", () => {
+    let previousState = {};
+    previousState[todo1.id] = todo1;
+
+    let actionPayload = {};
+    actionPayload[todo2.id] = todo2;
+
+    let nextState = TodosReducer(previousState, { type: "ADD_TODO", payload: actionPayload});
+
+    expect(Object.keys(nextState).length).toEqual(2);
+    expect(nextState[todo1.id]).toBe(todo1);
+    expect(nextState[todo2.id]).toBe(todo2);
+  });
+
   it("returns the previous state when a action type is not matched", () => {
     let previousState = {};
     previousState[todo1.id] = todo1;
