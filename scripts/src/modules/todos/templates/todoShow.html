@@ -1,7 +1,7 @@
 <div id="show-todo" ng-if="todo">
     <div class="row">
       <div class="todo-name col-xs-9">{{todo.name}}</div>
-      <div class="todo-task-type col-xs-3">blue</div>
+      <div class="todo-task-type col-xs-3">{{todo.type ? todo.type : "unassigned"}}</div>
     </div>
 
   <p class="todo-description">{{todo.description}}</p>

@@ -4,7 +4,6 @@ export default function TodosController(todosStore, todosRequests, $state) {
 
   todosStore.placeListener(() => {
     vm.todos = todosStore.withdrawTodos();
-    debugger
   });
   todosRequests.getUserTodos();
 

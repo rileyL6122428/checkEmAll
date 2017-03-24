@@ -3,7 +3,7 @@
     <button ng-click="selectTodo({ todo: todo })">
       <div class="row">
         <div class="todo-name col-xs-9">{{todo.name}}</div>
-        <div class="todo-task-type col-xs-3">{{todo.type ? todo.type : "unassigned" }}</div>
+        <div ng-class="todo.type ? todo.type : 'unassigned'" class="todo-task-type col-xs-3">{{todo.type ? todo.type : "unassigned" }}</div>
       </div>
 
       <div class="status">Finished: {{todo.finished}}</div>
