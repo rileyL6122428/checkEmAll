@@ -44,6 +44,7 @@ public class TodoService {
 		todo.setDescription(todoData.getDescription());
 		todo.setFinished(todoData.isFinished());
 		todo.setName(todoData.getName());
+		todo.setType(todoData.getType());
 		
 		return todoRepository.save(todo);
 	}

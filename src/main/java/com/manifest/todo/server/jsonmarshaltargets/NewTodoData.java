@@ -4,7 +4,7 @@ public class NewTodoData {
 	private String name;
 	private String description;
 	private boolean finished;
-	private long typeId;
+	private String type;
 	private long userId;
 	
 	public String getName() {
@@ -19,8 +19,8 @@ public class NewTodoData {
 		return finished;
 	}
 	
-	public long getTypeId() {
-		return typeId;
+	public String getType() {
+		return type;
 	}
 	
 	public long getUserId() {

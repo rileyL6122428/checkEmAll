@@ -1,15 +1,18 @@
 package com.manifest.todo.server.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -31,7 +34,12 @@ public class Todo {
 	@CreatedDate
 	private Date dateCreated;
 	
+	@Column
 	private boolean finished;
+	
+	@Column
+	@Pattern(regexp = "^$|work|chore|project|study|japanese|exercise|family")
+	private String type;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -74,4 +82,11 @@ public class Todo {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getType() {
+		return this.type;
+	}
+	
 }
