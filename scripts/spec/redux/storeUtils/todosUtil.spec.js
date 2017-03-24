@@ -19,6 +19,20 @@ describe("TodosStore", () => {
     $state = _$state_;
   }));
 
+  describe("#depositTodo", () => {
+    it("dispatches a provided todo as an 'addTodo' action", () => {
+      let todo = { id: 1, description: "description" };
+      spyOn($ngRedux, 'dispatch');
+
+      todosStore.depositTodo(todo);
+
+      expect($ngRedux.dispatch).toHaveBeenCalledWith({
+        type: "ADD_TODO",
+        payload: { "1": todo }
+      });
+    });
+  });
+
   describe("#depositTodos", () => {
     it("dispatches a list of provided todos as an 'addTodos' action", () => {
       let todo1 = { id: 1, description: "description1" };
