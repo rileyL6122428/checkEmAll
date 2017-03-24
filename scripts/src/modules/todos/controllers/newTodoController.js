@@ -1,4 +1,4 @@
-export default function NewTodoController (todosRequests) {
+export default function NewTodoController (todosRequests, $state) {
   'ngInject';
   let vm = this;
 
@@ -12,6 +12,8 @@ export default function NewTodoController (todosRequests) {
       name: vm.todoName,
       description: vm.description,
       finished: vm.todoFinished
-    });
+    })
+    
+    .then (() => $state.go('todosIndex'));
   };
 }

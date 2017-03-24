@@ -1,11 +1,15 @@
 import BaseStore from './baseStore.js';
-import { addTodos } from "../actions/todo.action.js";
+import { addTodo, addTodos } from "../actions/todo.action.js";
 
 export default class TodosStore extends BaseStore {
 
   constructor($ngRedux, $rootScope) {
     "ngInject";
     super($ngRedux, $rootScope);
+  }
+
+  depositTodo(todo) {
+    this.$ngRedux.dispatch(addTodo(todo));
   }
 
   depositTodos(todosList) {

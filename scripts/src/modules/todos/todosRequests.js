@@ -3,7 +3,7 @@ export default function TodosRequests($http, todosStore, $ngRedux) {
 
   return ({
     getUserTodos() {
-      $http({
+      return $http({
         url:"/api/todos",
         method: 'GET',
         params: { userId: $ngRedux.getState().currentUser.id },
@@ -13,12 +13,13 @@ export default function TodosRequests($http, todosStore, $ngRedux) {
         },
         function failure(response) {
           console.log("AN ERROR OCCURRED WHILE ATTEMPTING TO GET TODOS");
+          console.log(response);
         }
       );
     },
 
     createTodo(newTodo) {
-      $http({
+      return $http({
         url: "/api/todo",
         method: "POST",
         data: {
@@ -29,7 +30,7 @@ export default function TodosRequests($http, todosStore, $ngRedux) {
         }
       }).then(
         function success(response) {
-          let testResponse = response;
+          todosStore.depositTodo(response.data);
         },
         function failure(response) {
           console.log("AN ERROR OCCURRED WHILE ATTEMPTING TO SAVE TODO.");
