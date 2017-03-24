@@ -5,15 +5,15 @@ export default function NewTodoController (todosRequests, $state) {
   vm.todoName = "";
   vm.todoFinished = false;
   vm.todoTypeId = 0;
-  vm.description = "";
+  vm.todoDescription = "";
 
   vm.submit = () => {
     todosRequests.createTodo({
       name: vm.todoName,
-      description: vm.description,
+      description: vm.todoDescription,
       finished: vm.todoFinished
     })
-    
+
     .then (() => $state.go('todosIndex'));
   };
 }
