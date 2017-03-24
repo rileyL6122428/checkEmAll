@@ -51,7 +51,6 @@ public class TodoEndpoint extends BaseEndpoint {
 		} catch(Exception e) {
 			return Response.status(500).entity(e).build();
 		}
-		
 	}
 	
 	private Response todosResponse(List<Todo> todos) {

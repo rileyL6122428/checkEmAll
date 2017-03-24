@@ -25,7 +25,7 @@ describe("TodoRequests", () => {
        $httpBackend.verifyNoOutstandingExpectation();
     });
 
-    it("dispatches an action to set the update the todos partition of the redux state upon success", () => {
+    it("dispatches an action to update the the redux state upon success", () => {
       let todos = [
         { id: 1, description: "MOCK DESCRIPTION 1"},
         { id: 2, description: "MOCK DESCRIPTION 2"},
@@ -38,5 +38,9 @@ describe("TodoRequests", () => {
 
       expect($ngRedux.dispatch).toHaveBeenCalledWith(addTodos(todos));
     });
+  });
+
+  describe("#createTodo", () => {
+    xit("deposits a persisted todo upon a successful request");
   });
 });

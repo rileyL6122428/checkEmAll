@@ -1,4 +1,4 @@
-export default function NewTodoController () {
+export default function NewTodoController (todosRequests) {
   'ngInject';
   let vm = this;
 
@@ -8,6 +8,10 @@ export default function NewTodoController () {
   vm.description = "";
 
   vm.submit = () => {
-    console.log(vm);
+    todosRequests.createTodo({
+      name: vm.todoName,
+      description: vm.description,
+      finished: vm.todoFinished
+    });
   };
 }
