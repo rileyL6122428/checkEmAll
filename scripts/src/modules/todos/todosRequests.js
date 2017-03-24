@@ -26,7 +26,8 @@ export default function TodosRequests($http, todosStore, $ngRedux) {
           name: newTodo.name,
           description: newTodo.description,
           finished: newTodo.finished,
-          userId: $ngRedux.getState().currentUser.id
+          type: newTodo.type,
+          userId: $ngRedux.getState().currentUser.id,
         }
       }).then(
         function success(response) {
