@@ -5,7 +5,7 @@ import reduxModule from '../../../src/modules/redux/module.js';
 const {inject, module} = angular.mock;
 
 describe("TodosStore", () => {
-  let $ngRedux, todosStore, rootScope, $state;
+  let $ngRedux, todosStore, $state;
 
   beforeEach(module(reduxModule));
 
@@ -13,10 +13,9 @@ describe("TodosStore", () => {
     $stateProvider.state('mock-state', { url: '/' });
   }));
 
-  beforeEach(inject((_todosStore_, _$ngRedux_, $rootScope, _$state_) => {
+  beforeEach(inject((_todosStore_, _$ngRedux_, _$state_) => {
     todosStore = _todosStore_;
     $ngRedux = _$ngRedux_;
-    rootScope = $rootScope.$new();
     $state = _$state_;
   }));
 
