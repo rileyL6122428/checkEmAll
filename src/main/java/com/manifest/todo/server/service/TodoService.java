@@ -1,5 +1,6 @@
 package com.manifest.todo.server.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.NotFoundException;
@@ -45,6 +46,7 @@ public class TodoService {
 		todo.setFinished(todoData.isFinished());
 		todo.setName(todoData.getName());
 		todo.setType(todoData.getType());
+		todo.setDateCreated(new Date());
 		
 		return todoRepository.save(todo);
 	}
