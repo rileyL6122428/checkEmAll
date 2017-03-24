@@ -2,8 +2,6 @@ import angular from 'angular';
 import 'angular-mocks';
 import todoModule from '../../src/modules/todos/todoModule.js';
 
-import { addTodos } from '../../src/modules/redux/actions/todo.action.js';
-
 const {inject, module} = angular.mock;
 
 describe("TodoRequests", () => {
