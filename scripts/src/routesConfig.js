@@ -4,8 +4,7 @@ import newTodoTemplate from './modules/todos/templates/newTodo.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
   'ngInject';
-
-  $urlRouterProvider.otherwise('/newTodo');
+  $urlRouterProvider.otherwise('/new-todo');
 
   $stateProvider
       .state('login', {

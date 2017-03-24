@@ -36,7 +36,7 @@ public class TodoService {
 		}	
 	}
 	
-	public Todo saveTodo(NewTodoData todoData) {
+	public Todo createTodo(NewTodoData todoData) {
 		User user = userRepository.findOne(todoData.getUserId());
 		
 		Todo todo = new Todo();

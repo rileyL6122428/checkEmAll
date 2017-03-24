@@ -45,9 +45,13 @@ public class TodoEndpoint extends BaseEndpoint {
 	@Path("/todo")
 	@Produces("application/json")
 	public Response create(final NewTodoData todoFormData) {
-		Todo todo = todoService.saveTodo(todoFormData);
+		try {
+			Todo todo = todoService.createTodo(todoFormData);			
+			return Response.status(201).entity(todo).build();
+		} catch(Exception e) {
+			return Response.status(500).entity(e).build();
+		}
 		
-		return Response.status(201).entity(todo).build();
 	}
 	
 	private Response todosResponse(List<Todo> todos) {
