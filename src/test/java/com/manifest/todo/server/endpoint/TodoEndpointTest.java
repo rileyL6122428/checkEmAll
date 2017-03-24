@@ -3,7 +3,7 @@ package com.manifest.todo.server.endpoint;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,10 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
 import com.manifest.todo.server.model.Todo;
 import com.manifest.todo.server.service.TodoService;
 
@@ -54,6 +56,31 @@ public class TodoEndpointTest {
 		NotFoundException sentError = (NotFoundException)response.getEntity();
 		assertEquals(notFoundException, sentError);
 		assertEquals(404, response.getStatus());
+	}
+	
+	@Test
+	public void create_todoServiceCreatesATodo_sendsTodo() {
+		NewTodoData todoFormData = mock(NewTodoData.class);
+		Todo todo = mock(Todo.class);
+		when(todoService.createTodo(any())).thenReturn(todo);
+		
+		Response response = todoEndpoint.create(todoFormData);
+		
+		verify(todoService.createTodo(todoFormData));
+		assertEquals((Todo)response.getEntity(), todo);
+		assertEquals(201, response.getStatus());
+	}
+	
+	@Test
+	public void create_todoServiceThrows_sendsError() {
+		NewTodoData todoFormData = mock(NewTodoData.class);
+		RuntimeException exception = new RuntimeException("MOCK_MESSAGE");
+		when(todoService.createTodo(any())).thenThrow(exception);
+		
+		Response response = todoEndpoint.create(todoFormData);
+		
+		assertEquals(exception, (RuntimeException)response.getEntity());
+		assertEquals(500, response.getStatus());
 	}
 
 }
