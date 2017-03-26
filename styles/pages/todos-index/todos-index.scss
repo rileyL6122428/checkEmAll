@@ -1,5 +1,6 @@
 @import "./mixins/plus-button.scss";
 @import "./mixins/todos-list.scss";
+@import "./mixins/todo-type-tag.scss";
 
 section#todos {
   h1 {
@@ -31,6 +32,8 @@ section#todos {
     div.edit-todo-buttons {
       margin-top: 10px;
     }
+
+    @include todo-type-tag();
   }
 
   div#todo-stats {
