@@ -6,6 +6,7 @@ export default function TodoTypeTag() {
     scope: { todo: '=' },
     template: template,
     link: (scope) => {
+      debugger
       scope.todoType = scope.todo.type ? scope.todo.type : 'unassigned';
     }
   });
