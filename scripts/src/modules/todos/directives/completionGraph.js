@@ -15,16 +15,9 @@ export default function CompletionGraph(percentageGraphDrawer, GRAPH_COLORS) {
 
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
-            underlyingArc: new UnderlyingArc({
-              color: GRAPH_COLORS.UNDERLYING_ARC,
-              widthPercentage: 7.5
-            }),
+            underlyingArc: new UnderlyingArc({ color: GRAPH_COLORS.UNDERLYING_ARC, widthPercentage: 7.5 }),
             arcs: [
-              new Arc({
-                color: GRAPH_COLORS.COMPLETED_ARC,
-                widthPercentage: 6.5,
-                lengthPercentage: percentageFinished
-              })
+              new Arc({ color: GRAPH_COLORS.COMPLETED_ARC, widthPercentage: 6.5, lengthPercentage: percentageFinished })
             ]
           });
         }
