@@ -9,32 +9,34 @@ export default function CompletionGraph() {
       scope.$watch('completionStats', drawGraph);
 
       function drawGraph(stats) {
-        debugger
+
         if(stats) {
           var canvas = document.getElementById(scope.graphId);
           var ctx = canvas.getContext('2d');
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          let completionPercentages = stats.getCompletionPercentages();
-          var angle = (2 * Math.PI * completionPercentages.finished / 100) - 0.5 * Math.PI;
-          var centerX = 100;
-          var centerY = 100;
+          const ANGLE_MIN = -0.5 * Math.PI;
+          const ANGLE_MAX = 1.5 * Math.PI;
+          let radius = 0.283 * canvas.height;
 
-          ctx.scale(3, 3);
+          let completionPercentages = stats.getCompletionPercentages();
+          var angle = (2 * Math.PI * completionPercentages.finished / 100) + ANGLE_MIN;
+          var centerX = canvas.width / 2;
+          var centerY = canvas.height / 2;
 
           ctx.strokeStyle = "#F5F5F5";
-          ctx.lineWidth = 15;
+          ctx.lineWidth = 0.075 * canvas.height;
+
           ctx.beginPath();
-          ctx.arc(centerX, centerY, 57, -0.5 * Math.PI, 1.5 * Math.PI, false);
+          ctx.arc(centerX, centerY, radius, ANGLE_MIN, ANGLE_MAX);
           ctx.stroke();
 
           ctx.strokeStyle = '#00FF64';
-          ctx.lineWidth = 13;
+          ctx.lineWidth = 0.065 * canvas.height;
           ctx.beginPath();
-          ctx.arc(centerX, centerY, 57, -0.5 * Math.PI, angle, false);
+          ctx.arc(centerX, centerY, radius, ANGLE_MIN, angle);
           ctx.stroke();
 
-          ctx.setTransform(1, 0, 0, 1, 0, 0);
         }
       }
     }
