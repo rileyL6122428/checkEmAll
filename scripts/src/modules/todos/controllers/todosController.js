@@ -1,4 +1,5 @@
 import TypeStats from '../classes/TypeStats.js';
+import CompletionStats from '../classes/CompletionStats.js';
 
 export default function TodosController(todosStore, todosRequests, $state) {
   'ngInject';
@@ -7,6 +8,7 @@ export default function TodosController(todosStore, todosRequests, $state) {
   todosStore.placeListener(() => {
     vm.todos = todosStore.withdrawTodos();
     vm.typeStats = new TypeStats(vm.todos);
+    vm.completionStats = new CompletionStats(vm.todos);
   });
   todosRequests.getUserTodos();
 
