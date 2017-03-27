@@ -4,7 +4,7 @@ import todoModule from '../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
 describe("TodoTypeTag", () => {
-  let $rootScope, $compile;
+  let $rootScope, $compile, todoTypeTag, todoTypeTagScope;
 
   beforeEach(module(todoModule));
 
@@ -15,19 +15,19 @@ describe("TodoTypeTag", () => {
 
   describe("#link", () => {
     it("it puts todoType into scope", () => {
-      $rootScope.todo = { type: "work" };
-      let todoTypeTag = $compile("<todo-type-tag todo='todo'></todo-type-tag>")($rootScope);
-      let scope = todoTypeTag.isolateScope();
-
-      expect(scope.todoType).toEqual("work");
+      _setupTodoTagType({ todo: { type: "work" } });
+      expect(todoTypeTagScope.todoType).toEqual("work");
     });
 
     it("it sets todoType to 'unassigned' when todo.type is empty", () => {
-      $rootScope.todo = { type: "" };
-      let todoTypeTag = $compile("<todo-type-tag todo='todo'></todo-type-tag>")($rootScope);
-      let scope = todoTypeTag.isolateScope();
-
-      expect(scope.todoType).toEqual("unassigned");
+      _setupTodoTagType({ todo: { type: "" } });
+      expect(todoTypeTagScope.todoType).toEqual("unassigned");
     });
   });
+
+  function _setupTodoTagType(params) {
+    $rootScope.todo = params.todo;
+    todoTypeTag = $compile("<todo-type-tag todo='todo'></todo-type-tag>")($rootScope);
+    todoTypeTagScope = todoTypeTag.isolateScope();
+  }
 });
