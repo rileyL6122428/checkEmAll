@@ -10,6 +10,7 @@ import TodosRequests from './services/todosRequests.js';
 import TodosList from './directives/todosList.js';
 import TodoCard from './directives/todoCard.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
+import CompletionGraph from './directives/completionGraph.js';
 
 const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
@@ -20,6 +21,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
   .directive('todosList', TodosList)
   .directive('todoCard', TodoCard)
-  .directive('todoTypeTag', TodoTypeTag);
+  .directive('todoTypeTag', TodoTypeTag)
+  .directive('completionGraph', CompletionGraph);
 
 export default todoModule.name;

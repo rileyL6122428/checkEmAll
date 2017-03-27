@@ -9,6 +9,7 @@ export default function TodosController(todosStore, todosRequests, $state) {
     vm.todos = todosStore.withdrawTodos();
     vm.typeStats = new TypeStats(vm.todos);
     vm.completionStats = new CompletionStats(vm.todos);
+    debugger
   });
   todosRequests.getUserTodos();
 
