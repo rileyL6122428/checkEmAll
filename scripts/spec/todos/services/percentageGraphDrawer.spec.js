@@ -32,11 +32,13 @@ describe("PercentageGraphDrawer", () => {
     });
 
     it("clears the graph before drawing anything new", () => {
+      _setCallOrderExpectation(percentageGraph.clear, percentageGraph.drawArc);
       percentageGraphDrawer.draw({underlyingArc, arcs});
       expect(percentageGraph.clear).toHaveBeenCalled();
     });
 
-    it("draws the underlying arc", () => {
+    it("draws the underlying arc before drawing the supplied arcs", () => {
+      _setCallWithArgOrderExpectation(percentageGraph.drawArc, underlyingArc, arcs);
       percentageGraphDrawer.draw({underlyingArc, arcs});
       expect(percentageGraph.drawArc).toHaveBeenCalledWith(underlyingArc);
     });
@@ -48,4 +50,17 @@ describe("PercentageGraphDrawer", () => {
       });
     });
   });
+
+  function _setCallOrderExpectation(earlyMock, lateMock) {
+    earlyMock.and.callFake(() => {
+      expect(lateMock.calls.count()).toBe(0);
+    });
+  }
+
+  function _setCallWithArgOrderExpectation(mock, firstArg, laterArgs) {
+    mock.and.callFake(() => {
+      if(mock.calls.count() === 1)
+        laterArgs.forEach((arg) => expect(mock).not.toHaveBeenCalledWith(arg));
+    });
+  }
 });
