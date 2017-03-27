@@ -7,21 +7,8 @@ export default function PercentageGraphDrawer() {
       let percentageGraph = new PercentageGraph(params);
 
       percentageGraph.clear();
-      percentageGraph.drawArc({
-        color: params.underlyingColor,
-        widthPercentage: 7.5,
-        percentage: 100,
-        insets: 0
-      });
-
-      params.arcs.forEach((arc) => {
-        percentageGraph.drawArc({
-          color: arc.color,
-          widthPercentage: 6.5,
-          percentage: arc.percentage,
-          insets: 0
-        });
-      });
+      percentageGraph.drawArc(params.underlyingArc);
+      params.arcs.forEach((arc) => percentageGraph.drawArc(arc));
     }
   });
 

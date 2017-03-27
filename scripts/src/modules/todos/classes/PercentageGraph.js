@@ -15,13 +15,13 @@ export default class PercentageGraph {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  drawArc(params) {
-    let angleEnd = (2 * Math.PI * params.percentage / 100) + this.angleStart;
+  drawArc(arc) {
+    let angleEnd = (2 * Math.PI * arc.lengthPercentage / 100) + this.angleStart;
 
-    this.ctx.strokeStyle = params.color;
-    this.ctx.lineWidth = (params.widthPercentage / 100) * this.canvas.height;
+    this.ctx.strokeStyle = arc.color;
+    this.ctx.lineWidth = (arc.widthPercentage / 100) * this.canvas.height;
     this.ctx.beginPath();
-    this.ctx.arc(this.centerX, this.centerY, this.radius, this.angleStart + params.insets, angleEnd - params.insets);
+    this.ctx.arc(this.centerX, this.centerY, this.radius, this.angleStart + arc.insets, angleEnd - arc.insets);
     this.ctx.stroke();
 
     this.angleStart = angleEnd;
