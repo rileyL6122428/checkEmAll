@@ -1,4 +1,4 @@
-import TypeStats from '../../src/modules/todos/classes/TypeStats.js';
+import TypeStats from '../../../src/modules/todos/classes/TypeStats.js';
 
 describe("TypeStats", () => {
   let todo1, todo2, todo3, todo4, todo5, todo6, todos;
