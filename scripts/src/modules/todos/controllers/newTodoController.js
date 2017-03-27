@@ -1,7 +1,7 @@
 export default function NewTodoController (todosRequests, $state) {
   'ngInject';
   let vm = this;
-
+  
   vm.todoName = "";
   vm.todoFinished = false;
   vm.todoType = "";

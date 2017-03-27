@@ -20,7 +20,7 @@ describe("NewTodoController", () => {
 
       expect(newTodoController.todoName).toBeDefined();
       expect(newTodoController.todoFinished).toBeDefined();
-      expect(newTodoController.todoTypeId).toBeDefined();
+      expect(newTodoController.todoType).toBeDefined();
       expect(newTodoController.todoDescription).toBeDefined();
     });
   });
@@ -41,7 +41,8 @@ describe("NewTodoController", () => {
       expect(todosRequests.createTodo).toHaveBeenCalledWith({
         name: newTodoController.todoName,
         description: newTodoController.todoDescription,
-        finished: newTodoController.todoFinished
+        finished: newTodoController.todoFinished,
+        type: newTodoController.todoType
       });
     });
 
