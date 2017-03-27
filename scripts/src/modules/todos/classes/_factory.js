@@ -1,10 +1,10 @@
 import PercentageGraph from './PercentageGraph.js';
-import { Arc, UnderlyingArc } from './PercentageArg.js';
+import { Arc, UnderlyingArc } from './PercentageArc.js';
 import TypeStats from './TypeStats.js';
 import CompletionStats from './CompletionStats.js';
 
 
-export default function TodoClassFactory {
+export default function TodoClassFactory() {
   return({
     newPercentageGraph(params) {
       return new PercentageGraph(params);

@@ -13,7 +13,7 @@ import TodoCard from './directives/todoCard.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 import CompletionGraph from './directives/completionGraph.js';
 import TypeGraph from './directives/typeGraph.js';
-import TodoClassFactory from './classes/TodoClassFactory.js';
+import TodoClassFactory from './classes/_factory.js';
 
 import { GRAPH_COLORS } from './constants/graphColors.js';
 
