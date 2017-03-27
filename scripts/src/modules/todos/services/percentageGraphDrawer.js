@@ -11,6 +11,4 @@ export default function PercentageGraphDrawer() {
       params.arcs.forEach((arc) => percentageGraph.drawArc(arc));
     }
   });
-
-
 }
