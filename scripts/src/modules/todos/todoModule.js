@@ -13,6 +13,8 @@ import TodoCard from './directives/todoCard.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 import CompletionGraph from './directives/completionGraph.js';
 
+import { GRAPH_COLORS } from './constants/graphColors.js';
+
 const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
   .controller('todosController', TodosController)
@@ -24,6 +26,8 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
   .directive('todosList', TodosList)
   .directive('todoCard', TodoCard)
   .directive('todoTypeTag', TodoTypeTag)
-  .directive('completionGraph', CompletionGraph);
+  .directive('completionGraph', CompletionGraph)
+
+  .constant('GRAPH_COLORS', GRAPH_COLORS);
 
 export default todoModule.name;

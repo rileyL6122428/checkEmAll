@@ -1,7 +1,7 @@
 import template from '../templates/completionGraph.html';
 import { Arc, UnderlyingArc } from '../classes/PercentageArc.js';
 
-export default function CompletionGraph(percentageGraphDrawer) {
+export default function CompletionGraph(percentageGraphDrawer, GRAPH_COLORS) {
   return({
     restrict: 'E',
     scope: { completionStats: '=', graphId: '@' },
@@ -11,16 +11,21 @@ export default function CompletionGraph(percentageGraphDrawer) {
 
       function drawGraph(stats) {
         if(stats) {
+          let percentageFinished = stats.getCompletionPercentages().finished;
+
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
-            underlyingArc: new UnderlyingArc({ color: "#F5F5F5", widthPercentage: 7.5 }),
+            underlyingArc: new UnderlyingArc({
+              color: GRAPH_COLORS.UNDERLYING_ARC,
+              widthPercentage: 7.5
+            }),
             arcs: [
               new Arc({
-                color: '#00FF64',
+                color: GRAPH_COLORS.COMPLETED_ARC,
                 widthPercentage: 6.5,
-                lengthPercentage: stats.getCompletionPercentages().finished
+                lengthPercentage: percentageFinished
               })
-            ],
+            ]
           });
         }
       }
