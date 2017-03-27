@@ -12,9 +12,12 @@ import TodoCard from './directives/todoCard.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 
 const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
+
   .controller('todosController', TodosController)
   .controller('newTodoController', NewTodoController)
+
   .factory('todosRequests', TodosRequests)
+
   .directive('todosList', TodosList)
   .directive('todoCard', TodoCard)
   .directive('todoTypeTag', TodoTypeTag);
