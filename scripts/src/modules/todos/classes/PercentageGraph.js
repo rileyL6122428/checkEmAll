@@ -2,6 +2,7 @@ const ANGLE_MIN = -0.5 * Math.PI;
 const ANGLE_MAX = 1.5 * Math.PI;
 
 export default class PercentageGraph {
+
   constructor(params) {
     this.canvas = document.getElementById(params.graphId);
     this.ctx = this.canvas.getContext('2d');
