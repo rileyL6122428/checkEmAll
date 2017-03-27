@@ -13,19 +13,14 @@ export default function CompletionGraph(percentageGraphDrawer) {
         if(stats) {
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
-            underlyingColor: "#F5F5F5",
-            underlyingWidthPercentage: 7.5,
             underlyingArc: new UnderlyingArc({ color: "#F5F5F5", widthPercentage: 7.5 }),
-
             arcs: [
-              // { color: '#00FF64', percentage: stats.getCompletionPercentages().finished }
               new Arc({
                 color: '#00FF64',
                 widthPercentage: 6.5,
                 lengthPercentage: stats.getCompletionPercentages().finished
               })
             ],
-            inset: 0
           });
         }
       }
