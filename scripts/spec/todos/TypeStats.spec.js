@@ -11,7 +11,6 @@ describe("TypeStats", () => {
     todo5 = { type: "exercise" };
     todo6 = { type: "exercise" };
     todos = [todo1, todo2, todo3, todo4, todo5, todo6];
-
   });
 
   describe("#getTypeCounts", () => {
