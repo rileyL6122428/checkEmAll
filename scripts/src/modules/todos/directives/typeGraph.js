@@ -1,6 +1,6 @@
 import template from '../templates/typeGraph.html';
 
-export default function TypeGraph(percentageGraphDrawer, todoClassFactory, GRAPH_COLORS) {
+export default function TypeGraph(percentageGraphDrawer, todoClassFactory, GRAPH_COLORS, arcFactory) {
   return({
     restrict: 'E',
     scope: { stats: '=', graphId: '@' },
@@ -13,7 +13,7 @@ export default function TypeGraph(percentageGraphDrawer, todoClassFactory, GRAPH
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
             radius: 28.3,
-            underlyingArc: todoClassFactory.newUnderlyingArc({ color: GRAPH_COLORS.UNDERLYING_ARC, widthPercentage: 7.5 }),
+            underlyingArc: arcFactory.newUnderlyingArc(),
             arcs: mapTypesToArcs(stats)
           });
         }
@@ -24,25 +24,14 @@ export default function TypeGraph(percentageGraphDrawer, todoClassFactory, GRAPH
         let typePercentages = stats.getTypePercentages();
 
         for(var type in typePercentages) {
-          arcs.push(todoClassFactory.newArc({
-            color: getRandomColor(),
-            widthPercentage: 6.5,
-            lengthPercentage: typePercentages[type],
-            insets: 0.009
-          }));
+          let arc = arcFactory.newTypeArc({ type: type, length: typePercentages[type] });
+          arcs.push(arc);
         }
 
         return arcs;
       }
 
-      function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
+
     }
   });
 }
