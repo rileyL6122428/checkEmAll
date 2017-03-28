@@ -29,5 +29,6 @@ describe("TodoTypeTag", () => {
     $rootScope.todo = params.todo;
     todoTypeTag = $compile("<todo-type-tag todo='todo'></todo-type-tag>")($rootScope);
     todoTypeTagScope = todoTypeTag.isolateScope();
+    $rootScope.$digest();
   }
 });
