@@ -5,11 +5,11 @@ import java.util.List;
 
 import javax.ws.rs.NotFoundException;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
+import com.manifest.todo.server.jsonmarshaltargets.UpdateTodoData;
 import com.manifest.todo.server.model.Todo;
 import com.manifest.todo.server.model.User;
 import com.manifest.todo.server.repository.TodoRepository;
@@ -48,6 +48,12 @@ public class TodoService {
 		todo.setType(todoData.getType());
 		todo.setDateCreated(new Date());
 		
+		return todoRepository.save(todo);
+	}
+
+	public Todo updateTodo(UpdateTodoData updateTodoData) {
+		Todo todo = todoRepository.findOne(updateTodoData.getId());
+		todo.setFinished(updateTodoData.isFinished());
 		return todoRepository.save(todo);
 	}
 	

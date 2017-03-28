@@ -5,7 +5,9 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
+import com.manifest.todo.server.jsonmarshaltargets.UpdateTodoData;
 import com.manifest.todo.server.model.Todo;
 import com.manifest.todo.server.service.TodoService;
 
@@ -48,6 +51,18 @@ public class TodoEndpoint extends BaseEndpoint {
 		try {
 			Todo todo = todoService.createTodo(todoFormData);			
 			return Response.status(201).entity(todo).build();
+		} catch(Exception e) {
+			return Response.status(500).entity(e).build();
+		}
+	}
+	
+	@PUT
+	@Path("/todo")
+	@Produces("application/json")
+	public Response update(final UpdateTodoData updateTodoData) {
+		try {
+			Todo todo = todoService.updateTodo(updateTodoData);
+			return Response.status(200).entity(todo).build();
 		} catch(Exception e) {
 			return Response.status(500).entity(e).build();
 		}
