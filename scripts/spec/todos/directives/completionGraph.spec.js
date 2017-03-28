@@ -8,22 +8,16 @@ describe("CompletionGraph", () => {
   let percentageGraphDrawer, arcFactory;
 
   beforeEach(module(todoModule));
-
-  beforeEach(inject((_$compile_, _$rootScope_) => {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
-  }));
-
-  beforeEach(inject((_percentageGraphDrawer_, _arcFactory_) => {
-    percentageGraphDrawer = _percentageGraphDrawer_;
-    arcFactory = _arcFactory_;
-  }));
+  beforeEach(_iniatilzeDirectiveBuilders);
+  beforeEach(_initializeDirectiveDependencies);
 
   describe("#link", () => {
     it("draws a graph based on the provided canvasId and completion statistics", () => {
       let stats = _completionStatsMock({ finishedPercentage: 50 });
       spyOn(percentageGraphDrawer, 'draw');
       _setupCompletionGraph({ graphId: "MOCK_GRAPH_ID", completionStats: stats});
+
+      $rootScope.$digest();
 
       expect(percentageGraphDrawer.draw).toHaveBeenCalledWith({
         graphId: "MOCK_GRAPH_ID",
@@ -34,16 +28,31 @@ describe("CompletionGraph", () => {
     });
   });
 
+  //HELPERS
+
+  function _iniatilzeDirectiveBuilders() {
+    inject((_$compile_, _$rootScope_) => {
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+    });
+  }
+
+  function _initializeDirectiveDependencies() {
+    inject((_percentageGraphDrawer_, _arcFactory_) => {
+      percentageGraphDrawer = _percentageGraphDrawer_;
+      arcFactory = _arcFactory_;
+    });
+  }
+
   function _setupCompletionGraph(params) {
     $rootScope.graphId = params.graphId;
     $rootScope.completionStats = params.completionStats;
-    
+
     completionGraph = $compile(
       "<completion-graph graph-id='MOCK_GRAPH_ID' completion-stats='completionStats'></completion-graph>"
     )($rootScope);
 
     scope = completionGraph.isolateScope();
-    $rootScope.$digest();
   }
 
   function _completionStatsMock(params) {

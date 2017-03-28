@@ -1,4 +1,4 @@
-import { Arc } from './Arc.js';
+import Arc from './Arc.js';
 
 export default function ArcFactory(GRAPH_COLORS) {
   return({
