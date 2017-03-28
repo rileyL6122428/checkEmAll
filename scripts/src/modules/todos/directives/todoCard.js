@@ -8,7 +8,7 @@ export default function TodoCard(todosRequests) {
     scope: { todo: '=' },
     template: template,
     link(scope) {
-
+      debugger
       scope.toggleTodoFinished = toggleTodoFinished;
       scope.$watch('todo', setToggleButtonText);
 

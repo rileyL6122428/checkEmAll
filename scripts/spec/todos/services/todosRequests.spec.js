@@ -52,7 +52,7 @@ describe("TodoRequests", () => {
     });
   });
 
-  describe("#updatedTodo", () => {
+  describe("#updateTodo", () => {
     it("deposits an updated todo upon a successful request", () => {
       let updatedTodo = { id: 1, finished: true };
       $httpBackend.expectPUT('/api/todo').respond(200, updatedTodo);
