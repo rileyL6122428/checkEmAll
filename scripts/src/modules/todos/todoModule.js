@@ -26,7 +26,6 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
   .factory('todosRequests', TodosRequests)
   .factory('percentageGraphDrawer', PercentageGraphDrawer)
-  // .factory('todoTypeColor', TodoTypeColor)
   .factory('todoClassFactory', TodoClassFactory)
   .factory('arcFactory', ArcFactory)
 
