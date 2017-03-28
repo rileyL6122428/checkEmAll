@@ -23,8 +23,8 @@ describe("TypeGraph", () => {
         graphId: "MOCK_GRAPH_ID",
         underlyingArc: arcFactory.newUnderlyingArc(),
         arcs: [
-          arcFactory.newTypeArc({ type: "work", typePercentages: 35}),
-          arcFactory.newTypeArc({ type: "chore", typePercentages: 65})
+          arcFactory.newTypeArc({ type: "work", length: 35 }),
+          arcFactory.newTypeArc({ type: "chore", length: 65 })
         ]
       });
     });
