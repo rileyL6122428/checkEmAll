@@ -14,7 +14,7 @@ export default function TodoClassFactory() {
       return new Arc(params);
     },
 
-    newUnderlyingArc(Params) {
+    newUnderlyingArc(params) {
       return new UnderlyingArc(params);
     },
 

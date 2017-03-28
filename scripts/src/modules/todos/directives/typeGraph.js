@@ -1,7 +1,6 @@
 import template from '../templates/typeGraph.html';
-import { Arc, UnderlyingArc } from '../classes/PercentageArc.js';
 
-export default function TypeGraph(percentageGraphDrawer, GRAPH_COLORS) {
+export default function TypeGraph(percentageGraphDrawer, todoClassFactory, GRAPH_COLORS) {
   return({
     restrict: 'E',
     scope: { stats: '=', graphId: '@' },
@@ -14,7 +13,7 @@ export default function TypeGraph(percentageGraphDrawer, GRAPH_COLORS) {
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
             radius: 28.3,
-            underlyingArc: new UnderlyingArc({ color: GRAPH_COLORS.UNDERLYING_ARC, widthPercentage: 7.5 }),
+            underlyingArc: todoClassFactory.newUnderlyingArc({ color: GRAPH_COLORS.UNDERLYING_ARC, widthPercentage: 7.5 }),
             arcs: mapTypesToArcs(stats)
           });
         }
@@ -25,7 +24,7 @@ export default function TypeGraph(percentageGraphDrawer, GRAPH_COLORS) {
         let typePercentages = stats.getTypePercentages();
 
         for(var type in typePercentages) {
-          arcs.push(new Arc({
+          arcs.push(todoClassFactory.newArc({
             color: getRandomColor(),
             widthPercentage: 6.5,
             lengthPercentage: typePercentages[type],
