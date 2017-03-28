@@ -6,7 +6,8 @@ export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
       return new Arc({
         color: GRAPH_COLORS.COMPLETED_ARC,
         widthPercentage: GRAPH_MEASUREMENTS.COMPLETION_ARC_WIDTH,
-        lengthPercentage: stats.getCompletionPercentages().finished
+        lengthPercentage: stats.getCompletionPercentages().finished,
+        radiusPercentage: GRAPH_MEASUREMENTS.RADIUS
       });
     },
 
@@ -14,7 +15,8 @@ export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
       return new Arc({
         color: GRAPH_COLORS.UNDERLYING_ARC,
         widthPercentage: GRAPH_MEASUREMENTS.UNDERLYING_ARC_WIDTH,
-        lengthPercentage: 100
+        lengthPercentage: 100,
+        radiusPercentage: GRAPH_MEASUREMENTS.RADIUS
       });
     },
 
@@ -23,7 +25,8 @@ export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
         color: getRandomColor(),
         widthPercentage: GRAPH_MEASUREMENTS.TYPE_ARC_WIDTH,
         lengthPercentage: params.length,
-        insets: GRAPH_MEASUREMENTS.TYPE_ARC_INSETS
+        insets: GRAPH_MEASUREMENTS.TYPE_ARC_INSETS,
+        radiusPercentage: GRAPH_MEASUREMENTS.RADIUS
       });
     }
   });

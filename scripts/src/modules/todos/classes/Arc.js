@@ -4,5 +4,6 @@ export default class Arc {
     this.widthPercentage = params.widthPercentage;
     this.lengthPercentage = params.lengthPercentage;
     this.insets = params.insets ? params.insets : 0;
+    this.radiusPercentage = params.radiusPercentage;
   }
 }

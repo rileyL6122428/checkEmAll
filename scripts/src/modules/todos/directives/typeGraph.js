@@ -12,7 +12,7 @@ export default function TypeGraph(percentageGraphDrawer, arcFactory) {
         if(stats) {
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
-            radius: 28.3,
+            // radius: 28.3,
             underlyingArc: arcFactory.newUnderlyingArc(),
             arcs: mapTypesToArcs(stats)
           });

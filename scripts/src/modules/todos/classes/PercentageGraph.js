@@ -8,7 +8,6 @@ export default class PercentageGraph {
     this.ctx = this.canvas.getContext('2d');
     this.centerX = this.canvas.width / 2;
     this.centerY = this.canvas.height / 2;
-    this.radius = (params.radius / 100) * this.canvas.height;
     this.angleStart = ANGLE_MIN;
   }
 
@@ -17,14 +16,32 @@ export default class PercentageGraph {
   }
 
   drawArc(arc) {
-    let angleEnd = (2 * Math.PI * arc.lengthPercentage / 100) + this.angleStart;
-
     this.ctx.strokeStyle = arc.color;
-    this.ctx.lineWidth = (arc.widthPercentage / 100) * this.canvas.height;
+    this.ctx.lineWidth = this._arcWidth(arc);
     this.ctx.beginPath();
-    this.ctx.arc(this.centerX, this.centerY, this.radius, this.angleStart + arc.insets, angleEnd - arc.insets);
+    this.ctx.arc(this.centerX, this.centerY, this._radius(arc), this._arcStart(arc), this._arcEnd(arc));
     this.ctx.stroke();
 
-    this.angleStart = angleEnd;
+    this.angleStart = this._angleEnd(arc);
+  }
+
+  _arcWidth(arc) {
+    return (arc.widthPercentage / 100) * this.canvas.height;
+  }
+
+  _radius(arc) {
+    return (arc.radiusPercentage / 100) * this.canvas.height;
+  }
+
+  _arcStart(arc) {
+    return this.angleStart + arc.insets;
+  }
+
+  _arcEnd(arc) {
+    return this._angleEnd(arc) - arc.insets;
+  }
+
+  _angleEnd(arc) {
+    return (2 * Math.PI * arc.lengthPercentage / 100) + this.angleStart;
   }
 }
