@@ -12,7 +12,6 @@ export default function CompletionGraph($rootScope, percentageGraphDrawer, arcFa
         if(stats) {
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
-            // radius: 28.3,
             underlyingArc: arcFactory.newUnderlyingArc(),
             arcs: [arcFactory.newCompletionArc(stats)]
           });

@@ -21,15 +21,14 @@ describe("CompletionGraph", () => {
 
       expect(percentageGraphDrawer.draw).toHaveBeenCalledWith({
         graphId: "MOCK_GRAPH_ID",
-        radius: 28.3,
         underlyingArc: arcFactory.newUnderlyingArc(),
         arcs: [arcFactory.newCompletionArc(stats)]
       })
     });
   });
 
-  //HELPERS
 
+  //HELPERS
   function _iniatilzeDirectiveBuilders() {
     inject((_$compile_, _$rootScope_) => {
       $compile = _$compile_;
