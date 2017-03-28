@@ -7,7 +7,7 @@ export const GRAPH_COLORS = {
     PROJECT: "#ff5d00",
     STUDY: "#f549ff",
     JAPANESE: "#ff00a1",
-    EXERCISE: "#fdffad",
+    EXERCISE: "#ef3b3b",
     FAMILY: "#ffdfad",
     "": "#e2dbce"
   }

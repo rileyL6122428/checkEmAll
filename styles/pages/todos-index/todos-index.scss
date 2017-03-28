@@ -1,6 +1,7 @@
 @import "./mixins/plus-button.scss";
 @import "./mixins/todos-list.scss";
 @import "./mixins/todo-type-tag.scss";
+@import "./mixins/todo-graphs.scss";
 
 section#todos {
   h1 {
@@ -37,7 +38,10 @@ section#todos {
   }
 
   div#todo-stats {
-    height: 175px; //TODO UNDO THIS HEIGHT ONCE GRAPHS ARE ADDED
+    display: flex;
+    justify-content: space-around;
+    
+    @include todo-graphs();
   }
 
   h2 {
