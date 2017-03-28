@@ -3,8 +3,8 @@ import 'angular-mocks';
 import todoModule from '../../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
-describe("CompletionGraph", () => {
-  let $rootScope, $compile, completionGraph, scope;
+describe("TypeGraph", () => {
+  let $rootScope, $compile, typeGraph, scope;
   let percentageGraphDrawer, arcFactory;
 
   beforeEach(module(todoModule));
@@ -12,21 +12,23 @@ describe("CompletionGraph", () => {
   beforeEach(_initializeDirectiveDependencies);
 
   describe("#link", () => {
-    it("draws a graph based on the provided canvasId and completion statistics", () => {
-      let stats = _completionStatsMock({ finishedPercentage: 50 });
+    it("places a watch listener on stats that redraws a graph when provided with new stats", () => {
+      let stats = _typeStatsMock({ typePercentages: { work: 35, chore: 65 } });
       spyOn(percentageGraphDrawer, 'draw');
-      _setupCompletionGraph({ graphId: "MOCK_GRAPH_ID", completionStats: stats});
+      _setupTypeGraph({ graphId: "MOCK_GRAPH_ID", stats: stats});
 
       $rootScope.$digest();
 
       expect(percentageGraphDrawer.draw).toHaveBeenCalledWith({
         graphId: "MOCK_GRAPH_ID",
         underlyingArc: arcFactory.newUnderlyingArc(),
-        arcs: [arcFactory.newCompletionArc(stats)]
+        arcs: [
+          arcFactory.newTypeArc({ type: "work", typePercentages: 35}),
+          arcFactory.newTypeArc({ type: "chore", typePercentages: 65})
+        ]
       });
     });
   });
-
 
   //HELPERS
   function _iniatilzeDirectiveBuilders() {
@@ -43,21 +45,21 @@ describe("CompletionGraph", () => {
     });
   }
 
-  function _setupCompletionGraph(params) {
+  function _setupTypeGraph(params) {
     $rootScope.graphId = params.graphId;
-    $rootScope.completionStats = params.completionStats;
+    $rootScope.stats = params.stats;
 
-    completionGraph = $compile(
-      "<completion-graph graph-id='MOCK_GRAPH_ID' completion-stats='completionStats'></completion-graph>"
+    typeGraph = $compile(
+      "<type-graph graph-id='{{graphId}}' stats='stats'></type-graph>"
     )($rootScope);
 
-    scope = completionGraph.isolateScope();
+    scope = typeGraph.isolateScope();
   }
 
-  function _completionStatsMock(params) {
+  function _typeStatsMock(params) {
     return ({
-      getCompletionPercentages: jasmine.createSpy('completionStats#getCompletionPercentages')
-                                .and.returnValue({ finished: params.finishedPercentage})
+      getTypePercentages: jasmine.createSpy('TypeStats#getTypePercentages')
+                                 .and.returnValue(params.typePercentages)
     });
   }
 });
