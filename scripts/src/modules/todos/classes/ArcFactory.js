@@ -1,11 +1,11 @@
 import Arc from './Arc.js';
 
-export default function ArcFactory(GRAPH_COLORS) {
+export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
   return({
     newCompletionArc(stats) {
       return new Arc({
         color: GRAPH_COLORS.COMPLETED_ARC,
-        widthPercentage: 6.5,
+        widthPercentage: GRAPH_MEASUREMENTS.COMPLETION_ARC_WIDTH,
         lengthPercentage: stats.getCompletionPercentages().finished
       });
     },
@@ -13,7 +13,7 @@ export default function ArcFactory(GRAPH_COLORS) {
     newUnderlyingArc() {
       return new Arc({
         color: GRAPH_COLORS.UNDERLYING_ARC,
-        widthPercentage: 7.5,
+        widthPercentage: GRAPH_MEASUREMENTS.UNDERLYING_ARC_WIDTH,
         lengthPercentage: 100
       });
     },
@@ -21,9 +21,9 @@ export default function ArcFactory(GRAPH_COLORS) {
     newTypeArc(params) {
       return new Arc({
         color: getRandomColor(),
-        widthPercentage: 6.5,
+        widthPercentage: GRAPH_MEASUREMENTS.TYPE_ARC_WIDTH,
         lengthPercentage: params.length,
-        insets: 0.009
+        insets: GRAPH_MEASUREMENTS.TYPE_ARC_INSETS
       });
     }
   });

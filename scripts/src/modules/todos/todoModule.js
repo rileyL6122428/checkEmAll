@@ -17,6 +17,7 @@ import TodoClassFactory from './classes/_factory.js';
 import ArcFactory from './classes/ArcFactory.js';
 
 import { GRAPH_COLORS } from './constants/graphColors.js';
+import { GRAPH_MEASUREMENTS } from './constants/graphMeasurements.js';
 
 const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
@@ -34,6 +35,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
   .directive('completionGraph', CompletionGraph)
   .directive('typeGraph', TypeGraph)
 
-  .constant('GRAPH_COLORS', GRAPH_COLORS);
+  .constant('GRAPH_COLORS', GRAPH_COLORS)
+  .constant('GRAPH_MEASUREMENTS', GRAPH_MEASUREMENTS);
 
 export default todoModule.name;
