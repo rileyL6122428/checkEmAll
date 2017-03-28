@@ -27,8 +27,6 @@ describe("CompletionGraph", () => {
     });
   });
 
-
-  //HELPERS
   function _iniatilzeDirectiveBuilders() {
     inject((_$compile_, _$rootScope_) => {
       $compile = _$compile_;
