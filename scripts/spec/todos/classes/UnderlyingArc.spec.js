@@ -1,4 +1,4 @@
-import { UnderlyingArc } from '../../../src/modules/todos/classes/PercentageArc.js';
+import { UnderlyingArc } from '../../../src/modules/todos/classes/Arc.js';
 
 describe("UnderlyingArc", () => {
   describe("#constructor", () => {

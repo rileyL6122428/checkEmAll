@@ -1,6 +1,6 @@
 import template from '../templates/completionGraph.html';
 
-export default function CompletionGraph($rootScope, percentageGraphDrawer, todoClassFactory, GRAPH_COLORS, arcFactory) {
+export default function CompletionGraph($rootScope, percentageGraphDrawer, arcFactory) {
   return({
     restrict: 'E',
     scope: { completionStats: '=', graphId: '@' },

@@ -1,6 +1,6 @@
 import template from '../templates/typeGraph.html';
 
-export default function TypeGraph(percentageGraphDrawer, todoClassFactory, GRAPH_COLORS, arcFactory) {
+export default function TypeGraph(percentageGraphDrawer, arcFactory) {
   return({
     restrict: 'E',
     scope: { stats: '=', graphId: '@' },
