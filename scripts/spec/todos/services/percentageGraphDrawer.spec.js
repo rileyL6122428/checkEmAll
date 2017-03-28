@@ -5,13 +5,13 @@ import todoModule from '../../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
 describe("PercentageGraphDrawer", () => {
-  let percentageGraphDrawer, todoClassFactory;
+  let percentageGraphDrawer, graphFactory;
 
   beforeEach(module(todoModule));
 
-  beforeEach(inject((_percentageGraphDrawer_, _todoClassFactory_) => {
+  beforeEach(inject((_percentageGraphDrawer_, _graphFactory_) => {
     percentageGraphDrawer = _percentageGraphDrawer_;
-    todoClassFactory = _todoClassFactory_;
+    graphFactory = _graphFactory_;
   }));
 
   describe("#draw", () => {
@@ -23,7 +23,7 @@ describe("PercentageGraphDrawer", () => {
         drawArc: jasmine.createSpy('percentageGraph#drawArc')
       };
 
-      spyOn(todoClassFactory, 'newPercentageGraph').and.returnValue(percentageGraph);
+      spyOn(graphFactory, 'newPercentageGraph').and.returnValue(percentageGraph);
     });
 
     beforeEach(() => {
