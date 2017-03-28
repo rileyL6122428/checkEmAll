@@ -38,6 +38,7 @@ describe("PercentageGraph", () => {
 
     it("draws the appropriate arc", () => {
       let arc = { insets: 0, lengthPercentage: 50 };
+      
       percentageGraph.drawArc(arc);
 
       let expectedCenterX = canvas.width / 2;
@@ -54,7 +55,6 @@ describe("PercentageGraph", () => {
 
       percentageGraph.drawArc(arc1);
       percentageGraph.drawArc(arc2);
-
 
       let expectedCenterX = canvas.width / 2;
       let expectedCenterY = canvas.height / 2;
