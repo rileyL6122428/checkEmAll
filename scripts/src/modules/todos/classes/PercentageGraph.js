@@ -8,7 +8,6 @@ export default class PercentageGraph {
     this.ctx = this.canvas.getContext('2d');
     this.centerX = this.canvas.width / 2;
     this.centerY = this.canvas.height / 2;
-    // this.radius = 0.283 * this.canvas.height;
     this.radius = (params.radius / 100) * this.canvas.height;
     this.angleStart = ANGLE_MIN;
   }
