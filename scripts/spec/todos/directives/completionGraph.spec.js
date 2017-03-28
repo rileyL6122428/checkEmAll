@@ -37,7 +37,7 @@ describe("CompletionGraph", () => {
   function _setupCompletionGraph(params) {
     $rootScope.graphId = params.graphId;
     $rootScope.completionStats = params.completionStats;
-    debugger
+    
     completionGraph = $compile(
       "<completion-graph graph-id='MOCK_GRAPH_ID' completion-stats='completionStats'></completion-graph>"
     )($rootScope);
