@@ -8,7 +8,7 @@ export const GRAPH_COLORS = {
     STUDY: "#f549ff",
     JAPANESE: "#ff00a1",
     EXERCISE: "#ef3b3b",
-    FAMILY: "#ffdfad",
+    FAMILY: "#ffa5f6",
     "": "#e2dbce"
   }
 };
