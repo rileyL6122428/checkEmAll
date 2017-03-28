@@ -53,6 +53,15 @@ describe("TodoRequests", () => {
   });
 
   describe("#updatedTodo", () => {
-    xit("should be tested");
+    it("deposits an updated todo upon a successful request", () => {
+      let updatedTodo = { id: 1, finished: true };
+      $httpBackend.expectPUT('/api/todo').respond(200, updatedTodo);
+      spyOn(todosStore, 'depositTodo');
+
+      todosRequests.updateTodo(updatedTodo);
+      $httpBackend.flush();
+
+      expect(todosStore.depositTodo).toHaveBeenCalledWith(updatedTodo);
+    });
   });
 });
