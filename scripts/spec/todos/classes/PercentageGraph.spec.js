@@ -16,7 +16,7 @@ describe("PercentageGraph", () => {
   beforeEach(() => spyOn(document, 'getElementById').and.returnValue(canvas));
 
   beforeEach(() => {
-    percentageGraph = new PercentageGraph({ graphId: "MOCK_CANVAS_ID" });
+    percentageGraph = new PercentageGraph({ graphId: "MOCK_CANVAS_ID", radius: 28.3 });
     expect(document.getElementById).toHaveBeenCalledWith("MOCK_CANVAS_ID");
     expect(canvas.getContext).toHaveBeenCalledWith("2d");
   });
@@ -38,12 +38,12 @@ describe("PercentageGraph", () => {
 
     it("draws the appropriate arc", () => {
       let arc = { insets: 0, lengthPercentage: 50 };
-      
+
       percentageGraph.drawArc(arc);
 
       let expectedCenterX = canvas.width / 2;
       let expectedCenterY = canvas.height / 2;
-      let expectedRadius = 0.283 * canvas.height;
+      let expectedRadius = (28.3 / 100) * canvas.height;
       let expectedAngleStart = -0.5 * Math.PI;
       let expectedAngleEnd = (2 * Math.PI * arc.lengthPercentage / 100) + expectedAngleStart;
       expect(context.arc).toHaveBeenCalledWith(expectedCenterX, expectedCenterY, expectedRadius, expectedAngleStart, expectedAngleEnd);
@@ -58,7 +58,7 @@ describe("PercentageGraph", () => {
 
       let expectedCenterX = canvas.width / 2;
       let expectedCenterY = canvas.height / 2;
-      let expectedRadius = 0.283 * canvas.height;
+      let expectedRadius = (28.3 / 100) * canvas.height;
       let minAngle = -0.5 * Math.PI;
       let expectedAngleStart = (2 * Math.PI * arc1.lengthPercentage / 100) + minAngle;
       let expectedAngleEnd = (2 * Math.PI * arc2.lengthPercentage / 100) + expectedAngleStart;

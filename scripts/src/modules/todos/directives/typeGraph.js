@@ -13,6 +13,7 @@ export default function TypeGraph(percentageGraphDrawer, GRAPH_COLORS) {
         if(stats) {
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
+            radius: 28.3,
             underlyingArc: new UnderlyingArc({ color: GRAPH_COLORS.UNDERLYING_ARC, widthPercentage: 7.5 }),
             arcs: mapTypesToArcs(stats)
           });
