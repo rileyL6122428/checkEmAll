@@ -29,8 +29,6 @@ export default function TypeGraph(percentageGraphDrawer, arcFactory) {
 
         return arcs;
       }
-
-
     }
   });
 }
