@@ -16,11 +16,13 @@ describe("TodoTypeTag", () => {
   describe("#link", () => {
     it("it puts todoType into scope", () => {
       _setupTodoTagType({ todo: { type: "work" } });
+      $rootScope.$digest();
       expect(todoTypeTagScope.todoType).toEqual("work");
     });
 
     it("it sets todoType to 'unassigned' when todo.type is empty", () => {
       _setupTodoTagType({ todo: { type: "" } });
+      $rootScope.$digest();
       expect(todoTypeTagScope.todoType).toEqual("unassigned");
     });
   });
@@ -29,6 +31,5 @@ describe("TodoTypeTag", () => {
     $rootScope.todo = params.todo;
     todoTypeTag = $compile("<todo-type-tag todo='todo'></todo-type-tag>")($rootScope);
     todoTypeTagScope = todoTypeTag.isolateScope();
-    $rootScope.$digest();
   }
 });
