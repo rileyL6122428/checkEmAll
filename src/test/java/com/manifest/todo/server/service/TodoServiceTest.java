@@ -15,6 +15,7 @@ import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
 
 import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
+import com.manifest.todo.server.jsonmarshaltargets.UpdateTodoData;
 import com.manifest.todo.server.model.Todo;
 import com.manifest.todo.server.model.User;
 import com.manifest.todo.server.repository.TodoRepository;
@@ -85,5 +86,24 @@ public class TodoServiceTest {
 		
 		assertEquals(persistedTodo, returnedTodo);
 	}
-
+	
+	@Test
+	public void updateTodo__updatesExistingTodoWithProvidedData() {
+		UpdateTodoData updateTodoData = mock(UpdateTodoData.class);
+		when(updateTodoData.getId()).thenReturn(1l);
+		when(updateTodoData.isFinished()).thenReturn(false);
+		
+		Todo todo = mock(Todo.class);
+		doNothing().when(todo).setFinished(anyBoolean());
+		
+		when(todoRepository.findOne(anyLong())).thenReturn(todo);
+		when(todoRepository.save(any(Todo.class))).thenReturn(todo);
+		
+		Todo returnedTodo = todoService.updateTodo(updateTodoData);
+		
+		verify(todoRepository).findOne(1l);
+		verify(todo).setFinished(false);
+		verify(todoRepository).save(todo);
+		assertEquals(todo, returnedTodo);
+	}
 }
