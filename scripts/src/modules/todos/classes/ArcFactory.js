@@ -1,6 +1,6 @@
 import Arc from './Arc.js';
 
-export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS, todoTypeColor) {
+export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
   return({
     newCompletionArc(stats) {
       return new Arc({
@@ -22,7 +22,7 @@ export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS, todoTypeCol
 
     newTypeArc(params) {
       return new Arc({
-        color: todoTypeColor.convertType(params.type),
+        color: GRAPH_COLORS.BY_TYPE[params.type.toUpperCase()],
         widthPercentage: GRAPH_MEASUREMENTS.TYPE_ARC_WIDTH,
         lengthPercentage: params.length,
         insets: GRAPH_MEASUREMENTS.TYPE_ARC_INSETS,
