@@ -1,6 +1,13 @@
 package com.manifest.todo.server.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +15,8 @@ import java.util.List;
 import javax.ws.rs.NotFoundException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-
-import static org.mockito.Mockito.*;
 
 import com.manifest.todo.server.jsonmarshaltargets.NewTodoData;
 import com.manifest.todo.server.jsonmarshaltargets.UpdateTodoData;
