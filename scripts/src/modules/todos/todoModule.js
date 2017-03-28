@@ -14,7 +14,7 @@ import TodoTypeTag from './directives/todoTypeTag.js';
 import CompletionGraph from './directives/completionGraph.js';
 import TypeGraph from './directives/typeGraph.js';
 
-import TodoClassFactory from './classes/_factory.js';
+import StatsFactory from './classes/StatsFactory.js';
 import GraphFactory from './classes/GraphFactory.js';
 import ArcFactory from './classes/ArcFactory.js';
 
@@ -29,7 +29,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
   .factory('todosRequests', TodosRequests)
   .factory('percentageGraphDrawer', PercentageGraphDrawer)
 
-  .factory('todoClassFactory', TodoClassFactory)
+  .factory('todoClassFactory', StatsFactory)
   .factory('graphFactory', GraphFactory)
   .factory('arcFactory', ArcFactory)
 
