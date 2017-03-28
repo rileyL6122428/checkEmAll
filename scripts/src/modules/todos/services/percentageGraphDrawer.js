@@ -1,10 +1,8 @@
-import PercentageGraph from '../classes/PercentageGraph.js';
-
-export default function PercentageGraphDrawer(todoClassFactory) {
+export default function PercentageGraphDrawer(graphFactory) {
 
   return ({
     draw(params) {
-      let percentageGraph = todoClassFactory.newPercentageGraph(params);
+      let percentageGraph = graphFactory.newPercentageGraph(params);
 
       percentageGraph.clear();
       percentageGraph.drawArc(params.underlyingArc);
