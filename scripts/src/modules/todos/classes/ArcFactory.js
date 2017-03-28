@@ -1,6 +1,6 @@
 import Arc from './Arc.js';
 
-export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
+export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS, todoTypeColor) {
   return({
     newCompletionArc(stats) {
       return new Arc({
@@ -22,7 +22,7 @@ export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
 
     newTypeArc(params) {
       return new Arc({
-        color: getRandomColor(),
+        color: todoTypeColor.convertType(params.type),
         widthPercentage: GRAPH_MEASUREMENTS.TYPE_ARC_WIDTH,
         lengthPercentage: params.length,
         insets: GRAPH_MEASUREMENTS.TYPE_ARC_INSETS,
@@ -30,13 +30,4 @@ export default function ArcFactory(GRAPH_COLORS, GRAPH_MEASUREMENTS) {
       });
     }
   });
-
-  function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
 }

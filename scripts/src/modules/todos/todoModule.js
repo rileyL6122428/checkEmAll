@@ -7,6 +7,7 @@ import NewTodoController from './controllers/newTodoController.js';
 
 import TodosRequests from './services/todosRequests.js';
 import PercentageGraphDrawer from './services/percentageGraphDrawer.js';
+import TodoTypeColor from './services/graphColors.js';
 
 import TodosList from './directives/todosList.js';
 import TodoCard from './directives/todoCard.js';
@@ -26,6 +27,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
   .factory('todosRequests', TodosRequests)
   .factory('percentageGraphDrawer', PercentageGraphDrawer)
+  .factory('todoTypeColor', TodoTypeColor)
   .factory('todoClassFactory', TodoClassFactory)
   .factory('arcFactory', ArcFactory)
 
