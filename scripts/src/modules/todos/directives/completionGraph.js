@@ -1,6 +1,6 @@
 import template from '../templates/completionGraph.html';
 
-export default function CompletionGraph(percentageGraphDrawer, todoClassFactory, GRAPH_COLORS) {
+export default function CompletionGraph($rootScope, percentageGraphDrawer, todoClassFactory, GRAPH_COLORS) {
   return({
     restrict: 'E',
     scope: { completionStats: '=', graphId: '@' },
@@ -8,7 +8,7 @@ export default function CompletionGraph(percentageGraphDrawer, todoClassFactory,
     link: (scope) => {
       scope.$watch('completionStats', drawGraph);
 
-      function drawGraph(stats) {
+      function drawGraph(stats) {        
         if(stats) {
           percentageGraphDrawer.draw({
             graphId: scope.graphId,
