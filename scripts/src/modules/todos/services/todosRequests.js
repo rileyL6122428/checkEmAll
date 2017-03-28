@@ -38,6 +38,22 @@ export default function TodosRequests($http, todosStore, $ngRedux) {
           console.log(response);
         }
       )
+    },
+
+    updateTodo(updatedTodo) {
+      return $http({
+        url: "/api/todo",
+        method: "PUT",
+        data: updatedTodo
+      }).then(
+        function success(response) {
+          todosStore.depositTodo(response.data);
+        },
+        function failure(response) {
+          console.log("AN ERROR OCCURRED WHILE ATTEMPTING TO UPDTATE TODO.");
+          console.log(response);
+        }
+      )
     }
   })
 }

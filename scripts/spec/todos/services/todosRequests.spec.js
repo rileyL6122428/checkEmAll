@@ -51,4 +51,8 @@ describe("TodoRequests", () => {
       expect(todosStore.depositTodo).toHaveBeenCalledWith(persistedTodo);
     });
   });
+
+  describe("#updatedTodo", () => {
+    xit("should be tested");
+  });
 });
