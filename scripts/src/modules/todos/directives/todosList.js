@@ -5,7 +5,7 @@ export default function TodosList() {
 
   return({
     restrict: 'E',
-    scope: { todos: '=', selectTodo: '&' },
-    template: template,
+    scope: { todos: '=', selectTodo: '&', selectedTodo: '=' },
+    template: template
   });
 }
