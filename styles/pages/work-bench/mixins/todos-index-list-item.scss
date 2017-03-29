@@ -4,7 +4,7 @@
   li.todo-list-item {
     list-style: none;
 
-    > button {
+    button {
       display: block;
       position: relative;
       width: 100%;
@@ -15,18 +15,14 @@
 
       background-color: rgba(255, 255, 255, 0);
       transition: color 0.8s;
+    }
 
-      &:hover {
-        color: white;
+    button:hover {
+      @include fully-colored-list-item();
+    }
 
-        div.list-item-color {
-            width: 100%;
-        }
-      }
-
-      &:focus {
-        outline: none;
-      }
+    button:focus {
+      outline: none;
     }
 
     div.list-item-color {
@@ -42,10 +38,14 @@
   }
 
   li.todo-list-item.selected {
-    color: white;
+    @include fully-colored-list-item();
+  }
+}
 
-    div.list-item-color {
-        width: 100%;
-    }
+@mixin fully-colored-list-item() {
+  color: white;
+
+  div.list-item-color {
+      width: 100%;
   }
 }
