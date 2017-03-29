@@ -12,21 +12,25 @@ describe("TodoCard", () => {
   beforeEach(_initializeDirectiveDependencies);
 
   describe("#link", () => {
-    it("sets a $watch listener on 'todo' that updates the 'toggle finished button text'", () => {
-      let todo = { id: 1, finished: true, type: "work" };
+    let todo;
+    beforeEach(() => {
+      todo = { id: 1, finished: true, type: "work" };
       _setupTodoCard({ todo });
       $rootScope.$digest();
+    });
+
+    it("sets a $watch listener on 'todo' that updates the 'toggle finished button text'", () => {
       expect(scope.toggleButtonText).toEqual("Mark Unfinished");
     });
 
-    describe("#toggleTodoFinished", () => {
-      let todo;
-      beforeEach(() => {
-        todo = { id: 1, finished: true, type: "work" };
-        _setupTodoCard({ todo });
-        $rootScope.$digest();
+    describe("#unselectTodo", () => {
+      it("sets todo to null", () => {
+        scope.unselectTodo();
+        expect(scope.todo).toEqual(null);
       });
+    });
 
+    describe("#toggleTodoFinished", () => {
       it("modifies the finshed status of the todo", () => {
         scope.toggleTodoFinished();
         expect(scope.todo.finished).toBe(false);
@@ -37,7 +41,7 @@ describe("TodoCard", () => {
         expect(scope.toggleButtonText).toEqual("Mark Finished");
       });
 
-      it("makes a call to todosRequest to update the updated todo", () => {
+      it("makes a call to todosRequest to update the currently selected todo", () => {
         spyOn(todosRequests, 'updateTodo');
         scope.toggleTodoFinished();
         expect(todosRequests.updateTodo).toHaveBeenCalledWith(todo);

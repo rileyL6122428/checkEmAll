@@ -8,8 +8,9 @@ export default function TodoCard(todosRequests) {
     scope: { todo: '=' },
     template: template,
     link(scope) {
-      
+
       scope.toggleTodoFinished = toggleTodoFinished;
+      scope.unselectTodo = unselectTodo;
       scope.$watch('todo', setToggleButtonText);
 
       function setToggleButtonText() {
@@ -21,6 +22,10 @@ export default function TodoCard(todosRequests) {
         scope.todo.finished = !scope.todo.finished;
         setToggleButtonText();
         todosRequests.updateTodo(scope.todo);
+      }
+
+      function unselectTodo() {
+        scope.todo = null;
       }
     }
   });
