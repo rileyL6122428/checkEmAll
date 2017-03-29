@@ -35,12 +35,22 @@ section#todos {
     }
 
     @include todo-type-tag();
+
+    button#close {
+      display: none;
+      position: absolute;
+      top: -35px;
+    }
+
+    &:hover button#close{
+      display: block;
+    }
   }
 
   div#todo-stats {
     display: flex;
     justify-content: space-around;
-    
+
     @include todo-graphs();
   }
 
