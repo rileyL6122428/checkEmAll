@@ -5,12 +5,17 @@
       <todos-list select-todo="vm.setSelectedTodo(todo)" todos="vm.todos"></todos-list>
     </section>
 
+    <div id="todo-stats">
+      <div id="type-labels">
+        <type-label></type-label>
+      </div>
+
+      <div id="graphs">
+        <type-graph stats="vm.typeStats" graph-id="type-graph"></type-graph>
+        <completion-graph completion-stats="vm.completionStats" graph-id="completion-graph"></completion-graph>
+      </div>
+    </div>
 
     <todo-card todo="vm.selectedTodo"></todo-card>
-
-    <div id="todo-stats">
-      <type-graph stats="vm.typeStats" graph-id="type-graph"></type-graph>
-      <completion-graph completion-stats="vm.completionStats" graph-id="completion-graph"></completion-graph>
-    </div>
 
 </section>
