@@ -3,8 +3,7 @@
     <button ng-click="selectTodo({ todo: todo })">
       <div class="todo-name">{{todo.name}}</div>
       <div class="status">Finished: {{todo.finished}}</div>
-      <!-- <todo-type-tag todo="todo"></todo-type-tag> -->
-      <list-item-color-splash></list-item-color-splash>
+      <list-item-color-splash todo='todo'></list-item-color-splash>
     </button>
   </li>
 </ul>
