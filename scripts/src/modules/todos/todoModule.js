@@ -13,7 +13,7 @@ import TodoCard from './directives/todoCard.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 import CompletionGraph from './directives/completionGraph.js';
 import TypeGraph from './directives/typeGraph.js';
-import TypeLabel from './directives/typeLabel.js';
+import TypeLabels from './directives/typeLabels.js';
 
 import StatsFactory from './classes/StatsFactory.js';
 import GraphFactory from './classes/GraphFactory.js';
@@ -39,7 +39,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
   .directive('todoTypeTag', TodoTypeTag)
   .directive('completionGraph', CompletionGraph)
   .directive('typeGraph', TypeGraph)
-  .directive('typeLabel', TypeLabel)
+  .directive('typeLabels', TypeLabels)
 
   .constant('GRAPH_COLORS', GRAPH_COLORS)
   .constant('GRAPH_MEASUREMENTS', GRAPH_MEASUREMENTS);

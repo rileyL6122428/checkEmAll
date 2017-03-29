@@ -1,14 +1,36 @@
 @mixin todo-stats() {
+  $stats-height: 100px;
+
   div#todo-stats {
     display: flex;
-    // justify-content: space-around;
+    justify-content: space-between;
+
+    height: $stats-height;
+
+    div#type-labels {
+      display: flex;
+      flex-flow: column wrap;
+      height: $stats-height;
+      width: 545px;
+
+      color: white;
+
+      > .type-label {
+        width: 115px;
+        font-size: 18px;
+        text-align: center;
+        margin: 10px;
+        border-radius: 12px;
+      }
+    }
 
     div#graphs {
       display: flex;
+      margin: auto;
     }
 
     h6.graph-label {
-      margin: 10px 0 -5px;
+      margin: 5px 0 -25px -27px;
       font-size: 16px;
     }
 
@@ -16,6 +38,7 @@
     .todo-graph {
       height: $todo-graph-side;
       width: $todo-graph-side;
+      margin-right: 30px;
     }
   }
 }

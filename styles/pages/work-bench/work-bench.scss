@@ -7,8 +7,8 @@ section#work-bench {
 
   @include todos-index();
 
-  @include todo-card();
-
   @include todo-stats();
+
+  @include todo-card();
 
 }
