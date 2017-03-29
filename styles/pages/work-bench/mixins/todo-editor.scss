@@ -1,7 +1,7 @@
 @import './todo-type-tag.scss';
 
-@mixin todo-card() {
-  div#show-todo {
+@mixin todo-editor() {
+  div#todo-editor {
     display: flex;
     flex-direction: column;
 

@@ -1,6 +1,6 @@
 @import "./mixins/todos-index.scss";
 @import "./mixins/todo-stats.scss";
-@import "./mixins/todo-card.scss";
+@import "./mixins/todo-editor.scss";
 
 section#work-bench {
   height: 100%;
@@ -9,6 +9,6 @@ section#work-bench {
 
   @include todo-stats();
 
-  @include todo-card();
+  @include todo-editor();
 
 }

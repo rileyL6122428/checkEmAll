@@ -1,6 +1,6 @@
-import template from '../templates/todoShow.html';
+import template from '../templates/todoEditor.html';
 
-export default function TodoCard(todosRequests) {
+export default function TodoEditor(todosRequests) {
   "ngInject";
 
   return({
