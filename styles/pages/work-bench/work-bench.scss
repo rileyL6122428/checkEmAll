@@ -1,5 +1,5 @@
 @import "./mixins/todos-index.scss";
-@import "./mixins/todo-graphs.scss";
+@import "./mixins/todo-stats.scss";
 @import "./mixins/todo-card.scss";
 
 section#work-bench {
@@ -9,9 +9,6 @@ section#work-bench {
 
   @include todo-card();
 
-  div#todo-stats {
-    display: flex;
-    justify-content: space-around;
-    @include todo-graphs();
-  }
+  @include todo-stats();
+
 }

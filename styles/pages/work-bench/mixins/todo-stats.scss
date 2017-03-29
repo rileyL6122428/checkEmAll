@@ -1,0 +1,18 @@
+@mixin todo-stats() {
+  div#todo-stats {
+    display: flex;
+    justify-content: space-around;
+
+    h6.graph-label {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    $todo-graph-side: 150px;
+    .todo-graph {
+      height: $todo-graph-side;
+      width: $todo-graph-side;
+    }
+  }
+}
