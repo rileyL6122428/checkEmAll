@@ -1,26 +1,16 @@
-<section id="todos" class="container">
-  <h1>TODOS</h1>
+<section id="todos" >
 
-  <div class="row">
-    <div class="col-sm-6 todo-info">
-
-      <todo-card todo="vm.selectedTodo"></todo-card>
-
-      <div id="todo-stats">
-        <type-graph stats="vm.typeStats" graph-id="type-graph"></type-graph>
-        <completion-graph completion-stats="vm.completionStats" graph-id="completion-graph"></completion-graph>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <h2>From This Week</h2>
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <input id="search-todos" class="form-control" type="text" placeholder="search..."/>
-        </div>
-      </div>
-      <button ng-click="vm.gotoNewTodoPage()" id="add-todo"><div>+</div></button>
+    <section id="todos-index">
+      <input id="search-todos" class="form-control" type="text" placeholder="search..."/>
       <todos-list select-todo="vm.setSelectedTodo(todo)" todos="vm.todos"></todos-list>
+    </section>
+
+
+    <todo-card todo="vm.selectedTodo"></todo-card>
+
+    <div id="todo-stats">
+      <type-graph stats="vm.typeStats" graph-id="type-graph"></type-graph>
+      <completion-graph completion-stats="vm.completionStats" graph-id="completion-graph"></completion-graph>
     </div>
-  </div class="row">
+
 </section>
