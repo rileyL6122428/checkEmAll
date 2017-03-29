@@ -3,7 +3,7 @@ import 'angular-mocks';
 import todoModule from '../../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
-describe("TodoCard", () => {
+describe("TodoEditor", () => {
   let $rootScope, $compile, todoCard, scope;
   let todosRequests;
 
@@ -65,7 +65,7 @@ describe("TodoCard", () => {
   function _setupTodoCard(params) {
     $rootScope.todo = params.todo;
 
-    todoCard = $compile("<todo-card todo='todo'></todo-card>")($rootScope);
+    todoCard = $compile("<todo-editor todo='todo'></todo-editor>")($rootScope);
 
     scope = todoCard.isolateScope();
   }
