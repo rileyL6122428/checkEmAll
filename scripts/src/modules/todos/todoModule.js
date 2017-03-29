@@ -2,7 +2,7 @@ import angular from 'angular'
 import uiRouter from 'angular-ui-router';
 import reduxModule from '../redux/module.js';
 
-import TodosController from './controllers/todosController.js';
+import WorkbenchController from './controllers/workbenchController.js';
 import NewTodoController from './controllers/newTodoController.js';
 
 import TodosRequests from './services/todosRequests.js';
@@ -24,7 +24,7 @@ import { GRAPH_MEASUREMENTS } from './constants/graphMeasurements.js';
 
 const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
-  .controller('todosController', TodosController)
+  .controller('workbenchController', WorkbenchController)
   .controller('newTodoController', NewTodoController)
 
   .factory('todosRequests', TodosRequests)

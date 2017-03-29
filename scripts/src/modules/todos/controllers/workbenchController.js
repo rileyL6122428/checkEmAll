@@ -1,7 +1,7 @@
 import TypeStats from '../classes/TypeStats.js';
 import CompletionStats from '../classes/CompletionStats.js';
 
-export default function TodosController(todosStore, todosRequests, $state) {
+export default function WorkbenchController(todosStore, todosRequests, $state) {
   'ngInject';
   let vm = this;
 

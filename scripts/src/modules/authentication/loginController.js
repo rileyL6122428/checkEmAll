@@ -12,7 +12,7 @@ export default function LoginController(authRequests, $ngRedux, $state) {
   function _sendUserToTodosPage() {
     let currentUser = $ngRedux.getState().currentUser;
     if(currentUser) {
-      $state.go('todosIndex');
+      $state.go('workbench');
       vm.unsubscribe();
     }
   }

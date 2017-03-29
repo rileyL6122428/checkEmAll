@@ -1,5 +1,5 @@
 import loginTemplate from './modules/authentication/templates/login.html';
-import todoIndexTemplate from './modules/todos/templates/todoIndex.html';
+import workbenchTemplate from './modules/todos/templates/workbench.html';
 import newTodoTemplate from './modules/todos/templates/newTodo.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
@@ -14,10 +14,10 @@ function appConfig($urlRouterProvider, $stateProvider) {
           requireLogin: false
       })
 
-      .state('todosIndex', {
-          url: '/todos',
-          template: todoIndexTemplate,
-          controller: 'todosController as vm',
+      .state('workbench', {
+          url: '/workbench',
+          template: workbenchTemplate,
+          controller: 'workbenchController as vm',
           requireLogin: true
       })
 
