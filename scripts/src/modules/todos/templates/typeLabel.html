@@ -1,8 +1,7 @@
 <div id="type-labels">
     <div ng-repeat="todoLabel in todoLabels"
-         id="{{todoLabel.type}}-label"
          ng-style="{'background-color': todoLabel.color}"
-         class="type-label">
+         class="type-label {{todoLabel.type}}-label">
 
       {{todoLabel.type}}
     </div>

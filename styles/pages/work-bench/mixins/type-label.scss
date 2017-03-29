@@ -1,0 +1,10 @@
+@mixin type-label() {
+  .type-label {
+    width: 115px;
+    font-size: 18px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 12px;
+    color: white;
+  }
+}

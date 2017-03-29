@@ -1,3 +1,5 @@
+@import './type-label.scss';
+
 @mixin todo-stats() {
   $stats-height: 100px;
 
@@ -15,13 +17,7 @@
 
       color: white;
 
-      > .type-label {
-        width: 115px;
-        font-size: 18px;
-        text-align: center;
-        margin: 10px;
-        border-radius: 12px;
-      }
+      @include type-label();
     }
 
     div#graphs {

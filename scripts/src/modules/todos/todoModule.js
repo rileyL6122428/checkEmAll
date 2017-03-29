@@ -14,6 +14,7 @@ import TodoTypeTag from './directives/todoTypeTag.js';
 import CompletionGraph from './directives/completionGraph.js';
 import TypeGraph from './directives/typeGraph.js';
 import TypeLabels from './directives/typeLabels.js';
+import ListItemColorSplash from './directives/listItemcolorSplash.js';
 
 import StatsFactory from './classes/StatsFactory.js';
 import GraphFactory from './classes/GraphFactory.js';
@@ -40,6 +41,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
   .directive('completionGraph', CompletionGraph)
   .directive('typeGraph', TypeGraph)
   .directive('typeLabels', TypeLabels)
+  .directive('listItemColorSplash', ListItemColorSplash)
 
   .constant('GRAPH_COLORS', GRAPH_COLORS)
   .constant('GRAPH_MEASUREMENTS', GRAPH_MEASUREMENTS);

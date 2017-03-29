@@ -2,8 +2,9 @@
   <li ng-repeat="todo in todos" class="todo-list-item">
     <button ng-click="selectTodo({ todo: todo })">
       <div class="todo-name">{{todo.name}}</div>
-      <todo-type-tag todo="todo"></todo-type-tag>
       <div class="status">Finished: {{todo.finished}}</div>
+      <!-- <todo-type-tag todo="todo"></todo-type-tag> -->
+      <list-item-color-splash></list-item-color-splash>
     </button>
   </li>
 </ul>
