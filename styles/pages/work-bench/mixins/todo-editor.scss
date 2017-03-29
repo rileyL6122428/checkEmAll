@@ -52,8 +52,10 @@
       margin-top: 10px;
     }
 
-    // @include todo-type-tag();
     @include type-label();
-    .type-label { margin-top: 0px; }
+    
+    .type-label {
+      margin-top: 0px;
+    }
   }
 }
