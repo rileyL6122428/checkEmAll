@@ -1,12 +1,12 @@
 @import './type-label.scss';
 
 @mixin todo-stats() {
-  $stats-height: 100px;
 
   div#todo-stats {
     display: flex;
     justify-content: space-between;
 
+    $stats-height: 100px;
     height: $stats-height;
 
     div#type-labels {
@@ -30,8 +30,8 @@
       font-size: 16px;
     }
 
-    $todo-graph-side: 100px;
     .todo-graph {
+      $todo-graph-side: 100px;
       height: $todo-graph-side;
       width: $todo-graph-side;
       margin-right: 30px;

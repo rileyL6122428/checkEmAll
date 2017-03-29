@@ -1,4 +1,3 @@
-@import './todo-type-tag.scss';
 @import './type-label.scss';
 
 @mixin todo-editor() {
@@ -53,7 +52,7 @@
     }
 
     @include type-label();
-    
+
     .type-label {
       margin-top: 0px;
     }
