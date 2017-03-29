@@ -1,4 +1,5 @@
 @import './todo-type-tag.scss';
+@import './todos-index-list-item.scss';
 
 @mixin todos-index() {
   section#todos-index {
@@ -9,6 +10,7 @@
 
     input#search-todos {
       display: block;
+      
       border-right: none;
       border-top: 0;
       border-left: 0;
@@ -18,37 +20,7 @@
 
     ul#todos-list {
       padding-left: 0;
-
-      $light-gray-border: #ccc;
-
-      li.todo-list-item {
-        list-style: none;
-
-        > button {
-          display: block;
-          width: 100%;
-          height: 100%;
-
-          border: none;
-          border-bottom: 1px solid $light-gray-border;
-
-          background-color: white;
-
-          &:hover {
-            background-color: rgba(0, 0, 0, 0.08);
-          }
-        }
-
-        div.todo-name {
-          text-align: left;
-        }
-
-        div.status {
-          text-align: left;
-        }
-
-        @include todo-type-tag();
-      }
+      @include todo-list-item();
     }
   }
 }
