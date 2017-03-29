@@ -6,9 +6,11 @@ export default function TodosListItem() {
     scope: { todo: '=', selectedTodo: '=' },
     template: template,
     link: (scope) => {
-      scope.$watch('selectedTodo', () => {
+      scope.$watch('selectedTodo', setSelectionStatus);
+
+      function setSelectionStatus() {
         scope.selectionStatus = (scope.todo === scope.selectedTodo) ? "selected" : "" ;
-      });
+      }
     }
   });
 }
