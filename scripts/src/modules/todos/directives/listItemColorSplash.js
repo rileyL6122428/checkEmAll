@@ -6,10 +6,12 @@ export default function ListItemColorSplash(GRAPH_COLORS) {
     scope: { todo: '=' },
     template: template,
     link: (scope) => {
-      scope.$watch('todo', () => {
+      scope.$watch('todo', setBackgroundColor);
+
+      function setBackgroundColor() {
         if(scope.todo)
           scope.backgroundColor = GRAPH_COLORS.BY_TYPE[scope.todo.type.toUpperCase()];
-      });
+      }
     }
   });
 }

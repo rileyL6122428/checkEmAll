@@ -3,8 +3,8 @@ import 'angular-mocks';
 import todoModule from '../../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
-describe("TodosController", () => {
-  let todosController, $controller, todosRequests, $state, todosStore;
+describe("WorkbenchController", () => {
+  let workbenchController, $controller, todosRequests, $state, todosStore;
 
   beforeEach(module(todoModule));
 
@@ -23,17 +23,34 @@ describe("TodosController", () => {
       spyOn(todosStore, 'withdrawTodos').and.returnValue(storeTodos);
       spyOn(todosStore, 'placeListener');
 
-      todosController = $controller('todosController');
+      workbenchController = $controller('workbenchController');
       expect(todosStore.placeListener).toHaveBeenCalled();
       let placedListener = todosStore.placeListener.calls.first().args[0];
       placedListener();
 
-      expect(todosController.todos).toBe(storeTodos);
+      expect(workbenchController.todos).toBe(storeTodos);
     });
 
     it("makes a request for the users todos", () => {
-      todosController = $controller('todosController');
+      workbenchController = $controller('workbenchController');
       expect(todosRequests.getUserTodos).toHaveBeenCalled();
+    });
+  });
+
+  describe("#setSelectedTodo", () => {
+    it("sets .selectedTodo to the provided todo", () => {
+      let todo = { id: 1, description: "MOCK_DESCRIPTION" };
+      workbenchController = $controller('workbenchController');
+      workbenchController.setSelectedTodo(todo);
+      expect(workbenchController.selectedTodo).toBe(todo);
+    });
+
+    it("sets .selectedTodo to null if the provided todo is equal to the selected todo", () => {
+      let todo = { id: 1, description: "MOCK_DESCRIPTION" };
+      workbenchController = $controller('workbenchController');
+      workbenchController.setSelectedTodo(todo);
+      workbenchController.setSelectedTodo(todo);
+      expect(workbenchController.selectedTodo).toBe(null);
     });
   });
 });

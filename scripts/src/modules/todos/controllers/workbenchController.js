@@ -12,6 +12,8 @@ export default function WorkbenchController(todosStore, todosRequests, $state) {
   });
   todosRequests.getUserTodos();
 
-  vm.setSelectedTodo = (todo) => { vm.selectedTodo = todo; }
+  vm.setSelectedTodo = (clickedTodo) => {
+    (vm.selectedTodo === clickedTodo) ? vm.selectedTodo = null : vm.selectedTodo = clickedTodo;
+  }
   vm.gotoNewTodoPage = () => { $state.go('newTodo'); }
 }
