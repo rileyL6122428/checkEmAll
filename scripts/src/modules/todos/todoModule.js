@@ -12,7 +12,6 @@ import PercentageGraphDrawer from './services/percentageGraphDrawer.js';
 
 import TodosList from './directives/todosList.js';
 import TodosListItem from './directives/todosListItem.js';
-import TodoEditor from './directives/todoEditor.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 import CompletionGraph from './directives/completionGraph.js';
 import TypeGraph from './directives/typeGraph.js';
@@ -42,7 +41,6 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
   .directive('todosList', TodosList)
   .directive('todosListItem', TodosListItem)
-  .directive('todoEditor', TodoEditor)
   .directive('todoTypeTag', TodoTypeTag)
   .directive('completionGraph', CompletionGraph)
   .directive('typeGraph', TypeGraph)

@@ -1,12 +1,11 @@
 import loginTemplate from './modules/authentication/templates/login.html';
 import workbenchTemplate from './modules/todos/templates/workbench.html';
 import viewTodoTemplate from './modules/todos/templates/viewTodo.html';
-import newTodoTemplate from './modules/todos/templates/newTodo.html';
 import todoFormTemplate from './modules/todos/templates/todoForm.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
   'ngInject';
-  // $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/login');
 
   $stateProvider
       .state('login', {
@@ -45,13 +44,6 @@ function appConfig($urlRouterProvider, $stateProvider) {
       .state('workbench.newTodo', {
           url: '/new-todo',
           template: todoFormTemplate,
-          controller: 'newTodoController as vm',
-          requireLogin: true
-      })
-
-      .state('newTodo', {
-          url: '/new-todo',
-          template: newTodoTemplate,
           controller: 'newTodoController as vm',
           requireLogin: true
       });
