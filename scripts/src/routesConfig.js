@@ -25,7 +25,6 @@ function appConfig($urlRouterProvider, $stateProvider) {
 
       .state('workbench.todoNotSelected', {
           url: '/todo-not-selected',
-          template: "<div>todo not selected template</div>",
           requireLogin: true
       })
 
@@ -45,7 +44,8 @@ function appConfig($urlRouterProvider, $stateProvider) {
 
       .state('workbench.newTodo', {
           url: '/new-todo',
-          template: "<div>new todo template</div>",
+          template: todoFormTemplate,
+          controller: 'newTodoController as vm',
           requireLogin: true
       })
 
