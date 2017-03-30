@@ -6,6 +6,14 @@ export default function TodosList() {
   return({
     restrict: 'E',
     scope: { todos: '=', selectTodo: '&', selectedTodo: '=' },
-    template: template
+    template: template,
+    // link: (scope) => {
+    //   scope.$watch('todos', (newTodos, oldTodos) => {
+    //     let testNew = newTodos;
+    //     let testOld = oldTodos;
+    //     debugger
+    //   });
+    //
+    // }
   });
 }

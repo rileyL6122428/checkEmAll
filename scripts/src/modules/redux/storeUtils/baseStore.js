@@ -1,12 +1,11 @@
 export default class BaseStore {
 
-  constructor($ngRedux, $rootScope) {
+  constructor($ngRedux) {
     this.$ngRedux = $ngRedux;
     this.unsubscribeTokens = [];
-    $rootScope.$on('$stateChangeStart', this._removeSubscriptions.bind(this));
   }
 
-  _removeSubscriptions() {
+  removeSubscriptions() {
     while(this.unsubscribeTokens.length > 0) {
       let token = this.unsubscribeTokens.pop();
       token();

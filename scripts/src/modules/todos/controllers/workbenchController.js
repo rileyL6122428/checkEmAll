@@ -12,7 +12,10 @@ export default function WorkbenchController(todosStore, todosRequests, $state, $
   vm.editorState.setKeyboardShortcuts();
   vm.setSelectedTodo = setSelectedTodo;
 
-  $scope.$on("$destroy", () => vm.editorState.removeKeyboardShortcuts());
+  $scope.$on("$destroy", () => {
+    vm.editorState.removeKeyboardShortcuts()
+    todosStore.removeSubscriptions();
+  });
 
   function setTodos() {
     todosStore.placeListener(todoStoreListener);
@@ -25,13 +28,13 @@ export default function WorkbenchController(todosStore, todosRequests, $state, $
     vm.completionStats = new CompletionStats(vm.todos);
   }
 
-  function setSelectedTodo(clickedTodo) {
-    if(vm.selectedTodo === clickedTodo) {
+  function setSelectedTodo(todo) {
+    if(vm.selectedTodo === todo) {
       vm.selectedTodo = null
       vm.editorState.gotoEmptyEditor();
     } else {
-      vm.selectedTodo = clickedTodo;
-      vm.editorState.gotoSelectedTodo(clickedTodo);
+      vm.selectedTodo = todo;
+      vm.editorState.gotoSelectedTodo(todo);
     }
   }
 
