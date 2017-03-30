@@ -13,13 +13,13 @@ export default class EditorState {
     this.$state.go('workbench.todoNotSelected');
   }
 
-  gotoSelectedTodo() {
+  gotoSelectedTodo(todo) {
     switch(this.currentMode) {
       case EDITOR_MODES.VIEW:
-        this.$state.go('workbench.viewTodo');
+        this.$state.go('workbench.viewTodo', { todoId: todo.id });
         break;
       case EDITOR_MODES.EDIT:
-        this.$state.go('workbench.editTodo');
+        this.$state.go('workbench.editTodo', { todoId: todo.id });
         break;
     }
   }
@@ -49,6 +49,7 @@ export default class EditorState {
   }
 
   removeKeyboardShortcuts() {
-    key.unbind()
+    key.unbind('⌘+e, ctrl+e');
+    key.unbind('⌘+v, ctrl+v');
   }
 }

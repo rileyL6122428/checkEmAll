@@ -28,7 +28,9 @@ function appConfig($urlRouterProvider, $stateProvider) {
       })
 
       .state('workbench.viewTodo', {
-          url: '/view-todo',
+          url: '/view-todo/:todoId',
+          parent: 'workbench',
+          controller: 'viewTodoController as vm',
           template: "<div>view todo template</div>",
           requireLogin: true
       })

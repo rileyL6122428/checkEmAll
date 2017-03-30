@@ -4,6 +4,7 @@ import reduxModule from '../redux/module.js';
 
 import WorkbenchController from './controllers/workbenchController.js';
 import NewTodoController from './controllers/newTodoController.js';
+import ViewTodoController from './controllers/viewTodoController.js';
 
 import TodosRequests from './services/todosRequests.js';
 import PercentageGraphDrawer from './services/percentageGraphDrawer.js';
@@ -28,6 +29,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter])
 
   .controller('workbenchController', WorkbenchController)
   .controller('newTodoController', NewTodoController)
+  .controller('viewTodoController', ViewTodoController)
 
   .factory('todosRequests', TodosRequests)
   .factory('percentageGraphDrawer', PercentageGraphDrawer)
