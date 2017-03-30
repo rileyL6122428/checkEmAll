@@ -10,6 +10,10 @@ export default function TodoTypeTag(GRAPH_COLORS) {
         scope.todoType = newTodo.type ? newTodo.type : 'unassigned';
         scope.backgroundColor = GRAPH_COLORS.BY_TYPE[newTodo.type.toUpperCase()];
       });
+
+      scope.test = () => {
+        console.log("HELLO WORLD");
+      }
     }
   });
 }

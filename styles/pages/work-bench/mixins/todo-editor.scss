@@ -51,10 +51,9 @@
       margin-top: 10px;
     }
 
-    @include type-label();
-
-    .type-label {
-      margin-top: 0px;
+    div#selected-todo-type {
+      @include type-label();
+      .type-label { margin: 0px; }
     }
   }
 }
