@@ -48,30 +48,6 @@ describe("TodosStore", () => {
     });
   });
 
-  describe("#placeListener", () => {
-    it("places a provided listener in the redux service", () => {
-        let listener = function mock() {};
-        spyOn($ngRedux, 'subscribe');
-
-        todosStore.placeListener(listener);
-
-        expect($ngRedux.subscribe).toHaveBeenCalledWith(listener);
-    });
-
-    it("placed listeners are removed upon $stateChangeStart", () => {
-      let unsubscribe1 = jasmine.createSpy('unsubscribe1');
-      let unsubscribe2 = jasmine.createSpy('unsubscribe2');
-      spyOn($ngRedux, 'subscribe').and.returnValues(unsubscribe1, unsubscribe2);
-      todosStore.placeListener(function() {});
-      todosStore.placeListener(function() {});
-
-      $state.go('mock-state');
-
-      expect(unsubscribe1).toHaveBeenCalled()
-      expect(unsubscribe2).toHaveBeenCalled()
-    });
-  });
-
   describe("#withdrawTodos", () => {
     it("grabs all todos in the store", () => {
       let todo1 = { id: 1 };
@@ -86,5 +62,9 @@ describe("TodosStore", () => {
       expect(userTodos).toContain(todo2);
       expect(userTodos).toContain(todo3);
     });
+  });
+
+  describe("#withdrawTodo", () => {
+    xit("returns a todo with the supplied id");
   });
 });

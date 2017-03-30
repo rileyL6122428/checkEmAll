@@ -4,53 +4,32 @@ import todoModule from '../../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
 describe("NewTodoController", () => {
-  let newTodoController, todosRequests, $controller, $state;
+  let newTodoController, todosRequests, $controller, $state, $rootScope, scope;
 
   beforeEach(module(todoModule));
 
-  beforeEach(inject((_todosRequests_, _$controller_, _$state_) => {
+  beforeEach(inject((_todosRequests_, _$controller_, _$state_, _$rootScope_) => {
     todosRequests = _todosRequests_;
     $controller = _$controller_;
     $state = _$state_;
+    scope = _$rootScope_.$new();
   }));
 
   describe("instantiation", () => {
     it("instantiates and exposes the appropriate fields", () => {
-      newTodoController = $controller('newTodoController');
+      newTodoController = $controller('newTodoController', { $scope: scope });
 
-      expect(newTodoController.todoName).toBeDefined();
-      expect(newTodoController.todoFinished).toBeDefined();
-      expect(newTodoController.todoType).toBeDefined();
-      expect(newTodoController.todoDescription).toBeDefined();
+      expect(newTodoController.todo).toBeDefined();
+      expect(newTodoController.todo.name).toEqual("");
+      expect(newTodoController.todo.type).toEqual("");
+      expect(newTodoController.todo.finished).toEqual(false);
+      expect(newTodoController.todo.description).toEqual("");
     });
   });
 
   describe("#submit", () => {
-    let promiseMock;
-
-    beforeEach(() => {
-      promiseMock = { then: (success) => { success(); } };
-      spyOn(todosRequests, 'createTodo').and.returnValue(promiseMock);
-      spyOn($state, 'go');
-    });
-
-    it("makes a request to create a todo with the controllers fields", () => {
-      newTodoController = $controller('newTodoController');
-      newTodoController.submit();
-
-      expect(todosRequests.createTodo).toHaveBeenCalledWith({
-        name: newTodoController.todoName,
-        description: newTodoController.todoDescription,
-        finished: newTodoController.todoFinished,
-        type: newTodoController.todoType
-      });
-    });
-
-    it("goes to the todos index upon a successful request", () => {
-      newTodoController = $controller('newTodoController');
-      newTodoController.submit();
-
-      expect($state.go).toHaveBeenCalledWith('todosIndex');
-    });
+    xit("makes a request to create a todo");
+    xit("sets the selected todo of the work bench to be the created todo upon a successful request")
+    xit("transitions to the 'workbench.viewTodo' upon a successful request");
   })
 });
