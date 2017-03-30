@@ -1,5 +1,6 @@
 import loginTemplate from './modules/authentication/templates/login.html';
 import workbenchTemplate from './modules/todos/templates/workbench.html';
+import viewTodoTemplate from './modules/todos/templates/viewTodo.html';
 import newTodoTemplate from './modules/todos/templates/newTodo.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
@@ -31,7 +32,7 @@ function appConfig($urlRouterProvider, $stateProvider) {
           url: '/view-todo/:todoId',
           parent: 'workbench',
           controller: 'viewTodoController as vm',
-          template: "<div>view todo template</div>",
+          template: viewTodoTemplate,
           requireLogin: true
       })
 

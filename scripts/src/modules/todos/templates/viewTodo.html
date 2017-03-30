@@ -1,0 +1,13 @@
+<div id="todo-editor">
+  <div class="todo-name-and-tag">
+    <div class="todo-name">{{vm.todo.name}}</div>
+    <todo-type-tag todo="vm.todo"></todo-type-tag>
+  </div>
+
+  <p class="todo-description">{{vm.todo.description}}</p>
+
+  <div class="todo-status">
+    <span class="completion-label">Completed: </span>
+    <span class="completion-status">{{vm.todo.finished}}</span>
+  </div>
+</div>

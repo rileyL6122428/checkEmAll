@@ -16,6 +16,10 @@ export default class TodosStore extends BaseStore {
     this.$ngRedux.dispatch(addTodos(todosList));
   }
 
+  withdrawTodo(id) {
+    return this.$ngRedux.getState().todos[id];
+  }
+
   withdrawTodos(params) {
     let todosMap = this.$ngRedux.getState().todos;
     let todos = Object.values(todosMap);

@@ -1,7 +1,6 @@
 export default function ViewTodoController($stateParams, todosStore) {
   'ngInject';
+  let vm = this;
 
-  let testStore = todosStore;
-  let testParams = $stateParams;
-  debugger
+  vm.todo = todosStore.withdrawTodo($stateParams.todoId);
 }
