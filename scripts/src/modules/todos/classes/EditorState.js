@@ -35,7 +35,7 @@ export default class EditorState {
       self.$apply(() => {
         self.currentMode = EDITOR_MODES.EDIT;
         if(self.$state.is('workbench.viewTodo'))
-          self.$state.go('workbench.editTodo');
+          self.$state.go('workbench.editTodo', self.$state.params);
       });
     });
 
@@ -43,7 +43,7 @@ export default class EditorState {
       self.$apply(() => {
         self.currentMode = EDITOR_MODES.VIEW;
         if(self.$state.is('workbench.editTodo'))
-          self.$state.go('workbench.viewTodo');
+          self.$state.go('workbench.viewTodo', self.$state.params);
       });
     });
   }
