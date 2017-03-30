@@ -1,12 +1,15 @@
 import TypeStats from '../classes/TypeStats.js';
 import CompletionStats from '../classes/CompletionStats.js';
+import EditorState from '../classes/EditorState.js';
 
-export default function WorkbenchController(todosStore, todosRequests) {
+export default function WorkbenchController(todosStore, todosRequests, $state, $scope) {
   'ngInject';
+
   let vm = this;
 
   setTodos();
-  
+  vm.editorState = new EditorState($state, $scope.$apply.bind($scope));
+  vm.editorState.setKeyboardShortcuts();
   vm.setSelectedTodo = setSelectedTodo;
 
   function setTodos() {
@@ -21,6 +24,13 @@ export default function WorkbenchController(todosStore, todosRequests) {
   }
 
   function setSelectedTodo(clickedTodo) {
-    (vm.selectedTodo === clickedTodo) ? vm.selectedTodo = null : vm.selectedTodo = clickedTodo;
+    if(vm.selectedTodo === clickedTodo) {
+      vm.selectedTodo = null
+      vm.editorState.gotoEmptyEditor();
+    } else {
+      vm.selectedTodo = clickedTodo;
+      vm.editorState.gotoSelectedTodo();
+    }
   }
+
 }

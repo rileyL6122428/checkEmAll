@@ -21,6 +21,30 @@ function appConfig($urlRouterProvider, $stateProvider) {
           requireLogin: true
       })
 
+      .state('workbench.todoNotSelected', {
+          url: '/todo-not-selected',
+          template: "<div>todo not selected template</div>",
+          requireLogin: true
+      })
+
+      .state('workbench.viewTodo', {
+          url: '/view-todo',
+          template: "<div>view todo template</div>",
+          requireLogin: true
+      })
+
+      .state('workbench.editTodo', {
+          url: '/edit-todo',
+          template: "<div>edit todo template</div>",
+          requireLogin: true
+      })
+
+      .state('workbench.newTodo', {
+          url: '/new-todo',
+          template: "<div>new todo template</div>",
+          requireLogin: true
+      })
+
       .state('newTodo', {
           url: '/new-todo',
           template: newTodoTemplate,
