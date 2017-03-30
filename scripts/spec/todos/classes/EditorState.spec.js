@@ -1,8 +1,23 @@
 import { EditorState } from '../../../src/modules/todos/classes/EditorState.js';
 
 describe("EditorState", () => {
+  let editorState, $state, $apply;
+
+  beforeEach(() => {
+    $state = {
+      go: jasmine.createSpy('$state.go'),
+      is: jasmine.createSpy('$state.is')
+    };
+  });
+
+  beforeEach(() => $apply = jasmine.createSpy('$apply'));
+
+  beforeEach(() => editorState = new EditorState($state, $apply));
+
   describe("#constructor", () => {
-    xit("instantiates with current mode set to view");
+    xit("instantiates with current mode set to view", () => {
+
+    });
   });
 
   describe("#gotoEmptyEditor", () => {
