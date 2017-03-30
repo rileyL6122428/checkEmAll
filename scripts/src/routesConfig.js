@@ -6,7 +6,7 @@ import todoFormTemplate from './modules/todos/templates/todoForm.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
   'ngInject';
-  $urlRouterProvider.otherwise('/login');
+  // $urlRouterProvider.otherwise('/login');
 
   $stateProvider
       .state('login', {
