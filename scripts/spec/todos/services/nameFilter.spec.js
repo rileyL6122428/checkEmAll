@@ -24,43 +24,45 @@ describe("NameFilter", () => {
 
       expect(filteredList.length).toEqual(6);
       [entity1, entity2, entity3, entity4, entity5, entity7].forEach((entity) => {
-        expect(filterList).toContain(entity);
+        expect(filteredList).toContain(entity);
       })
     });
 
     it("filters names while ignoring word frequency", () => {
       let filteredList = nameFilter.filterList('jerry', entities);
 
-      expect(filterList.length).toEqual(3);
-      [entity1, entity3, entity7].forEach((entity) => expect(filterList).toContain(entity));
+      expect(filteredList.length).toEqual(3);
+      [entity1, entity3, entity7].forEach((entity) => expect(filteredList).toContain(entity));
     });
 
     it("filters names while disregarding case", () => {
       let filteredList = nameFilter.filterList('chery', entities);
 
-      expect(filterList.length).toEqual(2);
-      [entity2, entity3].forEach((entity) => expect(filterList).toContain(entity));
+      expect(filteredList.length).toEqual(2);
+      [entity2, entity3].forEach((entity) => expect(filteredList).toContain(entity));
     });
 
     it("filters names while ignoring white space", () => {
       let filteredList = nameFilter.filterList('  robert ', entities);
 
-      expect(filterList.length).toEqual(2);
-      [entity4, entity5].forEach((entity) => expect(filterList).toContain(entity));
+      expect(filteredList.length).toEqual(3);
+      [entity4, entity5, entity7].forEach((entity) => {
+        expect(filteredList).toContain(entity);
+      });
     });
 
     it("filters out entities when their name is missing a supplied word", () => {
-      let filteredList = nameFilter.filterList(' robert catch jerry ', entities);
+      let filteredList = nameFilter.filterList(' robert cathy jerry ', entities);
 
-      expect(filterList.length).toEqual(1);
-      [entity7].forEach((entity) => expect(filterList).toContain(entity));
+      expect(filteredList.length).toEqual(1);
+      [entity7].forEach((entity) => expect(filteredList).toContain(entity));
     });
 
     it("returns the entire list when the filter input is an empty string", () => {
       let filteredList = nameFilter.filterList('', entities);
 
-      expect(filterList.length).toEqual(7);
-      entities.forEach((entity) => expect(filterList).toContain(entity));
+      expect(filteredList.length).toEqual(7);
+      entities.forEach((entity) => expect(filteredList).toContain(entity));
     });
   });
 });
