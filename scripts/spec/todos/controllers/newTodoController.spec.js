@@ -4,7 +4,7 @@ import todoModule from '../../../src/modules/todos/todoModule.js';
 const {inject, module} = angular.mock;
 
 describe("NewTodoController", () => {
-  let newTodoController, todosRequests, $controller, $state, $rootScope, scope;
+  let newTodoController, todosRequests, $controller, $state, scope;
 
   beforeEach(module(todoModule));
 
