@@ -17,6 +17,7 @@ export default function NameFilter () {
   function entityNameMatchesInput(entity, inputWords) {
     for(var idx = 0; idx < inputWords.length; idx++) {
       let nextWord = inputWords[idx];
+      
       if(!entity.name.trim().toLowerCase().match(new RegExp(nextWord)))
         return false;
     }

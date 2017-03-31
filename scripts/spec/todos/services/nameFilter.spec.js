@@ -55,7 +55,7 @@ describe("NameFilter", () => {
       let filteredList = nameFilter.filterList(' robert cathy jerry ', entities);
 
       expect(filteredList.length).toEqual(1);
-      [entity7].forEach((entity) => expect(filteredList).toContain(entity));
+      expect(filteredList).toContain(entity7);
     });
 
     it("returns the entire list when the filter input is an empty string", () => {
