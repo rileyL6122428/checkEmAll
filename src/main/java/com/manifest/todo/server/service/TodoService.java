@@ -53,7 +53,12 @@ public class TodoService {
 
 	public Todo updateTodo(UpdateTodoData updateTodoData) {
 		Todo todo = todoRepository.findOne(updateTodoData.getId());
+		
+		todo.setName(updateTodoData.getName());
+		todo.setType(updateTodoData.getType());
 		todo.setFinished(updateTodoData.isFinished());
+		todo.setDescription(updateTodoData.getDescription());
+		
 		return todoRepository.save(todo);
 	}
 	
