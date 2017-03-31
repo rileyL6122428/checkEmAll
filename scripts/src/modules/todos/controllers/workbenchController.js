@@ -1,37 +1,42 @@
 export default function WorkbenchController(todosStore, todosRequests, statsFactory, editorStateFactory, $scope) {
   'ngInject';
-
   let vm = this;
 
-  setTodos();
-  vm.editorState = editorStateFactory.newEditorState($scope.$apply.bind($scope));
-  vm.editorState.setKeyboardShortcuts();
-  vm.setSelectedTodo = setSelectedTodo;
+  exposeTodos();
+  initEditorStateWithKeyboardShortcuts();
+  exposeTodoSelection();
+  initDestroyListeners();
 
-  $scope.$on("$destroy", () => {
-    vm.editorState.removeKeyboardShortcuts()
-    vm.removeStoreSubcription();
-  });
-
-  function setTodos() {
-    vm.removeStoreSubcription = todosStore.placeListener(todoStoreListener);
+  function exposeTodos() {
+    vm.removeStoreSubcription = todosStore.placeListener(() => {
+      vm.todos = todosStore.withdrawTodos();
+      vm.typeStats = statsFactory.newTypeStats(vm.todos);
+      vm.completionStats = statsFactory.newCompletionStats(vm.todos);
+    });
     todosRequests.getUserTodos();
   }
 
-  function todoStoreListener() {
-    vm.todos = todosStore.withdrawTodos();
-    vm.typeStats = statsFactory.newTypeStats(vm.todos);
-    vm.completionStats = statsFactory.newCompletionStats(vm.todos);
+  function initEditorStateWithKeyboardShortcuts() {
+    vm.editorState = editorStateFactory.newEditorState($scope.$apply.bind($scope));
+    vm.editorState.setKeyboardShortcuts();
   }
 
-  function setSelectedTodo(todo) {
-    if(vm.selectedTodo === todo) {
-      vm.selectedTodo = null
-      vm.editorState.gotoEmptyEditor();
-    } else {
-      vm.selectedTodo = todo;
-      vm.editorState.gotoSelectedTodo(todo);
-    }
+  function exposeTodoSelection() {
+    vm.setSelectedTodo = (todo) => {
+      if(vm.selectedTodo === todo) {
+        vm.selectedTodo = null;
+        vm.editorState.gotoEmptyEditor();
+      } else {
+        vm.selectedTodo = todo;
+        vm.editorState.gotoSelectedTodo(todo);
+      }
+    };
   }
 
+  function initDestroyListeners() {
+    $scope.$on("$destroy", () => {
+      vm.editorState.removeKeyboardShortcuts()
+      vm.removeStoreSubcription();
+    });
+  }
 }
