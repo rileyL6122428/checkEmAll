@@ -3,12 +3,12 @@ import CompletionStats from './CompletionStats.js';
 
 export default function StatsFactory() {
   return({
-    newTypeStats(params) {
-      return new TypeStats(params);
+    newTypeStats(todos) {
+      return new TypeStats(todos);
     },
 
-    newCompletionStats(params) {
-      return new CompletionStats(params);
+    newCompletionStats(todos) {
+      return new CompletionStats(todos);
     }
   });
 }
