@@ -11,15 +11,17 @@ export default function NewTodoController (todosRequests, $state, $scope) {
 
   vm.submit = () => {
     todosRequests.createTodo(vm.todo)
-
-    .then ((createdTodo) => {
-      let workbenchController = $scope.$parent.vm;
-      workbenchController.setSelectedTodo(createdTodo);
-      return createdTodo;
-    })
-    
-    .then((createdTodo) => {
-      $state.go('workbench.viewTodo', { todoId: createdTodo.id });
-    });
+    .then (_setSelectedTodoInWorkbenchCtrl)
+    .then(_gotoViewMode);
   };
+
+  function _setSelectedTodoInWorkbenchCtrl(createdTodo) {
+    let workbenchController = $scope.$parent.vm;
+    workbenchController.setSelectedTodo(createdTodo);
+    return createdTodo;
+  }
+
+  function _gotoViewMode(createdTodo) {
+    $state.go('workbench.viewTodo', { todoId: createdTodo.id });
+  }
 }

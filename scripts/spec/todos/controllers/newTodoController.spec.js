@@ -28,8 +28,51 @@ describe("NewTodoController", () => {
   });
 
   describe("#submit", () => {
-    xit("makes a request to create a todo");
-    xit("sets the selected todo of the work bench to be the created todo upon a successful request")
-    xit("transitions to the 'workbench.viewTodo' upon a successful request");
-  })
+    let todo, setSelectedTodoPromise, createTodoPromise;
+    beforeEach(() => {
+      todo = { name: "NAME", finished: true, type: "TYPE", description: "DESCRIPTION" };
+      newTodoController = $controller('newTodoController', { $scope: scope });
+      newTodoController.todo = todo;
+    });
+
+    beforeEach(() => {
+      setSelectedTodoPromise = { then: jasmine.createSpy('createTodoPromise#then') };
+      createTodoPromise = {
+        then: jasmine.createSpy('createTodoPromise#then').and.returnValue(setSelectedTodoPromise)
+      };
+      spyOn(todosRequests, 'createTodo').and.returnValue(createTodoPromise);
+    })
+
+    it("makes a request to create a todo", () => {
+      newTodoController.submit();
+      expect(todosRequests.createTodo).toHaveBeenCalledWith(todo);
+    });
+
+    it("sets the selected todo of the work bench to be the created todo upon a successful request", () => {
+      let workbenchCtrl = { setSelectedTodo: jasmine.createSpy('workbenchCtrl#setSelectedTodo') };
+      scope.$parent = { vm: workbenchCtrl };
+
+      newTodoController.submit();
+
+      expect(createTodoPromise.then).toHaveBeenCalled();
+
+      let suppliedCallback = createTodoPromise.then.calls.first().args[0];
+      let returnedTodo = suppliedCallback(todo);
+
+      expect(workbenchCtrl.setSelectedTodo).toHaveBeenCalledWith(todo);
+      expect(returnedTodo).toBe(todo);
+    });
+
+    it("transitions to the 'workbench.viewTodo' upon a successful request", () => {
+      spyOn($state, 'go');
+
+      newTodoController.submit();
+      expect(setSelectedTodoPromise.then).toHaveBeenCalled();
+
+      let suppliedCallback = setSelectedTodoPromise.then.calls.first().args[0];
+      suppliedCallback(todo);
+
+      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', { todoId: todo.id });
+    });
+  });
 });
