@@ -35,7 +35,7 @@ function appConfig($urlRouterProvider, $stateProvider) {
       })
 
       .state('workbench.editTodo', {
-          url: '/edit-todo:todoId',
+          url: '/edit-todo/:todoId',
           template: todoFormTemplate,
           controller: 'editTodoController as vm',
           requireLogin: true

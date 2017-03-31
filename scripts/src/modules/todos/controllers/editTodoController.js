@@ -1,6 +1,7 @@
 export default function EditController($scope, $stateParams, todosStore, todosRequests) {
   'ngInject';
   let vm = this;
+  let workbenchController = $scope.$parent.vm;
 
   vm.todo = todosStore.withdrawTodo($stateParams.todoId);
   vm.removeStoreSubcription = todosStore.placeListener(() => {
@@ -17,11 +18,7 @@ export default function EditController($scope, $stateParams, todosStore, todosRe
     vm.removeStoreSubcription();
     todosRequests.updateTodo(vm.todo)
 
-    .then(() => {
-      // debugger
-      // let workbenchController = $scope.$parent.vm;
-      // vm.setSelectedTodo(vm.todo);
-    });
+    .then((updatedTodo) => workbenchController.setSelectedTodo(updatedTodo));
   });
 
 }
