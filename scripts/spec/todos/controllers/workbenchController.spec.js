@@ -30,6 +30,8 @@ describe("WorkbenchController", () => {
     spyOn(editorStateFactory, 'newEditorState').and.returnValue(editorState);
   });
 
+  xit("it should have its remaining sections tested");
+
   describe("#exposeTodos", () => {
     xit("places a listener in the todosStore that withdraws and exposes todos");
     xit("makes a request for the users todos");
