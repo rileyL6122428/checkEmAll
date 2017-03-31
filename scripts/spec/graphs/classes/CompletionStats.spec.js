@@ -1,4 +1,4 @@
-import CompletionStats from '../../../src/modules/todos/classes/CompletionStats.js';
+import CompletionStats from '../../../src/modules/graphs/classes/CompletionStats.js';
 
 describe("CompletionStats", () => {
   let stats;

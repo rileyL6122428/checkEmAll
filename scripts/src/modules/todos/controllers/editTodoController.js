@@ -18,9 +18,9 @@ export default function EditController($scope, $stateParams, todosStore, todosRe
     todosRequests.updateTodo(vm.todo)
 
     .then(() => {
-      debugger
-      let workbenchController = $scope.$parent.vm;
-      vm.setSelectedTodo(vm.todo);
+      // debugger
+      // let workbenchController = $scope.$parent.vm;
+      // vm.setSelectedTodo(vm.todo);
     });
   });
 

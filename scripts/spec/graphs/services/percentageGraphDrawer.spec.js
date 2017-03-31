@@ -1,13 +1,13 @@
 import angular from 'angular';
 import 'angular-mocks';
-import todoModule from '../../../src/modules/todos/todoModule.js';
+import graphsModule from '../../../src/modules/graphs/graphModule.js';
 
 const {inject, module} = angular.mock;
 
 describe("PercentageGraphDrawer", () => {
   let percentageGraphDrawer, graphFactory;
 
-  beforeEach(module(todoModule));
+  beforeEach(module(graphsModule));
 
   beforeEach(inject((_percentageGraphDrawer_, _graphFactory_) => {
     percentageGraphDrawer = _percentageGraphDrawer_;

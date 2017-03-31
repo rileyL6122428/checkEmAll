@@ -1,4 +1,4 @@
-import PercentageGraph from '../../../src/modules/todos/classes/PercentageGraph.js';
+import PercentageGraph from '../../../src/modules/graphs/classes/PercentageGraph.js';
 
 describe("PercentageGraph", () => {
   let percentageGraph, canvas, context;

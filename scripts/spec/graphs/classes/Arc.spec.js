@@ -1,4 +1,4 @@
-import Arc from '../../../src/modules/todos/classes/Arc.js';
+import Arc from '../../../src/modules/graphs/classes/Arc.js';
 
 describe("Arc", () => {
   describe("#constructor", () => {
