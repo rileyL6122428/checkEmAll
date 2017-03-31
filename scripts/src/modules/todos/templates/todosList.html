@@ -1,10 +1,13 @@
-<input id="search-todos" class="form-control"
-                         type="text"
-                         placeholder="search..."
-                         ng-model="nameFilter"/>
-<ul id="todos-list">
-  <todos-list-item ng-repeat="todo in filteredTodos"
-                   ng-click="selectTodo({ todo: todo })"
-                   todo="todo"
-                   selected-todo="selectedTodo"></todos-list-item>
-</ul>
+<section id="todos-index">
+  <input id="search-todos" class="form-control"
+                           type="text"
+                           placeholder="search..."
+                           ng-model="nameFilter"/>
+                           
+  <ul id="todos-list">
+    <todos-list-item ng-repeat="todo in filteredTodos"
+                     ng-click="selectTodo({ todo: todo })"
+                     todo="todo"
+                     selected-todo="selectedTodo"></todos-list-item>
+  </ul>
+</section>

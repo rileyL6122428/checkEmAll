@@ -1,8 +1,9 @@
 <section id="work-bench" >
 
-    <section id="todos-index">
-      <todos-list selected-todo="vm.selectedTodo" select-todo="vm.setSelectedTodo(todo)" todos="vm.todos"></todos-list>
-    </section>
+    <todos-list selected-todo="vm.selectedTodo"
+                select-todo="vm.setSelectedTodo(todo)"
+                todos="vm.todos">
+    </todos-list>
 
     <div id="todo-stats">
         <type-labels></type-labels>
