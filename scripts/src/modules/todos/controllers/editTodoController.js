@@ -14,9 +14,7 @@ export default function EditController($scope, $state, $stateParams, todosStore,
 
   vm.submit = () => {
     todosStore.depositTodo(vm.todo);
-
     todosRequests.updateTodo(vm.todo)
-
     .then((todo) => $state.go('workbench.viewTodo', { todoId: todo.id }))
   }
 
