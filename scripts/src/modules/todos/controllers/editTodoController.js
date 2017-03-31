@@ -1,4 +1,4 @@
-export default function EditController($scope, $stateParams, todosStore, todosRequests) {
+export default function EditController($scope, $state, $stateParams, todosStore, todosRequests) {
   'ngInject';
   let vm = this;
   let workbenchController = $scope.$parent.vm;
@@ -12,13 +12,13 @@ export default function EditController($scope, $stateParams, todosStore, todosRe
     todosStore.depositTodo(vm.todo);
   }, true);
 
-
-  $scope.$on("$destroy", () => {
+  vm.submit = () => {
     todosStore.depositTodo(vm.todo);
-    vm.removeStoreSubcription();
+
     todosRequests.updateTodo(vm.todo)
 
-    .then((updatedTodo) => workbenchController.setSelectedTodo(updatedTodo));
-  });
+    .then((todo) => $state.go('workbench.viewTodo', { todoId: todo.id }))
+  }
 
+  $scope.$on("$destroy", () => vm.removeStoreSubcription());
 }

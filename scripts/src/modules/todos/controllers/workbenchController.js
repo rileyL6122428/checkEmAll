@@ -9,11 +9,21 @@ export default function WorkbenchController(todosStore, todosRequests, statsFact
 
   function exposeTodos() {
     vm.removeStoreSubcription = todosStore.placeListener(() => {
-      vm.todos = todosStore.withdrawTodos();
-      vm.typeStats = statsFactory.newTypeStats(vm.todos);
-      vm.completionStats = statsFactory.newCompletionStats(vm.todos);
+      _syncTodosAndTodosStats();
+      _syncSelectedTodo();
     });
     todosRequests.getUserTodos();
+  }
+
+  function _syncTodosAndTodosStats() {
+    vm.todos = todosStore.withdrawTodos();
+    vm.typeStats = statsFactory.newTypeStats(vm.todos);
+    vm.completionStats = statsFactory.newCompletionStats(vm.todos);
+  }
+
+  function _syncSelectedTodo() {
+    if(vm.selectedTodo)
+      vm.selectedTodo = todosStore.withdrawTodo(vm.selectedTodo.id);
   }
 
   function initEditorStateWithKeyboardShortcuts() {
