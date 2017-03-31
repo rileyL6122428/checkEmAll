@@ -1,4 +1,4 @@
-import { EditorState } from '../../../src/modules/todos/classes/EditorState.js';
+import EditorState from '../../../src/modules/todos/classes/EditorState.js';
 
 describe("EditorState", () => {
   let editorState, $state, $apply;
@@ -15,29 +15,75 @@ describe("EditorState", () => {
   beforeEach(() => editorState = new EditorState($state, $apply));
 
   describe("#constructor", () => {
-    xit("instantiates with current mode set to view", () => {
-
+    it("instantiates with current mode set to view", () => {
+      expect(editorState.currentMode).toEqual('VIEW');
     });
   });
 
   describe("#gotoEmptyEditor", () => {
-    xit("transitions to 'workbench.todoNotSelected'");
+    it("transitions to 'workbench.todoNotSelected'", () => {
+      editorState.gotoEmptyEditor();
+      expect($state.go).toHaveBeenCalledWith('workbench.todoNotSelected');
+    });
   });
 
-  describe("#gotoViewTodoEditor", () => {
-    xit("transitions to 'workbench.viewTodo' with the supplied todos' id when in view mode");
-    xit("transitions to 'workbench.editTodo' with the supplied todos' id when in edit mode");
+  describe("#gotoSelectedTodoEditor", () => {
+    let todo = { id: 1 };
+
+    it("transitions to 'workbench.viewTodo' with the supplied todos' id when in view mode", () => {
+      editorState.currentMode = "VIEW";
+      editorState.gotoSelectedTodo(todo);
+      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', { todoId: todo.id });
+    });
+
+    it("transitions to 'workbench.editTodo' with the supplied todos' id when in edit mode", () => {
+      editorState.currentMode = "EDIT";
+      editorState.gotoSelectedTodo(todo);
+      expect($state.go).toHaveBeenCalledWith('workbench.editTodo', { todoId: todo.id });
+    });
   });
 
   describe("#gotoNewTodo", () => {
-    xit("transitions to 'workbench.todoNotSelected'");
+    it("transitions to 'workbench.todoNotSelected'", () => {
+      editorState.gotoNewTodo();
+      expect($state.go).toHaveBeenCalledWith('workbench.todoNotSelected');
+    });
   });
 
-  describe("#setKeyboardShortcuts", () => {
-    xit("_moveToEditMode changes the current mode to edit")
-    xit("_moveToEditMode transitions to 'workbench.editTodo' if the current state is 'workbench.viewTodo'");
 
-    xit("_moveToViewMode changes the current mode to view")
-    xit("_moveToViewMode transitions to 'workbench.viewTodo' if the current state is 'workbench.editTodo'");
+  describe("#_switchToEditMode", () => {
+    beforeEach(() => editorState.currentMode = "VIEW");
+
+    it("changes the current mode to edit", () => {
+      editorState._switchToEditMode();
+      expect(editorState.currentMode).toEqual("EDIT");
+    });
+
+    it("transitions to 'workbench.editTodo' if the current state is 'workbench.viewTodo'", () => {
+      $state.params = { mock: "MOCK" };
+      $state.is.and.returnValue(true);
+
+      editorState._switchToEditMode();
+      expect($state.is).toHaveBeenCalledWith("workbench.viewTodo");
+      expect($state.go).toHaveBeenCalledWith('workbench.editTodo', $state.params);
+    });
+  })
+
+  describe("#_switchToViewMode", () => {
+    beforeEach(() => editorState.currentMode = "EDIT");
+
+    it("_switchToViewMode changes the current mode to view", () => {
+      editorState._switchToViewMode();
+      expect(editorState.currentMode).toEqual("VIEW");
+    });
+
+    it("_switchToViewMode transitions to 'workbench.viewTodo' if the current state is 'workbench.editTodo'", () => {
+      $state.params = { mock: "MOCK" };
+      $state.is.and.returnValue(true);
+
+      editorState._switchToViewMode();
+      expect($state.is).toHaveBeenCalledWith("workbench.editTodo");
+      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', $state.params);
+    });
   });
 });

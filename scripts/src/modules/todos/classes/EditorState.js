@@ -30,22 +30,25 @@ export default class EditorState {
 
   setKeyboardShortcuts() {
     let self = this;
-
-    key('⌘+e, ctrl+e', function(event, handler){
-      self.$apply(() => {
-        self.currentMode = EDITOR_MODES.EDIT;
-        if(self.$state.is('workbench.viewTodo'))
-          self.$state.go('workbench.editTodo', self.$state.params);
-      });
+    key('⌘+e, ctrl+e', () => {
+      self.$apply(() => self._switchToEditMode());
     });
 
-    key('⌘+v, ctrl+v', function(event, handler){
-      self.$apply(() => {
-        self.currentMode = EDITOR_MODES.VIEW;
-        if(self.$state.is('workbench.editTodo'))
-          self.$state.go('workbench.viewTodo', self.$state.params);
-      });
+    key('⌘+v, ctrl+v', () => {
+      self.$apply(() => self._switchToViewMode());
     });
+  }
+
+  _switchToEditMode() {
+    this.currentMode = EDITOR_MODES.EDIT;
+    if(this.$state.is('workbench.viewTodo'))
+      this.$state.go('workbench.editTodo', this.$state.params);
+  }
+
+  _switchToViewMode() {
+    this.currentMode = EDITOR_MODES.VIEW;
+    if(this.$state.is('workbench.editTodo'))
+      this.$state.go('workbench.viewTodo', this.$state.params);
   }
 
   removeKeyboardShortcuts() {
