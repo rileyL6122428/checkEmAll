@@ -33,7 +33,7 @@ public class TodoService {
 		if(user == null) {
 			throw new NotFoundException("Could not find the provided user.");
 		} else {
-			return todoRepository.findByUser(user);			
+			return todoRepository.findByUserAndQueued(user, true);			
 		}	
 	}
 	
@@ -59,6 +59,7 @@ public class TodoService {
 		todo.setType(updateTodoData.getType());
 		todo.setFinished(updateTodoData.isFinished());
 		todo.setDescription(updateTodoData.getDescription());
+		todo.setQueued(updateTodoData.isQueued());
 		
 		return todoRepository.save(todo);
 	}

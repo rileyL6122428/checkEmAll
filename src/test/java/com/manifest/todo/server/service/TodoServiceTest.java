@@ -51,12 +51,12 @@ public class TodoServiceTest {
 		List<Todo> todos = new ArrayList<Todo>();
 		todos.add(new Todo(){{ setId(1); }});
 		todos.add(new Todo(){{ setId(2); }});
-		when(todoRepository.findByUser(any())).thenReturn(todos);
+		when(todoRepository.findByUserAndQueued(any(), any())).thenReturn(todos);
 		
 		List<Todo> returnedTodos = todoService.getTodos(user.getId());
 		
 		verify(userRepository).findOne(user.getId());
-		verify(todoRepository).findByUser(user);
+		verify(todoRepository).findByUserAndQueued(user, true);
 		assertEquals(todos, returnedTodos);
 	}
 	
@@ -93,7 +93,7 @@ public class TodoServiceTest {
 		assertEquals(persistedTodo, returnedTodo);
 	}
 	
-	@Test
+	@Test //TODO add all fields for updateTodoData
 	public void updateTodo__updatesExistingTodoWithProvidedData() {
 		UpdateTodoData updateTodoData = mock(UpdateTodoData.class);
 		when(updateTodoData.getId()).thenReturn(1l);
