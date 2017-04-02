@@ -8,6 +8,8 @@ import NewTodoController from './controllers/newTodoController.js';
 import ViewTodoController from './controllers/viewTodoController.js';
 import EditTodoController from './controllers/editTodoController.js';
 
+import DateCreatedAsString from './filters/dateCreatedAsString.js';
+
 import TodosRequests from './services/todosRequests.js';
 import NameFilter from './services/NameFilter.js';
 
@@ -24,6 +26,8 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphMod
   .controller('newTodoController', NewTodoController)
   .controller('viewTodoController', ViewTodoController)
   .controller('editTodoController', EditTodoController)
+
+  .filter('dateCreatedAsString', DateCreatedAsString)
 
   .factory('todosRequests', TodosRequests)
   .factory('nameFilter', NameFilter)

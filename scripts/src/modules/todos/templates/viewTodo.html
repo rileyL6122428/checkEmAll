@@ -10,4 +10,9 @@
     <span class="completion-label">Completed: </span>
     <span class="completion-status">{{vm.todo.finished}}</span>
   </div>
+
+  <div class="date-created">
+    <span class="date-created-label">Date Created</span>
+    <span class="date-created-value">{{vm.todo.dateCreated | dateCreatedAsString}}</span>
+  </div>
 </div>
