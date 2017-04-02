@@ -93,11 +93,14 @@ public class TodoServiceTest {
 		assertEquals(persistedTodo, returnedTodo);
 	}
 	
-	@Test //TODO add all fields for updateTodoData
+	@Test
 	public void updateTodo__updatesExistingTodoWithProvidedData() {
 		UpdateTodoData updateTodoData = mock(UpdateTodoData.class);
 		when(updateTodoData.getId()).thenReturn(1l);
 		when(updateTodoData.isFinished()).thenReturn(false);
+		when(updateTodoData.getType()).thenReturn("TYPE");
+		when(updateTodoData.getDescription()).thenReturn("DESCRIPTION");
+		when(updateTodoData.isQueued()).thenReturn(false);
 		
 		Todo todo = mock(Todo.class);
 		doNothing().when(todo).setFinished(anyBoolean());
@@ -109,6 +112,9 @@ public class TodoServiceTest {
 		
 		verify(todoRepository).findOne(1l);
 		verify(todo).setFinished(false);
+		verify(todo).setType("TYPE");
+		verify(todo).setDescription("DESCRIPTION");
+		verify(todo).setQueued(false);
 		verify(todoRepository).save(todo);
 		assertEquals(todo, returnedTodo);
 	}
