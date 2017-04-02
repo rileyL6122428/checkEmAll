@@ -35,6 +35,9 @@ public class Todo {
 	private boolean finished;
 	
 	@Column
+	private boolean queued;
+	
+	@Column
 	@Pattern(regexp = "^$|work|chore|project|study|japanese|exercise|family")
 	private String type;
 	
@@ -84,6 +87,12 @@ public class Todo {
 	}
 	public String getType() {
 		return this.type;
+	}
+	public boolean isQueued() {
+		return queued;
+	}
+	public void setQueued(boolean queued) {
+		this.queued = queued;
 	}
 	
 }

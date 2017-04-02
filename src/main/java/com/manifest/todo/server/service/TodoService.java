@@ -47,6 +47,7 @@ public class TodoService {
 		todo.setName(todoData.getName());
 		todo.setType(todoData.getType());
 		todo.setDateCreated(new Date());
+		todo.setQueued(true);
 		
 		return todoRepository.save(todo);
 	}

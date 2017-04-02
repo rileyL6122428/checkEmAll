@@ -1,6 +1,7 @@
 package com.manifest.todo.server.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyLong;
@@ -87,6 +88,7 @@ public class TodoServiceTest {
 		assertEquals(newTodoData.getName(), newTodo.getName());
 		assertEquals(newTodoData.isFinished(), newTodo.isFinished());
 		assertEquals(user, newTodo.getUser());
+		assertTrue(newTodo.isQueued());
 		
 		assertEquals(persistedTodo, returnedTodo);
 	}

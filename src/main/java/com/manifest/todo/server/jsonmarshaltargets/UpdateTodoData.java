@@ -6,6 +6,7 @@ public class UpdateTodoData {
 	private String name;
 	private String type;
 	private String description;
+	private boolean queued;
 
 	public boolean isFinished() {
 		return finished;
@@ -45,5 +46,13 @@ public class UpdateTodoData {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isQueued() {
+		return queued;
+	}
+
+	public void setQueued(boolean queued) {
+		this.queued = queued;
 	}
 }
