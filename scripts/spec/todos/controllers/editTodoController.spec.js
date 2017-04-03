@@ -34,6 +34,10 @@ describe("EditTodoController", () => {
       expect(editTodoController.dequeueableForm).toBe(true);
     });
 
+    describe("#launchDequeueModal", () => {
+      xit("SHOULD BE TESTED");
+    });
+
     it("exposes a todo after fetching it from the todosStore", () => {
       editTodoController = $controller('editTodoController', { $scope: scope });
       expect(todosStore.withdrawTodo).toHaveBeenCalledWith($state.params.todoId);
