@@ -1,6 +1,6 @@
 import modalTemplate from '../templates/dequeueModal.html';
 
-export default function EditController($scope, $state, $uibModal, todosStore, todosRequests) {
+export default function EditController($scope, $state, $uibModal, todosStore, todosRequests, dequeueModalLauncher) {
   'ngInject';
   let vm = this;
 
@@ -11,32 +11,16 @@ export default function EditController($scope, $state, $uibModal, todosStore, to
 
   vm.dequeueableForm = true;
   vm.launchDequeueModal = () => {
-    let modalInstance = $uibModal.open({
-      template: modalTemplate,
-      controller: 'dequeueController',
-      controllerAs: 'vm'
-    });
-
-    modalInstance.result.then(dequeueTodo, logModalDismissed);
-
-    function dequeueTodo() {
-      vm.todo.queued = false;
-      todosRequests.updateTodo(vm.todo)
-      .then(() => $state.go('workbench.todoNotSelected'));
-    }
-
-    function logModalDismissed() {
-      console.log("MODAL DISMISSED");
-    }
+    dequeueModalLauncher.launchModal(vm.todo);
   };
-
-  $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 
   vm.submit = () => {
     todosStore.depositTodo(vm.todo);
     todosRequests.updateTodo(vm.todo)
     .then((todo) => $state.go('workbench.viewTodo', { todoId: todo.id }))
   }
+
+  $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 
   $scope.$on("$destroy", () => vm.removeStoreSubcription());
 }

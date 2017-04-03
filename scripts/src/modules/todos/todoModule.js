@@ -14,6 +14,7 @@ import DateCreatedAsString from './filters/dateCreatedAsString.js';
 
 import TodosRequests from './services/todosRequests.js';
 import NameFilter from './services/nameFilter.js';
+import DequeueModalLauncher from './services/dequeueModalLauncher.js';
 
 import EditorStateFactory from './classes/EditorStateFactory.js';
 
@@ -34,6 +35,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphMod
 
   .factory('todosRequests', TodosRequests)
   .factory('nameFilter', NameFilter)
+  .factory('dequeueModalLauncher', DequeueModalLauncher)
 
   .factory('editorStateFactory', EditorStateFactory)
 
