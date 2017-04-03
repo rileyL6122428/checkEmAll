@@ -1,13 +1,13 @@
 import angular from 'angular';
 import 'angular-mocks';
-import todoModule from '../../../src/modules/todos/todoModule.js';
+import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 
 const {inject, module} = angular.mock;
 
 describe("TodoRequests", () => {
   let $httpBackend, $ngRedux, todosRequests, todosStore;
 
-  beforeEach(module(todoModule));
+  beforeEach(module(workbenchModule));
 
   beforeEach(inject((_todosRequests_, _$httpBackend_, _$ngRedux_, _todosStore_) => {
     todosRequests = _todosRequests_;

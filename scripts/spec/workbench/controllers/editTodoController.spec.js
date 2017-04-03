@@ -1,15 +1,15 @@
 import angular from 'angular';
 import 'angular-mocks';
-import todoModule from '../../../src/modules/todos/todoModule.js';
+import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
-import modalTemplate from '../../../src/modules/todos/templates/dequeueModal.html';
+import modalTemplate from '../../../src/modules/workbench/templates/dequeueModal.html';
 
 describe("EditTodoController", () => {
   let editTodoController, $controller, $state, todosStore, $uibModal, todosRequests, dequeueModalLauncher;
   let scope;
 
-  beforeEach(module(todoModule));
+  beforeEach(module(workbenchModule));
 
   beforeEach(inject((_$controller_, _$state_, _todosStore_, _$rootScope_, _$uibModal_, _todosRequests_, _dequeueModalLauncher_) => {
     $controller = _$controller_;

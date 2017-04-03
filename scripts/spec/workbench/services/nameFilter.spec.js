@@ -1,12 +1,12 @@
 import angular from 'angular';
 import 'angular-mocks';
-import todoModule from '../../../src/modules/todos/todoModule.js';
+import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("NameFilter", () => {
   let nameFilter;
 
-  beforeEach(module(todoModule));
+  beforeEach(module(workbenchModule));
   beforeEach(inject((_nameFilter_) => nameFilter = _nameFilter_));
 
   describe("#filterList", () => {

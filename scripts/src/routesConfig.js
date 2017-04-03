@@ -1,7 +1,7 @@
 import loginTemplate from './modules/authentication/templates/login.html';
-import workbenchTemplate from './modules/todos/templates/workbench.html';
-import viewTodoTemplate from './modules/todos/templates/viewTodo.html';
-import todoFormTemplate from './modules/todos/templates/todoForm.html';
+import workbenchTemplate from './modules/workbench/templates/workbench.html';
+import viewTodoTemplate from './modules/workbench/templates/viewTodo.html';
+import todoFormTemplate from './modules/workbench/templates/todoForm.html';
 
 function appConfig($urlRouterProvider, $stateProvider) {
   'ngInject';

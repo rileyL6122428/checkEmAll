@@ -1,4 +1,4 @@
-import EditorState from '../../../src/modules/todos/classes/EditorState.js';
+import EditorState from '../../../src/modules/workbench/classes/EditorState.js';
 
 describe("EditorState", () => {
   let editorState, $state, $apply;

@@ -1,14 +1,14 @@
 import angular from 'angular';
 import 'angular-mocks';
-import todoModule from '../../../src/modules/todos/todoModule.js';
+import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
-import modalTemplate from '../../../src/modules/todos/templates/dequeueModal.html';
+import modalTemplate from '../../../src/modules/workbench/templates/dequeueModal.html';
 
 describe("DequeueModalLauncher", () => {
   let dequeueModalLauncher, $uibModal, todosRequests, $state;
 
-  beforeEach(module(todoModule));
+  beforeEach(module(workbenchModule));
 
   beforeEach(inject((_dequeueModalLauncher_, _$state_, _$uibModal_, _todosRequests_) => {
     dequeueModalLauncher = _dequeueModalLauncher_;

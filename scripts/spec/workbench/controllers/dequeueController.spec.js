@@ -1,13 +1,13 @@
 import angular from 'angular';
 import 'angular-mocks';
-import todoModule from '../../../src/modules/todos/todoModule.js';
+import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("DequeueController", () => {
   let dequeueController, $controller;
   let $uibModalInstance;
 
-  beforeEach(module(todoModule));
+  beforeEach(module(workbenchModule));
 
   beforeEach(inject((_$controller_) => {
     $controller = _$controller_;

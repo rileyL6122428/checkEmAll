@@ -23,7 +23,7 @@ import TodosListItem from './directives/todosListItem.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 import ListItemColorSplash from './directives/listItemcolorSplash.js';
 
-const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphModule, uiBootstrap])
+const workbenchModule = angular.module('todoModule', [reduxModule, uiRouter, graphModule, uiBootstrap])
 
   .controller('workbenchController', WorkbenchController)
   .controller('newTodoController', NewTodoController)
@@ -44,4 +44,4 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphMod
   .directive('todoTypeTag', TodoTypeTag)
   .directive('listItemColorSplash', ListItemColorSplash)
 
-export default todoModule.name;
+export default workbenchModule.name;
