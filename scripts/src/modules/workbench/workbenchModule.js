@@ -17,8 +17,6 @@ import NameFilter from './services/nameFilter.js';
 import DequeueModalLauncher from './services/dequeueModalLauncher.js';
 import TodoSelection from './services/todoSelection.js';
 
-import EditorStateFactory from './classes/EditorStateFactory.js';
-
 import TodosList from './directives/todosList.js';
 import TodosListItem from './directives/todosListItem.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
@@ -38,8 +36,6 @@ const workbenchModule = angular.module('todoModule', [reduxModule, uiRouter, gra
   .factory('nameFilter', NameFilter)
   .factory('dequeueModalLauncher', DequeueModalLauncher)
   .factory('todoSelection', TodoSelection)
-
-  .factory('editorStateFactory', EditorStateFactory)
 
   .directive('todosList', TodosList)
   .directive('todosListItem', TodosListItem)
