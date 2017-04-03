@@ -8,6 +8,7 @@ import WorkbenchController from './controllers/workbenchController.js';
 import NewTodoController from './controllers/newTodoController.js';
 import ViewTodoController from './controllers/viewTodoController.js';
 import EditTodoController from './controllers/editTodoController.js';
+import DequeueController from './controllers/dequeueController.js';
 
 import DateCreatedAsString from './filters/dateCreatedAsString.js';
 
@@ -27,6 +28,7 @@ const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphMod
   .controller('newTodoController', NewTodoController)
   .controller('viewTodoController', ViewTodoController)
   .controller('editTodoController', EditTodoController)
+  .controller('dequeueController', DequeueController)
 
   .filter('dateCreatedAsString', DateCreatedAsString)
 

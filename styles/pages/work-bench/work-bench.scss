@@ -1,14 +1,14 @@
 @import "./mixins/todos-index.scss";
 @import "./mixins/todo-stats.scss";
 @import "./mixins/todo-editor.scss";
+@import "./mixins/dequeue-modal.scss";
 
 section#work-bench {
   height: 100%;
 
   @include todos-index();
-
   @include todo-stats();
-
   @include todo-editor();
-
 }
+
+@include dequeue-modal();

@@ -1,4 +1,6 @@
-export default function EditController($scope, $state, todosStore, todosRequests) {
+import modalTemplate from '../templates/dequeueModal.html';
+
+export default function EditController($scope, $state, $uibModal, todosStore, todosRequests) {
   'ngInject';
   let vm = this;
 
@@ -8,6 +10,24 @@ export default function EditController($scope, $state, todosStore, todosRequests
   });
 
   vm.dequeueableForm = true;
+  vm.launchDequeueModal = () => {
+    let modalInstance = $uibModal.open({
+      template: modalTemplate,
+      controller: 'dequeueController',
+      controllerAs: 'vm'
+    });
+
+    modalInstance.result.then(dequeueTodo, logModalDismissed);
+
+    function dequeueTodo() {
+      vm.todo.queued = false;
+      todosRequests.updateTodo(vm.todo);
+    }
+
+    function logModalDismissed() {
+      console.log("MODAL DISMISSED");
+    }
+  };
 
   $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 

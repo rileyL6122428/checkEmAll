@@ -46,7 +46,7 @@
         </div>
 
         <button ng-click="vm.submit()" id="submit-new-todo" class="btn btn-default">Save</button>
-        <button ng-if="vm.dequeueableForm" class="btn btn-danger">Dequeue</button>
+        <button ng-click="vm.launchDequeueModal()" ng-if="vm.dequeueableForm" class="btn btn-danger">Dequeue</button>
       </form>
     </div>
   </div>

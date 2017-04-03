@@ -1,0 +1,20 @@
+@mixin dequeue-modal() {
+  form#dequeue-modal {
+    padding: 15px 0;
+
+    p {
+      margin-bottom: 25px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    div.modal-actions {
+      display: flex;
+      justify-content: center;
+    }
+
+    div.modal-actions > button {
+      margin-right: 10px;
+    }
+  }
+}
