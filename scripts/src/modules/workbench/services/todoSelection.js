@@ -1,4 +1,6 @@
-export default function TodoSelection($state) {
+import EventEmitter from '../classes/EventEmitter.js';
+
+export default function TodoSelection($state, todoFactory) {
   const EDITOR_MODES = {
     VIEW: "VIEW",
     EDIT: "EDIT",
@@ -8,10 +10,15 @@ export default function TodoSelection($state) {
 
   let currentMode = EDITOR_MODES.VIEW;
   let selectedTodo = null;
+  let eventEmitter = new EventEmitter();
 
   return({
+    placeListener(listener) {
+      return eventEmitter.addListener(listener);
+    },
+
     setSelectedTodo(todo) {
-      selectedTodo = todo;
+      _setTodoAndEmitSelection(todo);
 
       switch(currentMode) {
         case EDITOR_MODES.VIEW:
@@ -28,19 +35,19 @@ export default function TodoSelection($state) {
 
     selectNewTodo() {
       currentMode = EDITOR_MODES.NEW;
-      selectedTodo = _newTodo();
+      _setTodoAndEmitSelection(todoFactory.newTodo());
       $state.go('workbench.newTodo');
     },
 
     clearSelection() {
       currentMode = EDITOR_MODES.EMPTY;
-      selectedTodo = null;
+      _setTodoAndEmitSelection(null);
       $state.go('workbench.todoNotSelected');
     },
 
     switchToEditMode(todo) {
       if(currentMode === EDITOR_MODES.VIEW) {
-        if(todo) selectedTodo = todo;
+        if(todo) _setTodoAndEmitSelection(todo);
         currentMode = EDITOR_MODES.EDIT;
         $state.go('workbench.editTodo');
       }
@@ -48,7 +55,7 @@ export default function TodoSelection($state) {
 
     switchToViewMode(todo) {
       if(currentMode === EDITOR_MODES.EDIT || currentMode === EDITOR_MODES.NEW) {
-        if(todo) selectedTodo = todo;
+        if(todo) _setTodoAndEmitSelection(todo);
         currentMode = EDITOR_MODES.VIEW;
         $state.go('workbench.viewTodo');
       }
@@ -59,13 +66,8 @@ export default function TodoSelection($state) {
     }
   });
 
-  function _newTodo() {
-    return ({
-      name: "",
-      description: "",
-      queued: true,
-      finished: false,
-      type: ""
-    });
+  function _setTodoAndEmitSelection(todo) {
+    selectedTodo = todo;
+    eventEmitter.callListeners();
   }
 }

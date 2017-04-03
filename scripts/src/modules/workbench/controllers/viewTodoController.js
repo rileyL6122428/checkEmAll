@@ -1,9 +1,13 @@
-export default function ViewTodoController(todoSelection) {
+export default function ViewTodoController($scope, todoSelection) {
   'ngInject';
   let vm = this;
 
-  vm.todo = todoSelection.getSelectedTodo();
+  let removeListener = todoSelection.placeListener(() => {
+    vm.todo = todoSelection.getSelectedTodo();
+  });
+  $scope.$on('$destroy', removeListener);
+
   vm.gotoEditMode = () => {
     todoSelection.switchToEditMode();
-  }
+  };
 }

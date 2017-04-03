@@ -4,7 +4,11 @@ export default function EditController($scope, todosRequests, todosStore, dequeu
   'ngInject';
   let vm = this;
 
-  vm.todo = todoSelection.getSelectedTodo();
+  let removeListener = todoSelection.placeListener(() => {
+    vm.todo = todoSelection.getSelectedTodo();
+  });
+  $scope.$on('$destroy', removeListener);
+  $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 
   vm.dequeueableForm = true;
   vm.launchDequeueModal = () => {
@@ -17,6 +21,4 @@ export default function EditController($scope, todosRequests, todosStore, dequeu
       todoSelection.switchToViewMode(updatedTodo);
     });
   };
-
-  $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 }
