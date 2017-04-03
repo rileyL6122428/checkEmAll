@@ -11,7 +11,7 @@ import appConfig from './routesConfig.js';
 const todoApp = angular.module('todoApp', [
   uiRouter,
   authenticationModule,
-  todoModule
+  workbenchModule
 ])
   .config(appConfig)
   .run(authHooks);
