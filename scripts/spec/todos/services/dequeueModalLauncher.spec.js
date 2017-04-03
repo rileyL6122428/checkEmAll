@@ -68,7 +68,6 @@ describe("DequeueModalLauncher", () => {
         spyOn(todosRequests, 'updateTodo').and.returnValue(updateTodoPromise);
         spyOn($state, 'go');
 
-        debugger
         successCallback();
         let promiseSuccessCallback = updateTodoPromise.then.calls.first().args[0];
         promiseSuccessCallback();
