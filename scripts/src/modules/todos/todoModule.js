@@ -1,5 +1,6 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'angular-ui-bootstrap';
 import reduxModule from '../redux/module.js';
 import graphModule from '../graphs/graphModule.js';
 
@@ -20,7 +21,7 @@ import TodosListItem from './directives/todosListItem.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
 import ListItemColorSplash from './directives/listItemcolorSplash.js';
 
-const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphModule])
+const todoModule = angular.module('todoModule', [reduxModule, uiRouter, graphModule, uiBootstrap])
 
   .controller('workbenchController', WorkbenchController)
   .controller('newTodoController', NewTodoController)
