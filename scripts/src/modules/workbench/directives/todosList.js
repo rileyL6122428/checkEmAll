@@ -11,9 +11,9 @@ export default function TodosList(nameFilter, todoSelection) {
       scope.nameInput = "";
       scope.filteredTodos = scope.todos;
 
-      scope.selectTodo = (todo) => {
-        todoSelection.setSelectedTodo(todo);
-      }
+      // scope.selectTodo = (todo) => {
+      //   todoSelection.setSelectedTodo(todo);
+      // }
 
       scope.$watch('todos', setFilteredTodos);
       scope.$watch('nameInput', setFilteredTodos);

@@ -6,11 +6,17 @@ export default function TodosListItem(todoSelection) {
     scope: { todo: '=' },
     template: template,
     link: (scope) => {
-      scope.$watch('selectedTodo', setSelectionStatus);
+      scope.selectionStatus = (scope.todo === todoSelection.getSelectedTodo()) ? "selected" : "";
 
-      function setSelectionStatus() {
-        scope.selectionStatus = (scope.todo === todoSelection.getSelectedTodo()) ? "selected" : "" ;
-      }
+      scope.toggleSelection = () => {
+        if(scope.todo === todoSelection.getSelectedTodo()) {
+          scope.selectionStatus = "";
+          todoSelection.clearSelection();
+        } else {
+          scope.selectionStatus = "selected";
+          todoSelection.setSelectedTodo(scope.todo);
+        }
+      };
     }
   });
 }
