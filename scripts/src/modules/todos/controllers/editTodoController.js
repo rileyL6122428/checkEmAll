@@ -21,7 +21,8 @@ export default function EditController($scope, $state, $uibModal, todosStore, to
 
     function dequeueTodo() {
       vm.todo.queued = false;
-      todosRequests.updateTodo(vm.todo);
+      todosRequests.updateTodo(vm.todo)
+      .then(() => $state.go('workbench.todoNotSelected'));
     }
 
     function logModalDismissed() {

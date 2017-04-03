@@ -1,3 +1,5 @@
+@import './form-actions.scss';
+
 @mixin dequeue-modal() {
   form#dequeue-modal {
     padding: 15px 0;
@@ -9,12 +11,7 @@
     }
 
     div.modal-actions {
-      display: flex;
-      justify-content: center;
-    }
-
-    div.modal-actions > button {
-      margin-right: 10px;
+      @include form-actions();
     }
   }
 }

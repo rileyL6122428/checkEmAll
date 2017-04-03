@@ -1,4 +1,4 @@
-<section id="create-new-todo">
+<section id="todo-form">
   <div class="container">
     <div class="row">
       <form class="col-sm-8 col-sm-offset-2">
@@ -45,8 +45,11 @@
           </div>
         </div>
 
-        <button ng-click="vm.submit()" id="submit-new-todo" class="btn btn-default">Save</button>
-        <button ng-click="vm.launchDequeueModal()" ng-if="vm.dequeueableForm" class="btn btn-danger">Dequeue</button>
+        <div class="form-actions">
+          <button ng-click="vm.submit()" id="submit-new-todo" class="btn btn-default">Save</button>
+          <button ng-click="vm.launchDequeueModal()" ng-if="vm.dequeueableForm" class="btn btn-danger">Dequeue</button>
+        </div>
+
       </form>
     </div>
   </div>

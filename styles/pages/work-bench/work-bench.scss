@@ -1,6 +1,7 @@
 @import "./mixins/todos-index.scss";
 @import "./mixins/todo-stats.scss";
 @import "./mixins/todo-editor.scss";
+@import "./mixins/todo-form.scss";
 @import "./mixins/dequeue-modal.scss";
 
 section#work-bench {
@@ -9,6 +10,7 @@ section#work-bench {
   @include todos-index();
   @include todo-stats();
   @include todo-editor();
+  @include todo-form();
 }
 
 @include dequeue-modal();
