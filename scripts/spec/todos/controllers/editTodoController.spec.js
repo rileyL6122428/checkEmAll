@@ -29,6 +29,11 @@ describe("EditTodoController", () => {
       spyOn(todosStore, 'depositTodo');
     });
 
+    it("sets vm.dequeueableForm to true", () => {
+      editTodoController = $controller('editTodoController', { $scope: scope });
+      expect(editTodoController.dequeueableForm).toBe(true);
+    });
+
     it("exposes a todo after fetching it from the todosStore", () => {
       editTodoController = $controller('editTodoController', { $scope: scope });
       expect(todosStore.withdrawTodo).toHaveBeenCalledWith($state.params.todoId);
@@ -74,7 +79,7 @@ describe("EditTodoController", () => {
     });
 
     describe("$scope.$destroy listener", () => {
-      
+      xit("IS TESTED");
     });
   });
 });

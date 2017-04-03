@@ -7,6 +7,8 @@ export default function EditController($scope, $state, todosStore, todosRequests
     vm.todo = todosStore.withdrawTodo($state.params.todoId);
   });
 
+  vm.dequeueableForm = true;
+
   $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 
   vm.submit = () => {
