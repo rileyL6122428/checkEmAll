@@ -16,7 +16,7 @@ export default function WorkbenchController(todosStore, todosRequests, statsFact
   }
 
   function _syncTodosAndTodosStats() {
-    vm.todos = todosStore.withdrawTodos();
+    vm.todos = todosStore.withdrawQueuedTodos();
     vm.typeStats = statsFactory.newTypeStats(vm.todos);
     vm.completionStats = statsFactory.newCompletionStats(vm.todos);
   }

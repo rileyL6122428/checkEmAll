@@ -8,15 +8,15 @@ export default function TodosList(nameFilter) {
     scope: { todos: '=', selectTodo: '&', selectedTodo: '=' },
     template: template,
     link: (scope) => {
-      scope.nameFilter = "";
+      scope.nameInput = "";
       scope.filteredTodos = scope.todos;
 
       scope.$watch('todos', setFilteredTodos);
-      scope.$watch('nameFilter', setFilteredTodos);
+      scope.$watch('nameInput', setFilteredTodos);
 
       function setFilteredTodos() {
         if(scope.todos)
-          scope.filteredTodos = nameFilter.filterList(scope.nameFilter, scope.todos);
+          scope.filteredTodos = nameFilter.filterList(scope.nameInput, scope.todos);
       }
     }
   });

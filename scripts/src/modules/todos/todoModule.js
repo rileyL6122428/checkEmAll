@@ -13,7 +13,7 @@ import DequeueController from './controllers/dequeueController.js';
 import DateCreatedAsString from './filters/dateCreatedAsString.js';
 
 import TodosRequests from './services/todosRequests.js';
-import NameFilter from './services/NameFilter.js';
+import NameFilter from './services/nameFilter.js';
 
 import EditorStateFactory from './classes/EditorStateFactory.js';
 

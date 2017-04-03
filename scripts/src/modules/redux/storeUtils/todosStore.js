@@ -26,4 +26,8 @@ export default class TodosStore extends BaseStore {
 
     return todos;
   }
+
+  withdrawQueuedTodos() {
+    return this.withdrawTodos().filter((todo) => { return todo.queued });
+  }
 }

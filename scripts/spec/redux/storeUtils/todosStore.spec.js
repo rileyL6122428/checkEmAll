@@ -64,6 +64,21 @@ describe("TodosStore", () => {
     });
   });
 
+  describe("#withdrawQueuedTodos", () => {
+    it("grabs all todos in the store", () => {
+      let todo1 = { id: 1, queued: true };
+      let todo2 = { id: 2, queued: false };
+      let todo3 = { id: 3, queued: true };
+
+      todosStore.depositTodos([todo1, todo2, todo3]);
+      let userTodos = todosStore.withdrawQueuedTodos();
+
+      expect(userTodos.length).toEqual(2);
+      expect(userTodos).toContain(todo1);
+      expect(userTodos).toContain(todo3);
+    });
+  });
+
   describe("#withdrawTodo", () => {
     xit("returns a todo with the supplied id");
   });
