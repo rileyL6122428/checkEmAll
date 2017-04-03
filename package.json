@@ -1,7 +1,7 @@
 {
-  "name": "codeevalclone",
+  "name": "Todo App",
   "version": "1.0.0",
-  "description": "\"A clone of the website code eval\"",
+  "description": "\"A custom todo application\"",
   "author": "Riley Littlefield",
   "scripts": {
     "postinstall": "gulp run-tests && gulp compile-scripts && gulp compile-sass"
