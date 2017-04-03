@@ -1,13 +1,14 @@
-export default function TodoSelection($state, EditorState) {
+export default function TodoSelection($state) {
   const EDITOR_MODES = {
     VIEW: "VIEW",
     EDIT: "EDIT",
     NEW: "NEW",
     EMPTY: "EMPTY"
-  }
+  };
 
   let currentMode = EDITOR_MODES.VIEW;
   let selectedTodo = null;
+
   return({
     setSelectedTodo(todo) {
       selectedTodo = todo;
@@ -17,17 +18,17 @@ export default function TodoSelection($state, EditorState) {
         case EDITOR_MODES.NEW:
         case EDITOR_MODES.EMPTY:
           currentMode = EDITOR_MODES.VIEW;
-          $state.go('workbench.viewTodo', { todoId: 999 }); //TODO REMOVE STATE PARAMS
+          $state.go('workbench.viewTodo');
           break;
         case EDITOR_MODES.EDIT:
-          $state.go('workbench.editTodo', { todoId: 999 }); //TODO REMOVE STATE PARAMS
+          $state.go('workbench.editTodo');
           break;
       }
     },
 
     selectNewTodo() {
       currentMode = EDITOR_MODES.NEW;
-      selectedTodo = null; //TODO replace with Todo object to pass in through config object
+      selectedTodo = _newTodo();
       $state.go('workbench.newTodo');
     },
 
@@ -37,22 +38,34 @@ export default function TodoSelection($state, EditorState) {
       $state.go('workbench.todoNotSelected');
     },
 
-    switchToEditMode() {
+    switchToEditMode(todo) {
       if(currentMode === EDITOR_MODES.VIEW) {
+        if(todo) selectedTodo = todo;
         currentMode = EDITOR_MODES.EDIT;
-        $state.go('workbench.editTodo', { todoId: 999 }); //TODO REMOVE STATE PARAMS
+        $state.go('workbench.editTodo');
       }
-    }
+    },
 
-    switchToViewMode() {
-      if(currentMode === EDITOR_MODES.EDIT) {
+    switchToViewMode(todo) {
+      if(currentMode === EDITOR_MODES.EDIT || currentMode === EDITOR_MODES.NEW) {
+        if(todo) selectedTodo = todo;
         currentMode = EDITOR_MODES.VIEW;
-        $state.go('workbench.viewTodo', { todoId: 999 }); //TODO REMOVE STATE PARAMS
+        $state.go('workbench.viewTodo');
       }
-    }
+    },
 
     getSelectedTodo() {
       return selectedTodo;
     }
-  })
+  });
+
+  function _newTodo() {
+    return ({
+      name: "",
+      description: "",
+      queued: true,
+      finished: false,
+      type: ""
+    });
+  }
 }

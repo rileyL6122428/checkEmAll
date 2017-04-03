@@ -3,11 +3,11 @@
                            type="text"
                            placeholder="search..."
                            ng-model="nameFilter"/>
-                           
+
   <ul id="todos-list">
     <todos-list-item ng-repeat="todo in filteredTodos"
-                     ng-click="selectTodo({ todo: todo })"
-                     todo="todo"
-                     selected-todo="selectedTodo"></todos-list-item>
+                     ng-click="selectTodo(todo)"
+                     todo="todo">
+    </todos-list-item>
   </ul>
 </section>

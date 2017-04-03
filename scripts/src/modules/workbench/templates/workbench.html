@@ -1,7 +1,6 @@
 <section id="work-bench" >
 
     <todos-list selected-todo="vm.selectedTodo"
-                select-todo="vm.setSelectedTodo(todo)"
                 todos="vm.todos">
     </todos-list>
 
@@ -14,7 +13,7 @@
       </div>
     </div>
 
-    <a ui-sref="workbench.newTodo">New Todo</a>
+    <a ng-click="vm.selectNewTodo()">New Todo</a>
     <div id="editor-mode-designation">Current mode: {{vm.editorState.currentMode}}</div>
     <div ui-view></div>
 </section>

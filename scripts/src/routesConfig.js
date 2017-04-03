@@ -28,27 +28,17 @@ function appConfig($urlRouterProvider, $stateProvider) {
       })
 
       .state('workbench.viewTodo', {
-          url: '/view-todo/:todoId',
+          url: '/view-todo',
           controller: 'viewTodoController as vm',
           template: viewTodoTemplate,
-          requireLogin: true,
-          resolve: {
-            selectedTodo(todoSelection) {
-              return todoSelection.getSelectedTodo();
-            }
-          }
+          requireLogin: true
       })
 
       .state('workbench.editTodo', {
-          url: '/edit-todo/:todoId',
+          url: '/edit-todo',
           template: todoFormTemplate,
           controller: 'editTodoController as vm',
-          requireLogin: true,
-          resolve: {
-            selectedTodo(todoSelection) {
-              return todoSelection.getSelectedTodo();
-            }
-          }
+          requireLogin: true
       })
 
       .state('workbench.newTodo', {

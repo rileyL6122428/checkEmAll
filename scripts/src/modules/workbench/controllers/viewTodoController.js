@@ -1,6 +1,9 @@
-export default function ViewTodoController($stateParams, todosStore, selectedTodo) {
+export default function ViewTodoController(todoSelection) {
   'ngInject';
   let vm = this;
 
-  vm.todo = todosStore.withdrawTodo($stateParams.todoId);
+  vm.todo = todoSelection.getSelectedTodo();
+  vm.gotoEditMode = () => {
+    todoSelection.switchToEditMode();
+  }
 }
