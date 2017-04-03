@@ -31,14 +31,24 @@ function appConfig($urlRouterProvider, $stateProvider) {
           url: '/view-todo/:todoId',
           controller: 'viewTodoController as vm',
           template: viewTodoTemplate,
-          requireLogin: true
+          requireLogin: true,
+          resolve: {
+            selectedTodo(todoSelection) {
+              return todoSelection.getSelectedTodo();
+            }
+          }
       })
 
       .state('workbench.editTodo', {
           url: '/edit-todo/:todoId',
           template: todoFormTemplate,
           controller: 'editTodoController as vm',
-          requireLogin: true
+          requireLogin: true,
+          resolve: {
+            selectedTodo(todoSelection) {
+              return todoSelection.getSelectedTodo();
+            }
+          }
       })
 
       .state('workbench.newTodo', {

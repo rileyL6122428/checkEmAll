@@ -1,4 +1,4 @@
-export default function ViewTodoController($stateParams, todosStore) {
+export default function ViewTodoController($stateParams, todosStore, selectedTodo) {
   'ngInject';
   let vm = this;
 

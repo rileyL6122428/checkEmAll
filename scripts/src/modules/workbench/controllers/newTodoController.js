@@ -1,4 +1,4 @@
-export default function NewTodoController (todosRequests, $state, $scope) {
+export default function NewTodoController (todosRequests, $state, $scope, selectedTodoHolder) {
   'ngInject';
   let vm = this;
 
@@ -22,6 +22,7 @@ export default function NewTodoController (todosRequests, $state, $scope) {
   }
 
   function _gotoViewMode(createdTodo) {
+    selectedTodoHolder.set(createdTodo);
     $state.go('workbench.viewTodo', { todoId: createdTodo.id });
   }
 }

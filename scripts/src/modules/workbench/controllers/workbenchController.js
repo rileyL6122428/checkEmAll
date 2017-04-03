@@ -1,4 +1,4 @@
-export default function WorkbenchController(todosStore, todosRequests, statsFactory, editorStateFactory, $scope) {
+export default function WorkbenchController(todosStore, todosRequests, statsFactory, editorStateFactory, $scope, todoSelection) {
   'ngInject';
   let vm = this;
 
@@ -35,9 +35,11 @@ export default function WorkbenchController(todosStore, todosRequests, statsFact
     vm.setSelectedTodo = (todo) => {
       if(vm.selectedTodo === todo) {
         vm.selectedTodo = null;
+        todoSelection.clearSelection();
         vm.editorState.gotoEmptyEditor();
       } else {
         vm.selectedTodo = todo;
+        todoSelection.setSelectedTodo(todo);
         vm.editorState.gotoSelectedTodo(todo);
       }
     };
