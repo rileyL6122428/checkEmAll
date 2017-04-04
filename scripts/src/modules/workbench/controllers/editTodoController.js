@@ -1,6 +1,6 @@
 import modalTemplate from '../templates/dequeueModal.html';
 
-export default function EditController($scope, todosRequests, todosStore, dequeueModalLauncher, todoSelection) {
+export default function EditController($scope, todosRequests, dequeueModalLauncher, todoSelection) {
   'ngInject';
   let vm = this;
 
@@ -8,7 +8,6 @@ export default function EditController($scope, todosRequests, todosStore, dequeu
     vm.todo = todoSelection.getSelectedTodo();
   });
   $scope.$on('$destroy', removeListener);
-  $scope.$watch('vm.todo', () => todosStore.depositTodo(vm.todo), true);
 
   vm.dequeueableForm = true;
   vm.launchDequeueModal = () => {

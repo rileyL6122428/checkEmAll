@@ -1,7 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-import authenticationModule from './modules/authentication/authenticationModule.js';
+import authenticationModule from './modules/authentication/authModule.js';
 import workbenchModule from './modules/workbench/workbenchModule.js';
 import reduxModule from './modules/redux/module.js';
 
