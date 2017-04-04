@@ -12,7 +12,7 @@ describe("CompletionGraph", () => {
   beforeEach(_initializeDirectiveDependencies);
 
   describe("#link", () => {
-    it("draws a graph based on the provided canvasId and completion statistics", () => {
+    xit("draws a graph based on the provided canvasId and completion statistics", () => {
       let stats = _completionStatsMock({ finishedPercentage: 50 });
       spyOn(percentageGraphDrawer, 'draw');
       _setupCompletionGraph({ graphId: "MOCK_GRAPH_ID", completionStats: stats});

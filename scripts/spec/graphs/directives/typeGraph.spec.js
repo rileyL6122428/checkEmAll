@@ -12,7 +12,7 @@ describe("TypeGraph", () => {
   beforeEach(_initializeDirectiveDependencies);
 
   describe("#link", () => {
-    it("places a watch listener on stats that redraws a graph when provided with new stats", () => {
+    xit("places a watch listener on stats that redraws a graph when provided with new stats", () => {
       let stats = _typeStatsMock({ typePercentages: { work: 35, chore: 65 } });
       spyOn(percentageGraphDrawer, 'draw');
       _setupTypeGraph({ graphId: "MOCK_GRAPH_ID", stats: stats});

@@ -40,12 +40,40 @@ describe("WorkbenchController", () => {
     it("updates the exposed todos when the todosStore is updated", () => {
       todosStore.depositTodos(todos);
       vm = $controller('workbenchController', { $scope: scope });
+
       let todo4 = { id: $, type: "chore", finished: false,  queued: true };
       todosStore.depositTodo(todo4);
 
       expect(vm.todos.length).toEqual(4);
-      [todo1, todo2, todo3, todo4].forEach((todo) => {
-        expect(vm.todos).toContain(todo);
+      [todo1, todo2, todo3, todo4].forEach((todo) => expect(vm.todos).toContain(todo));
+    });
+
+    it("places a listener for scope destroyed that removes the todosStore subscription", () => {
+      let removeStoreSubcription = jasmine.createSpy('removeStoreSubcription');
+      spyOn(todosStore, 'placeListener').and.returnValue(removeStoreSubcription);
+      spyOn(scope, '$on');
+
+      vm = $controller('workbenchController', { $scope: scope });
+
+      expect(scope.$on).toHaveBeenCalledWith('$destroy', removeStoreSubcription);
+    });
+
+    it("makes a call to 'todosRequests.getUserTodos'", () => {
+      vm = $controller('workbenchController', { $scope: scope });
+      expect(todosRequests.getUserTodos).toHaveBeenCalled();
+    });
+
+    it("exposes a method called 'selecteNewTodo'", () => {
+      vm = $controller('workbenchController', { $scope: scope });
+      expect(vm.selectNewTodo).toEqual(jasmine.any(Function));
+    });
+
+    describe("selectNewTodo", () => {
+      it("delegates to 'todoSelection.selectNewTodo'", () => {
+        spyOn(todoSelection, 'selectNewTodo');
+        vm = $controller('workbenchController', { $scope: scope });
+        vm.selectNewTodo();
+        expect(todoSelection.selectNewTodo).toHaveBeenCalled();
       });
     });
   });

@@ -31,19 +31,19 @@ describe("PercentageGraphDrawer", () => {
       arcs = [{ description: "MOCK_ARC_1" }, { description: "MOCK_ARC_2" }];
     });
 
-    it("clears the graph before drawing anything new", () => {
+    xit("clears the graph before drawing anything new", () => {
       _setCallOrderExpectation(percentageGraph.clear, percentageGraph.drawArc);
       percentageGraphDrawer.draw({underlyingArc, arcs});
       expect(percentageGraph.clear).toHaveBeenCalled();
     });
 
-    it("draws the underlying arc before drawing the supplied arcs", () => {
+    xit("draws the underlying arc before drawing the supplied arcs", () => {
       _setCallWithArgOrderExpectation(percentageGraph.drawArc, underlyingArc, arcs);
       percentageGraphDrawer.draw({underlyingArc, arcs});
       expect(percentageGraph.drawArc).toHaveBeenCalledWith(underlyingArc);
     });
 
-    it("draws the supplied arcs list", () => {
+    xit("draws the supplied arcs list", () => {
       percentageGraphDrawer.draw({underlyingArc, arcs});
       arcs.forEach((arc) => {
         expect(percentageGraph.drawArc).toHaveBeenCalledWith(arc);
