@@ -4,57 +4,49 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("WorkbenchController", () => {
-  let workbenchController, $controller, todosRequests, $state, todosStore;
-  let editorState, scope;
+  let $controller, todosStore, todosRequests, todoSelection;
+  let vm, scope;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$controller_, _todosRequests_, _$state_, _todosStore_, _$rootScope_) => {
+  beforeEach(inject((_$controller_, _$rootScope_, _todosStore_, _todosRequests_, _todoSelection_) => {
     $controller = _$controller_;
-    todosRequests = _todosRequests_;
-    $state = _$state_;
-    todosStore = _todosStore_;
     scope = _$rootScope_.$new();
+    todosStore = _todosStore_;
+    todosRequests = _todosRequests_;
+    todoSelection = _todoSelection_;
   }));
 
   beforeEach(() => spyOn(todosRequests, 'getUserTodos'));
 
-  beforeEach(() => {
-    editorState = {
-      gotoEmptyEditor: jasmine.createSpy('gotoEmptyEditor'),
-      gotoSelectedTodo: jasmine.createSpy('gotoSelectedTodo'),
-      setKeyboardShortcuts: jasmine.createSpy('setKeyboardShortcuts'),
-      removeKeyboardShortcuts: jasmine.createSpy('removeKeyboardShortcuts')
-    };
-    spyOn(editorStateFactory, 'newEditorState').and.returnValue(editorState);
-  });
-
-  xit("it should have its remaining sections tested");
-
-  describe("#exposeTodos", () => {
-    xit("places a listener in the todosStore that withdraws and exposes todos");
-    xit("makes a request for the users todos");
-    xit("saves a 'remove store' subscription");
-  });
-
-  describe("#setSelectedTodo", () => {
-    let todo = { id: 1, name: "NAME" };
-
-    xit("sets selectedTodo to the supplied todo and calls gotoSelectedTodo on editorState", () => {
-      workbenchController = $controller('workbenchController', { $scope: scope });
-      workbenchController.setSelectedTodo(todo);
-      expect(workbenchController.selectedTodo).toBe(todo);
-      expect(editorState.gotoSelectedTodo).toHaveBeenCalledWith(todo);
+  describe("controller state", () => {
+    let todo1, todo2, todo3, todos;
+    beforeEach(() => {
+      todo1 = { id: 1, type: "work",  finished: true,  queued: true };
+      todo2 = { id: 2, type: "work",  finished: false, queued: true };
+      todo3 = { id: 3, type: "chore", finished: true,  queued: true };
+      todos = [todo1, todo2, todo3];
     });
 
-    xit("sets selectedTodo to null and calls gotoEmptyEditor when the supplied todo is the currently selected todo", () => {
-      workbenchController = $controller('workbenchController', { $scope: scope });
+    it("exposes queued todos from the todosStore", () => {
+      todosStore.depositTodos(todos);
 
-      workbenchController.setSelectedTodo(todo);
-      workbenchController.setSelectedTodo(todo);
+      vm = $controller('workbenchController', { $scope: scope });
 
-      expect(workbenchController.selectedTodo).toBe(null);
-      expect(editorState.gotoEmptyEditor).toHaveBeenCalled();
+      expect(vm.todos.length).toEqual(todos.length);
+      todos.forEach((todo) => expect(vm.todos).toContain(todo));
+    });
+
+    it("updates the exposed todos when the todosStore is updated", () => {
+      todosStore.depositTodos(todos);
+      vm = $controller('workbenchController', { $scope: scope });
+      let todo4 = { id: $, type: "chore", finished: false,  queued: true };
+      todosStore.depositTodo(todo4);
+
+      expect(vm.todos.length).toEqual(4);
+      [todo1, todo2, todo3, todo4].forEach((todo) => {
+        expect(vm.todos).toContain(todo);
+      });
     });
   });
 });
