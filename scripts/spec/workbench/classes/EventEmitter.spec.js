@@ -7,29 +7,40 @@ describe("EventEmitter", () => {
   });
 
   describe("#addListener", () => {
-    let mockListener;
-    beforeEach(() => {
-      mockListener = jasmine.createSpy('mockListener');
-    });
-
     it("calls the supplied listener once", () => {
+      let mockListener = jasmine.createSpy('mockListener');
       eventEmitter.addListener(mockListener);
       expect(mockListener).toHaveBeenCalled();
     });
 
     it("places the listener in the eventEmitter's listener hash", () => {
+      let mockListener = jasmine.createSpy('mockListener');
+
       eventEmitter.addListener(mockListener);
 
-      let storedListeners = Object.values(eventEmitter.listeners);
+      let storedListeners = Object.values(eventEmitter._listeners);
       expect(storedListeners.length).toEqual(1);
       expect(storedListeners).toContain(mockListener);
     });
 
-    it("returns a function that when called, removes the listener from the emitters listeners hash", () => {
-      let removeListener = eventEmitter.addListener(mockListener);
-      removeListener();
-      let storedListeners = Object.values(eventEmitter.listeners);
-      expect(storedListeners.length).toEqual(0);
+    it("returns a function that when called, removes the corresponding listener from the emitters listeners hash", () => {
+      let mockListener1 = jasmine.createSpy('mockListener1');
+      let mockListener2 = jasmine.createSpy('mockListener2');
+      let mockListener3 = jasmine.createSpy('mockListener3');
+      let mocklistener4 = jasmine.createSpy('mocklistener4');
+
+      let removeListener1 = eventEmitter.addListener(mockListener1);
+      let removeListener2 = eventEmitter.addListener(mockListener2);
+      let removeListener3 = eventEmitter.addListener(mockListener3);
+      let removeListener4 = eventEmitter.addListener(mocklistener4);
+
+      removeListener1();
+      removeListener3();
+
+      let storedListeners = Object.values(eventEmitter._listeners);
+      expect(storedListeners.length).toEqual(2);
+      expect(storedListeners).toContain(mockListener2);
+      expect(storedListeners).toContain(mocklistener4);
     });
   });
 
