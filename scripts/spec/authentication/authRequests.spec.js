@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-mocks';
 import { setCurrentUser } from "../../src/modules/redux/actions/user.action.js";
 
-import authModule from '../../src/modules/authentication/authenticationModule.js';
+import authModule from '../../src/modules/authentication/authModule.js';
 
 const {inject, module} = angular.mock;
 

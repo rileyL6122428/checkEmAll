@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-mocks';
 
-import authModule from '../../src/modules/authentication/authenticationModule.js';
+import authModule from '../../src/modules/authentication/authModule.js';
 
 const {inject, module} = angular.mock;
 
