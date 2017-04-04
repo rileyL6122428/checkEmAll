@@ -4,75 +4,59 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("NewTodoController", () => {
-  let newTodoController, todosRequests, $controller, $state, scope;
+  let $controller, todosRequests, todoSelection;
+  let vm, scope;
+  let $q;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_todosRequests_, _$controller_, _$state_, _$rootScope_) => {
-    todosRequests = _todosRequests_;
+  beforeEach(inject((_$controller_, _$rootScope_, _todosRequests_, _todoSelection_, _$q_) => {
     $controller = _$controller_;
-    $state = _$state_;
+    todosRequests = _todosRequests_;
+    todoSelection = _todoSelection_;
+    $q = _$q_;
     scope = _$rootScope_.$new();
   }));
 
-  describe("instantiation", () => {
-    xit("instantiates and exposes the appropriate fields", () => {
-      newTodoController = $controller('newTodoController', { $scope: scope });
+  describe("controller state", () => {
+    it("exposes the selected todo from the todo selection service", () => {
+      let selectedTodo = { id: 1, description: "MOCK_NEW_TODO_DESCRIPTION" };
+      todoSelection.setSelectedTodo(selectedTodo);
 
-      expect(newTodoController.todo).toBeDefined();
-      expect(newTodoController.todo.name).toEqual("");
-      expect(newTodoController.todo.type).toEqual("");
-      expect(newTodoController.todo.finished).toEqual(false);
-      expect(newTodoController.todo.description).toEqual("");
-    });
-  });
+      vm = $controller('newTodoController');
 
-  describe("#submit", () => {
-    let todo, setSelectedTodoPromise, createTodoPromise;
-    beforeEach(() => {
-      todo = { name: "NAME", finished: true, type: "TYPE", description: "DESCRIPTION" };
-      newTodoController = $controller('newTodoController', { $scope: scope });
-      newTodoController.todo = todo;
+      expect(vm.todo).toBe(selectedTodo);
     });
 
-    beforeEach(() => {
-      setSelectedTodoPromise = { then: jasmine.createSpy('createTodoPromise#then') };
-      createTodoPromise = {
-        then: jasmine.createSpy('createTodoPromise#then').and.returnValue(setSelectedTodoPromise)
-      };
-      spyOn(todosRequests, 'createTodo').and.returnValue(createTodoPromise);
-    })
-
-    xit("makes a request to create a todo", () => {
-      newTodoController.submit();
-      expect(todosRequests.createTodo).toHaveBeenCalledWith(todo);
+    it("exposes a function called 'submit'", () => {
+      vm = $controller('newTodoController');
+      expect(vm.submit).toEqual(jasmine.any(Function));
     });
 
-    xit("sets the selected todo of the work bench to be the created todo upon a successful request", () => {
-      let workbenchCtrl = { setSelectedTodo: jasmine.createSpy('workbenchCtrl#setSelectedTodo') };
-      scope.$parent = { vm: workbenchCtrl };
+    describe("submit", () => {
+      let deferred;
+      beforeEach(() => {
+        deferred = $q.defer();
+        spyOn(todosRequests, 'createTodo').and.returnValue(deferred.promise);
+        vm = $controller('newTodoController', { $scope: scope });
+      });
 
-      newTodoController.submit();
+      it("requests the creation of a todo by delegating to 'todosRequests.createTodo'", () => {
+        vm.todo = { id: 1, description: "MOCK_NEW_TODO_DESCRIPTION" };
+        vm.submit();
+        expect(todosRequests.createTodo).toHaveBeenCalledWith(vm.todo);
+      });
 
-      expect(createTodoPromise.then).toHaveBeenCalled();
+      it("then delegates to 'todoSelection.switchToViewMode' upon successful creation", () => {
+        vm.todo = { id: 1, description: "MOCK_NEW_TODO_DESCRIPTION" };
+        spyOn(todoSelection, 'switchToViewMode');
 
-      let suppliedCallback = createTodoPromise.then.calls.first().args[0];
-      let returnedTodo = suppliedCallback(todo);
+        vm.submit();
+        deferred.resolve(vm.todo);
+        scope.$apply();
 
-      expect(workbenchCtrl.setSelectedTodo).toHaveBeenCalledWith(todo);
-      expect(returnedTodo).toBe(todo);
-    });
-
-    xit("transitions to the 'workbench.viewTodo' upon a successful request", () => {
-      spyOn($state, 'go');
-
-      newTodoController.submit();
-      expect(setSelectedTodoPromise.then).toHaveBeenCalled();
-
-      let suppliedCallback = setSelectedTodoPromise.then.calls.first().args[0];
-      suppliedCallback(todo);
-
-      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', { todoId: todo.id });
+        expect(todoSelection.switchToViewMode).toHaveBeenCalledWith(vm.todo);
+      });
     });
   });
 });

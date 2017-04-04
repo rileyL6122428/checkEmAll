@@ -64,7 +64,7 @@ describe("EditTodoController", () => {
         deferred = $q.defer();
         spyOn(todosRequests, 'updateTodo').and.returnValue(deferred.promise);
         vm = $controller('editTodoController', { $scope: scope });
-      })
+      });
 
       it("delegates to 'todosRequests.updateTodo' to update the todo", () => {
         vm.todo = { id: 1, description: "MOCK_DESCRIPTION" };
