@@ -22,7 +22,7 @@ describe("EditTodoController", () => {
 
 
   describe("syncing with the selected todo", () => {
-    it("upon instantiation, gets the selected todo from todo selection", () => {
+    it("gets the selected todo from todo selection upon instantiation", () => {
       let selectedTodo = { id: 1 };
       todoSelection.setSelectedTodo(selectedTodo);
       vm = $controller('editTodoController', { $scope: scope });

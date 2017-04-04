@@ -4,10 +4,7 @@ export default function EditController($scope, todosRequests, dequeueModalLaunch
   'ngInject';
   let vm = this;
 
-  let removeListener = todoSelection.placeListener(() => {
-    vm.todo = todoSelection.getSelectedTodo();
-  });
-  $scope.$on('$destroy', removeListener);
+  vm.todo = todoSelection.getSelectedTodo();
 
   vm.dequeueableForm = true;
   vm.launchDequeueModal = () => {

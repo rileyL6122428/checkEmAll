@@ -1,23 +1,20 @@
 export default class EventEmitter {
   constructor() {
-    this.id = 0;
+    this.nextListenerId = 0;
     this.listeners = {};
   }
 
   addListener(listener) {
     listener();
-    this.listeners[this.id++] = listener;
 
-    let self = this;
-    return function() {
-      delete self.listeners[self.id - 1];
-    }
+    let listenerId = this.nextListenerId++;
+    this.listeners[listenerId] = listener;
+
+    return () => delete this.listeners[listenerId];
   }
 
   callListeners() {
     let self = this;
-    Object.values(self.listeners).forEach((listener) => {
-      listener();
-    });
+    Object.values(self.listeners).forEach((listener) => listener());
   }
 }
