@@ -5,6 +5,8 @@ const {inject, module} = angular.mock;
 
 import modalTemplate from '../../../src/modules/workbench/templates/dequeueModal.html';
 
+//TODO replace promise mock with $q.defer calls
+
 describe("DequeueModalLauncher", () => {
   let dequeueModalLauncher, $uibModal, todosRequests, $state;
 
