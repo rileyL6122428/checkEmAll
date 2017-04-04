@@ -25,10 +25,10 @@ export default function TodoSelection($state, todoFactory) {
         case EDITOR_MODES.NEW:
         case EDITOR_MODES.EMPTY:
           currentMode = EDITOR_MODES.VIEW;
-          $state.go('workbench.viewTodo');
+          $state.go('workbench.viewTodo', {}, {reload: 'workbench.viewTodo'});
           break;
         case EDITOR_MODES.EDIT:
-          $state.go('workbench.editTodo');
+          $state.go('workbench.editTodo', {}, {reload: 'workbench.editTodo'});
           break;
       }
     },
