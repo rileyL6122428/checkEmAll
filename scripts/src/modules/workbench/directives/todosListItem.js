@@ -6,10 +6,14 @@ export default function TodosListItem(todoSelection) {
     scope: { todo: '=' },
     template: template,
     link: (scope) => {
-
       let removeListener = todoSelection.placeListener(() => {
-        scope.selectionStatus = (scope.todo === todoSelection.getSelectedTodo()) ? "selected" : "";
+        if(scope.todo === todoSelection.getSelectedTodo())
+          scope.selectionStatus = "selected";
+        else
+          scope.selectionStatus = "";
       });
+
+      scope.$on('$destroy', removeListener);
 
       scope.toggleSelection = () => {
         if(scope.todo === todoSelection.getSelectedTodo()) {
@@ -18,8 +22,6 @@ export default function TodosListItem(todoSelection) {
           todoSelection.setSelectedTodo(scope.todo);
         }
       };
-
-      scope.$on('$destroy', removeListener);
     }
   });
 }
