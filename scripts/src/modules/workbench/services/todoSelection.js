@@ -1,6 +1,4 @@
-import EventEmitter from '../classes/EventEmitter.js';
-
-export default function TodoSelection($state, todoFactory) {
+export default function TodoSelection($state, todoFactory, eventEmitterFactory) {
   const EDITOR_MODES = {
     VIEW: "VIEW",
     EDIT: "EDIT",
@@ -10,7 +8,7 @@ export default function TodoSelection($state, todoFactory) {
 
   let currentMode = EDITOR_MODES.VIEW;
   let selectedTodo = null;
-  let eventEmitter = new EventEmitter();
+  let eventEmitter = eventEmitterFactory.newEventEmitter();
 
   return({
     placeListener(listener) {

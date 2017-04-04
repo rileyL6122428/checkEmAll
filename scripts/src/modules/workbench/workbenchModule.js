@@ -18,6 +18,8 @@ import DequeueModalLauncher from './services/dequeueModalLauncher.js';
 import TodoSelection from './services/todoSelection.js';
 import TodoFactory from './services/todoFactory.js';
 
+import EventEmitterFactory from './classes/EventEmitterFactory.js';
+
 import TodosList from './directives/todosList.js';
 import TodosListItem from './directives/todosListItem.js';
 import TodoTypeTag from './directives/todoTypeTag.js';
@@ -40,6 +42,8 @@ const workbenchModule = angular.module('todoModule', [reduxModule, uiRouter, gra
   .factory('dequeueModalLauncher', DequeueModalLauncher)
   .factory('todoSelection', TodoSelection)
   .factory('todoFactory', TodoFactory)
+
+  .factory('eventEmitterFactory', EventEmitterFactory)
 
   .directive('todosList', TodosList)
   .directive('todosListItem', TodosListItem)
