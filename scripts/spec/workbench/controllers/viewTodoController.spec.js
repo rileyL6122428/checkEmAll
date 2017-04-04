@@ -15,7 +15,7 @@ describe("ViewTodoController", () => {
   }));
 
   describe("instantiation", () => {
-    it("#exposes a todo after fetching it from the todosStore", () => {
+    xit("#exposes a todo after fetching it from the todosStore", () => {
       let todo = { id: 1 };
       $stateParams.todoId = todo.id;
       spyOn(todosStore, 'withdrawTodo').and.returnValue(todo);

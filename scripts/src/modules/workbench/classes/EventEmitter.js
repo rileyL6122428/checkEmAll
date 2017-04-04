@@ -4,13 +4,6 @@ export default class EventEmitter {
     this.listeners = {};
   }
 
-  callListeners() {
-    let self = this;
-    Object.values(self.listeners).forEach((listener) => {
-      listener();
-    });
-  }
-
   addListener(listener) {
     listener();
     this.listeners[this.id++] = listener;
@@ -19,5 +12,12 @@ export default class EventEmitter {
     return function() {
       delete self.listeners[self.id - 1];
     }
+  }
+
+  callListeners() {
+    let self = this;
+    Object.values(self.listeners).forEach((listener) => {
+      listener();
+    });
   }
 }

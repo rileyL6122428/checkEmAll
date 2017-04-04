@@ -33,17 +33,17 @@ describe("EditTodoController", () => {
     spyOn(todosStore, 'depositTodo');
   });
 
-  it("exposes a boolean vm.dequeueableForm as true", () => {
+  xit("exposes a boolean vm.dequeueableForm as true", () => {
     editTodoController = $controller('editTodoController', { $scope: scope });
     expect(editTodoController.dequeueableForm).toBe(true);
   });
 
-  it("exposes a function vm.launchDequeueModal", () => {
+  xit("exposes a function vm.launchDequeueModal", () => {
     editTodoController = $controller('editTodoController', { $scope: scope });
     expect(editTodoController.launchDequeueModal).toEqual(jasmine.any(Function));
   });
   describe("vm.launchDequeueModal", () => {
-    it("delegates to dequeueModalLauncher.launchModal", () => {
+    xit("delegates to dequeueModalLauncher.launchModal", () => {
       spyOn(dequeueModalLauncher, 'launchModal');
       editTodoController = $controller('editTodoController', { $scope: scope });
       editTodoController.launchDequeueModal();
@@ -51,13 +51,13 @@ describe("EditTodoController", () => {
     });
   });
 
-  it("exposes a todo vm.todo after fetching it from the todosStore", () => {
+  xit("exposes a todo vm.todo after fetching it from the todosStore", () => {
     editTodoController = $controller('editTodoController', { $scope: scope });
     expect(todosStore.withdrawTodo).toHaveBeenCalledWith($state.params.todoId);
     expect(editTodoController.todo).toBe(todo1);
   });
 
-  it("places a listener in the todos store that syncs vm.todo", () => {
+  xit("places a listener in the todos store that syncs vm.todo", () => {
     editTodoController = $controller('editTodoController', { $scope: scope });
     expect(todosStore.placeListener).toHaveBeenCalled();
 
@@ -69,7 +69,7 @@ describe("EditTodoController", () => {
     expect(todosStore.withdrawTodo).toHaveBeenCalledWith($state.params.todoId);
   });
 
-  it('places a $watch listener on vm.todo', () => {
+  xit('places a $watch listener on vm.todo', () => {
     spyOn(scope, '$watch');
     editTodoController = $controller('editTodoController', { $scope: scope });
     expect(scope.$watch).toHaveBeenCalledWith('vm.todo', jasmine.any(Function), true);
