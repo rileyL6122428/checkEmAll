@@ -1,12 +1,29 @@
-export default function PercentageGraphDrawer(graphFactory) {
+export default function PercentageGraphDrawer(arcFactory, graphFactory) {
+  "ngInject";
 
   return ({
-    draw(params) {
-      let percentageGraph = graphFactory.newPercentageGraph(params);
+    drawCompletionGraph(entities) {
+      if(entities)
+        draw({
+          graphId: "completion-graph",
+          arcs: [arcFactory.newCompletionArc(entities)]
+        });
+    },
 
-      percentageGraph.clear();
-      percentageGraph.drawArc(params.underlyingArc);
-      params.arcs.forEach((arc) => percentageGraph.drawArc(arc));
+    drawTypeGraph(entities) {
+      if(entities)
+        draw({
+          graphId: "type-graph",
+          arcs: arcFactory.newTypeArcs(entities)
+        });
     }
   });
+
+  function draw(params) {
+    let percentageGraph = graphFactory.newPercentageGraph(params);
+
+    percentageGraph.clear();
+    percentageGraph.drawArc(arcFactory.newUnderlyingArc());
+    params.arcs.forEach((arc) => percentageGraph.drawArc(arc));
+  }
 }

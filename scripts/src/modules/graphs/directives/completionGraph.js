@@ -1,22 +1,14 @@
 import template from '../templates/completionGraph.html';
 
-export default function CompletionGraph($rootScope, percentageGraphDrawer, arcFactory) {
+export default function CompletionGraph(percentageGraphDrawer) {
   return({
     restrict: 'E',
-    scope: { completionStats: '=', graphId: '@' },
+    scope: { entities: '=' },
     template: template,
     link: (scope) => {
-      scope.$watch('completionStats', drawGraph);
-
-      function drawGraph(stats) {
-        if(stats) {
-          percentageGraphDrawer.draw({
-            graphId: scope.graphId,
-            underlyingArc: arcFactory.newUnderlyingArc(),
-            arcs: [arcFactory.newCompletionArc(stats)]
-          });
-        }
-      }
+      scope.$watch('entities', (entities) => {
+        percentageGraphDrawer.drawCompletionGraph(entities);
+      });
     }
   });
 }

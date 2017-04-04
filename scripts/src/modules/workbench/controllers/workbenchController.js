@@ -4,8 +4,8 @@ export default function WorkbenchController($scope, todosStore, todosRequests, s
 
   let removeStoreSubcription = todosStore.placeListener(() => {
     vm.todos = todosStore.withdrawQueuedTodos();
-    vm.typeStats = statsFactory.newTypeStats(vm.todos);
-    vm.completionStats = statsFactory.newCompletionStats(vm.todos);
+    // vm.typeStats = statsFactory.newTypeStats(vm.todos);
+    // vm.completionStats = statsFactory.newCompletionStats(vm.todos);
   });
 
   $scope.$on('$destroy', removeStoreSubcription);
