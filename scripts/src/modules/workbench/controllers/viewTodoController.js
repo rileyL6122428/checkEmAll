@@ -1,4 +1,4 @@
-export default function ViewTodoController($scope, todoSelection) {
+export default function ViewTodoController(todoSelection) {
   'ngInject';
   let vm = this;
 

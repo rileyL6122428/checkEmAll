@@ -19,7 +19,7 @@ describe("NewTodoController", () => {
   }));
 
   describe("controller state", () => {
-    it("exposes the selected todo from the todo selection service", () => {
+    it("exposes the selected todo from the todoSelection service", () => {
       let selectedTodo = { id: 1, description: "MOCK_NEW_TODO_DESCRIPTION" };
       todoSelection.setSelectedTodo(selectedTodo);
 

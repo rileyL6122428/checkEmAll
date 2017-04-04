@@ -4,26 +4,40 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("ViewTodoController", () => {
-  let viewTodoController, $controller, $stateParams, todosStore;
+  let $controller, todoSelection;
+  let vm;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$controller_, _$stateParams_, _todosStore_) => {
+  beforeEach(inject((_$controller_, _todoSelection_) => {
     $controller = _$controller_;
-    $stateParams = _$stateParams_;
-    todosStore = _todosStore_;
+    todoSelection = _todoSelection_;
   }));
 
-  describe("instantiation", () => {
-    xit("#exposes a todo after fetching it from the todosStore", () => {
-      let todo = { id: 1 };
-      $stateParams.todoId = todo.id;
-      spyOn(todosStore, 'withdrawTodo').and.returnValue(todo);
+  describe("controller state", () => {
+    it("exposes the selected todo from the todoSelection service", () => {
+      let selectedTodo = { id: 1, description: "MOCK_DESCRIPTION" };
+      todoSelection.setSelectedTodo(selectedTodo);
 
-      viewTodoController = $controller('viewTodoController');
+      vm = $controller('viewTodoController');
 
-      expect(todosStore.withdrawTodo).toHaveBeenCalledWith(todo.id);
-      expect(viewTodoController.todo).toBe(todo);
+      expect(vm.todo).toBe(selectedTodo);
+    });
+
+    it("exposes a function called 'gotoEditMode'", () => {
+      vm = $controller('viewTodoController');
+      expect(vm.gotoEditMode).toEqual(jasmine.any(Function));
+    });
+
+    describe("gotoEditMode", () => {
+      it("transitions to edit mode by delegating to 'todoSelection.switchToEditMode'", () => {
+        spyOn(todoSelection, 'switchToEditMode');
+        vm = $controller('viewTodoController');
+
+        vm.gotoEditMode();
+
+        expect(todoSelection.switchToEditMode).toHaveBeenCalled();
+      });
     });
   });
 });
