@@ -1,4 +1,4 @@
-export default function TodoSelection($state, todoFactory, eventEmitterFactory) {
+export default function TodoEditor($state, todoFactory, eventEmitterFactory) {
   const EDITOR_MODES = {
     VIEW: "VIEW",
     EDIT: "EDIT",

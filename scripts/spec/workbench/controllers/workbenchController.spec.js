@@ -4,17 +4,17 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("WorkbenchController", () => {
-  let $controller, todosStore, todosRequests, todoSelection;
+  let $controller, todosStore, todosRequests, todoEditor;
   let vm, scope;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$controller_, _$rootScope_, _todosStore_, _todosRequests_, _todoSelection_) => {
+  beforeEach(inject((_$controller_, _$rootScope_, _todosStore_, _todosRequests_, _todoEditor_) => {
     $controller = _$controller_;
     scope = _$rootScope_.$new();
     todosStore = _todosStore_;
     todosRequests = _todosRequests_;
-    todoSelection = _todoSelection_;
+    todoEditor = _todoEditor_;
   }));
 
   beforeEach(() => spyOn(todosRequests, 'getUserTodos'));
@@ -69,11 +69,11 @@ describe("WorkbenchController", () => {
     });
 
     describe("selectNewTodo", () => {
-      it("delegates to 'todoSelection.selectNewTodo'", () => {
-        spyOn(todoSelection, 'selectNewTodo');
+      it("delegates to 'todoEditor.selectNewTodo'", () => {
+        spyOn(todoEditor, 'selectNewTodo');
         vm = $controller('workbenchController', { $scope: scope });
         vm.selectNewTodo();
-        expect(todoSelection.selectNewTodo).toHaveBeenCalled();
+        expect(todoEditor.selectNewTodo).toHaveBeenCalled();
       });
     });
   });

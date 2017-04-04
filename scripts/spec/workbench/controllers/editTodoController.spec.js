@@ -6,27 +6,27 @@ const {inject, module} = angular.mock;
 import modalTemplate from '../../../src/modules/workbench/templates/dequeueModal.html';
 
 describe("EditTodoController", () => {
-  let $controller, todosStore, $uibModal, todosRequests, dequeueModalLauncher, todoSelection;
+  let $controller, todosStore, $uibModal, todosRequests, dequeueModalLauncher, todoEditor;
   let vm, scope;
   let $q;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$controller_, _$rootScope_, _$uibModal_, _todosRequests_, _dequeueModalLauncher_, _todoSelection_, _$q_) => {
+  beforeEach(inject((_$controller_, _$rootScope_, _$uibModal_, _todosRequests_, _dequeueModalLauncher_, _todoEditor_, _$q_) => {
     $controller = _$controller_;
     $uibModal = _$uibModal_;
     todosRequests = _todosRequests_;
     dequeueModalLauncher = _dequeueModalLauncher_;
-    todoSelection = _todoSelection_
+    todoEditor = _todoEditor_
     scope = _$rootScope_.$new();
     $q = _$q_;
   }));
 
 
   describe("controller state", () => {
-    it("exposes the selected todo from the todoSelection service", () => {
+    it("exposes the selected todo from the todoEditor service", () => {
       let selectedTodo = { id: 1 };
-      todoSelection.setSelectedTodo(selectedTodo);
+      todoEditor.setSelectedTodo(selectedTodo);
       vm = $controller('editTodoController', { $scope: scope });
       expect(vm.todo).toBe(selectedTodo);
     });
@@ -72,15 +72,15 @@ describe("EditTodoController", () => {
         expect(todosRequests.updateTodo).toHaveBeenCalledWith(vm.todo);
       });
 
-      it("upon a successful update, it then delegates to 'todoSelection.switchToViewMode' to switch to view mode", () => {
+      it("upon a successful update, it then delegates to 'todoEditor.switchToViewMode' to switch to view mode", () => {
         vm.todo = { id: 1, description: "MOCK_DESCRIPTION" };
-        spyOn(todoSelection, 'switchToViewMode');
+        spyOn(todoEditor, 'switchToViewMode');
 
         vm.submit();
         deferred.resolve(vm.todo);
         scope.$apply();
 
-        expect(todoSelection.switchToViewMode).toHaveBeenCalledWith(vm.todo);
+        expect(todoEditor.switchToViewMode).toHaveBeenCalledWith(vm.todo);
       });
     });
   });

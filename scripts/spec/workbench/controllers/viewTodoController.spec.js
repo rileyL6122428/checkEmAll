@@ -4,20 +4,20 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("ViewTodoController", () => {
-  let $controller, todoSelection;
+  let $controller, todoEditor;
   let vm;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$controller_, _todoSelection_) => {
+  beforeEach(inject((_$controller_, _todoEditor_) => {
     $controller = _$controller_;
-    todoSelection = _todoSelection_;
+    todoEditor = _todoEditor_;
   }));
 
   describe("controller state", () => {
-    it("exposes the selected todo from the todoSelection service", () => {
+    it("exposes the selected todo from the todoEditor service", () => {
       let selectedTodo = { id: 1, description: "MOCK_DESCRIPTION" };
-      todoSelection.setSelectedTodo(selectedTodo);
+      todoEditor.setSelectedTodo(selectedTodo);
 
       vm = $controller('viewTodoController');
 
@@ -30,13 +30,13 @@ describe("ViewTodoController", () => {
     });
 
     describe("gotoEditMode", () => {
-      it("transitions to edit mode by delegating to 'todoSelection.switchToEditMode'", () => {
-        spyOn(todoSelection, 'switchToEditMode');
+      it("transitions to edit mode by delegating to 'todoEditor.switchToEditMode'", () => {
+        spyOn(todoEditor, 'switchToEditMode');
         vm = $controller('viewTodoController');
 
         vm.gotoEditMode();
 
-        expect(todoSelection.switchToEditMode).toHaveBeenCalled();
+        expect(todoEditor.switchToEditMode).toHaveBeenCalled();
       });
     });
   });

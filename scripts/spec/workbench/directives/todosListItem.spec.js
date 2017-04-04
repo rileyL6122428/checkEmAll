@@ -4,21 +4,21 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("TodosListItem", () => {
-  let $rootScope, $compile, todoSelection;
+  let $rootScope, $compile, todoEditor;
   let todoListItem, scope;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$compile_, _$rootScope_, _todoSelection_) => {
+  beforeEach(inject((_$compile_, _$rootScope_, _todoEditor_) => {
     $rootScope = _$rootScope_;
     $compile = _$compile_;
-    todoSelection = _todoSelection_;
+    todoEditor = _todoEditor_;
   }));
 
   describe("#link", () => {
     it("sets 'scope.selectionStatus' to 'selected' when the directive is iniatialized with the selected todo", () => {
       let todo = { id: 1 };
-      todoSelection.setSelectedTodo(todo);
+      todoEditor.setSelectedTodo(todo);
       _setupTodosListItem({ todo });
       expect(scope.selectionStatus).toEqual("selected");
     });
@@ -26,25 +26,25 @@ describe("TodosListItem", () => {
     it("sets 'scope.selectionStatus' to an empty string when the directive is iniatialized with the selected todo", () => {
       let todo1 = { id: 1 };
       let todo2 = { id: 2 };
-      todoSelection.setSelectedTodo(todo1);
+      todoEditor.setSelectedTodo(todo1);
       _setupTodosListItem({ todo: todo2 });
       expect(scope.selectionStatus).toEqual("");
     });
 
-    it("places a listener on the todoSelection service that updates the directive's selection status", () => {
+    it("places a listener on the todoEditor service that updates the directive's selection status", () => {
       let todo1 = { id: 1 };
       let todo2 = { id: 2 };
-      todoSelection.setSelectedTodo(todo1);
+      todoEditor.setSelectedTodo(todo1);
       _setupTodosListItem({ todo: todo1 });
       expect(scope.selectionStatus).toEqual("selected");
 
-      todoSelection.setSelectedTodo(todo2);
+      todoEditor.setSelectedTodo(todo2);
       expect(scope.selectionStatus).toEqual("");
     });
 
-    it("it removes the todoSelection listener upon scope.$destroy()", () => {
+    it("it removes the todoEditor listener upon scope.$destroy()", () => {
       let removeListener = jasmine.createSpy('removeListener');
-      spyOn(todoSelection, 'placeListener').and.returnValue(removeListener);
+      spyOn(todoEditor, 'placeListener').and.returnValue(removeListener);
 
       let todo = { id: 1 };
       _setupTodosListItem({ todo });
@@ -60,26 +60,26 @@ describe("TodosListItem", () => {
     });
 
     describe("toggleSelection", () => {
-      it("delegates to 'todoSelection.clearSelection' when scope.todo is equal to the selectedTodo", () => {
+      it("delegates to 'todoEditor.clearSelection' when scope.todo is equal to the selectedTodo", () => {
         let todo = { id: 1 };
-        todoSelection.setSelectedTodo(todo);
+        todoEditor.setSelectedTodo(todo);
         _setupTodosListItem({ todo });
 
-        spyOn(todoSelection, 'clearSelection');
+        spyOn(todoEditor, 'clearSelection');
         scope.toggleSelection();
 
-        expect(todoSelection.clearSelection).toHaveBeenCalled();
+        expect(todoEditor.clearSelection).toHaveBeenCalled();
       });
 
-      it("delegates to 'todoSelection.setSelectedTodo' when scope.todo is not equal to the selectedTodo", () => {
-        todoSelection.setSelectedTodo(null);
+      it("delegates to 'todoEditor.setSelectedTodo' when scope.todo is not equal to the selectedTodo", () => {
+        todoEditor.setSelectedTodo(null);
         let todo = { id: 1 };
         _setupTodosListItem({ todo });
 
-        spyOn(todoSelection, 'setSelectedTodo');
+        spyOn(todoEditor, 'setSelectedTodo');
         scope.toggleSelection();
 
-        expect(todoSelection.setSelectedTodo).toHaveBeenCalledWith(todo);
+        expect(todoEditor.setSelectedTodo).toHaveBeenCalledWith(todo);
       });
     });
   });

@@ -4,24 +4,24 @@ import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
 describe("NewTodoController", () => {
-  let $controller, todosRequests, todoSelection;
+  let $controller, todosRequests, todoEditor;
   let vm, scope;
   let $q;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_$controller_, _$rootScope_, _todosRequests_, _todoSelection_, _$q_) => {
+  beforeEach(inject((_$controller_, _$rootScope_, _todosRequests_, _todoEditor_, _$q_) => {
     $controller = _$controller_;
     todosRequests = _todosRequests_;
-    todoSelection = _todoSelection_;
+    todoEditor = _todoEditor_;
     $q = _$q_;
     scope = _$rootScope_.$new();
   }));
 
   describe("controller state", () => {
-    it("exposes the selected todo from the todoSelection service", () => {
+    it("exposes the selected todo from the todoEditor service", () => {
       let selectedTodo = { id: 1, description: "MOCK_NEW_TODO_DESCRIPTION" };
-      todoSelection.setSelectedTodo(selectedTodo);
+      todoEditor.setSelectedTodo(selectedTodo);
 
       vm = $controller('newTodoController');
 
@@ -47,15 +47,15 @@ describe("NewTodoController", () => {
         expect(todosRequests.createTodo).toHaveBeenCalledWith(vm.todo);
       });
 
-      it("then delegates to 'todoSelection.switchToViewMode' upon successful creation", () => {
+      it("then delegates to 'todoEditor.switchToViewMode' upon successful creation", () => {
         vm.todo = { id: 1, description: "MOCK_NEW_TODO_DESCRIPTION" };
-        spyOn(todoSelection, 'switchToViewMode');
+        spyOn(todoEditor, 'switchToViewMode');
 
         vm.submit();
         deferred.resolve(vm.todo);
         scope.$apply();
 
-        expect(todoSelection.switchToViewMode).toHaveBeenCalledWith(vm.todo);
+        expect(todoEditor.switchToViewMode).toHaveBeenCalledWith(vm.todo);
       });
     });
   });

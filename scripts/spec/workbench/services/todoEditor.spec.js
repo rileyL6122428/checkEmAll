@@ -3,14 +3,14 @@ import 'angular-mocks';
 import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
-describe("TodoSelection", () => {
+describe("TodoEditor", () => {
   let $state, todoFactory;
-  let todoSelection;
+  let todoEditor;
 
   beforeEach(module(workbenchModule));
 
-  beforeEach(inject((_todoSelection_, _$state_, _todoFactory_) => {
-    todoSelection = _todoSelection_;
+  beforeEach(inject((_todoEditor_, _$state_, _todoFactory_) => {
+    todoEditor = _todoEditor_;
     $state = _$state_;
     todoFactory = _todoFactory_;
   }));
@@ -18,7 +18,7 @@ describe("TodoSelection", () => {
   describe("#placeListener", () => {
     it("immediately calls the listener", () => {
       let listener = jasmine.createSpy('listener');
-      todoSelection.placeListener(listener);
+      todoEditor.placeListener(listener);
       expect(listener.calls.count()).toEqual(1);
     });
 
@@ -26,8 +26,8 @@ describe("TodoSelection", () => {
       let listener = jasmine.createSpy('listener');
       let todo = { id: 1, description: "MOCK_TODO_DESCRIPTION" };
 
-      todoSelection.placeListener(listener);
-      todoSelection.setSelectedTodo(todo);
+      todoEditor.placeListener(listener);
+      todoEditor.setSelectedTodo(todo);
 
       expect(listener.calls.count()).toEqual(2);
     });
@@ -35,10 +35,10 @@ describe("TodoSelection", () => {
     it("returns a callback to remove the listener", () => {
       let listener = jasmine.createSpy('listener');
       let todo = { id: 1, description: "MOCK_TODO_DESCRIPTION" };
-      let removeSubscription = todoSelection.placeListener(listener);
+      let removeSubscription = todoEditor.placeListener(listener);
 
       removeSubscription();
-      todoSelection.setSelectedTodo(todo);
+      todoEditor.setSelectedTodo(todo);
 
       expect(listener.calls.count()).toEqual(1);
     });

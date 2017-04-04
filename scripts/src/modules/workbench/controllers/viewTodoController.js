@@ -1,10 +1,10 @@
-export default function ViewTodoController(todoSelection) {
+export default function ViewTodoController(todoEditor) {
   'ngInject';
   let vm = this;
 
-  vm.todo = todoSelection.getSelectedTodo();
+  vm.todo = todoEditor.getSelectedTodo();
 
   vm.gotoEditMode = () => {
-    todoSelection.switchToEditMode();
+    todoEditor.switchToEditMode();
   };
 }

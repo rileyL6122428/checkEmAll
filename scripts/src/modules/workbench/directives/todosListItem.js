@@ -1,13 +1,13 @@
 import template from '../templates/todosListItem.html';
 
-export default function TodosListItem(todoSelection) {
+export default function TodosListItem(todoEditor) {
   return ({
     restrict: 'E',
     scope: { todo: '=' },
     template: template,
     link: (scope) => {
-      let removeListener = todoSelection.placeListener(() => {
-        if(scope.todo === todoSelection.getSelectedTodo())
+      let removeListener = todoEditor.placeListener(() => {
+        if(scope.todo === todoEditor.getSelectedTodo())
           scope.selectionStatus = "selected";
         else
           scope.selectionStatus = "";
@@ -16,10 +16,10 @@ export default function TodosListItem(todoSelection) {
       scope.$on('$destroy', removeListener);
 
       scope.toggleSelection = () => {
-        if(scope.todo === todoSelection.getSelectedTodo()) {
-          todoSelection.clearSelection();
+        if(scope.todo === todoEditor.getSelectedTodo()) {
+          todoEditor.clearSelection();
         } else {
-          todoSelection.setSelectedTodo(scope.todo);
+          todoEditor.setSelectedTodo(scope.todo);
         }
       };
     }

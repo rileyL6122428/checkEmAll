@@ -1,4 +1,4 @@
-export default function WorkbenchController($scope, todosStore, todosRequests, todoSelection) {
+export default function WorkbenchController($scope, todosStore, todosRequests, todoEditor) {
   'ngInject';
   let vm = this;
 
@@ -11,6 +11,6 @@ export default function WorkbenchController($scope, todosStore, todosRequests, t
   todosRequests.getUserTodos();
 
   vm.selectNewTodo = () => {
-    todoSelection.selectNewTodo();
+    todoEditor.selectNewTodo();
   };
 }
