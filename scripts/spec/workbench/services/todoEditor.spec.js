@@ -3,7 +3,7 @@ import 'angular-mocks';
 import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
-describe("TodoEditor", () => {
+xdescribe("TodoEditor", () => {
   let EDITOR_MODES;
   let $state, todoFactory;
   let todoEditor;

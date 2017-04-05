@@ -3,7 +3,7 @@ import 'angular-mocks';
 import workbenchModule from '../../../src/modules/workbench/workbenchModule.js';
 const {inject, module} = angular.mock;
 
-describe("TodosListItem", () => {
+xdescribe("TodosListItem", () => {
   let $rootScope, $compile, todoEditor;
   let todoListItem, scope;
 
