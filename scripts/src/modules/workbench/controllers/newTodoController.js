@@ -1,4 +1,4 @@
-export default function NewTodoController (todosRequests, todoEditor) {
+export default function NewTodoController (todosRequests, todoEditor, EDITOR_MODES) {
   'ngInject';
   let vm = this;
 
@@ -7,7 +7,10 @@ export default function NewTodoController (todosRequests, todoEditor) {
   vm.submit = () => {
     todosRequests.createTodo(vm.todo)
     .then((createdTodo) => {
-      todoEditor.switchToViewMode(createdTodo);
+      todoEditor.switchModes({
+        selectedTodo: createdTodo,
+        mode: EDITOR_MODES.VIEW
+      });
     });
   };
 }

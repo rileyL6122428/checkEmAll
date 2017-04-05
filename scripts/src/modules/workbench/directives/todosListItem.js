@@ -1,6 +1,6 @@
 import template from '../templates/todosListItem.html';
 
-export default function TodosListItem(todoEditor) {
+export default function TodosListItem(todoEditor, EDITOR_MODES) {
   return ({
     restrict: 'E',
     scope: { todo: '=' },
@@ -17,9 +17,15 @@ export default function TodosListItem(todoEditor) {
 
       scope.toggleSelection = () => {
         if(scope.todo === todoEditor.getSelectedTodo()) {
-          todoEditor.clearSelection();
+          todoEditor.switchModes({
+            selectedTodo: null,
+            mode: EDITOR_MODES.EMPTY
+          });
         } else {
-          todoEditor.setSelectedTodo(scope.todo);
+          todoEditor.switchModes({
+            selectedTodo: scope.todo,
+            mode: EDITOR_MODES.VIEW
+          });
         }
       };
     }

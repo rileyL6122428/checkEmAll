@@ -9,32 +9,10 @@ export default function TodoEditor($state, todoFactory, eventEmitterFactory, EDI
       return eventEmitter.addListener(listener);
     },
 
-    setSelectedTodo(todo) {
-      _setTodoAndEmitSelection(todo);
-
-      if(currentMode === EDITOR_MODES.EDIT) _transitionTo(EDITOR_MODES.EDIT);
-
-      else _transitionTo(EDITOR_MODES.VIEW);
-    },
-
-    selectNewTodo() {
-      _setTodoAndEmitSelection(todoFactory.newTodo());
-      _transitionTo(EDITOR_MODES.NEW);
-    },
-
-    clearSelection() {
-      _setTodoAndEmitSelection(null);
-      _transitionTo(EDITOR_MODES.EMPTY);
-    },
-
-    switchToEditMode(todo) { //TODO needs safety check
-      if(todo) _setTodoAndEmitSelection(todo);
-      _transitionTo(EDITOR_MODES.EDIT)
-    },
-
-    switchToViewMode(todo) { //TODO needs safety check
-        if(todo) _setTodoAndEmitSelection(todo);
-        _transitionTo(EDITOR_MODES.VIEW);
+    switchModes(params) {
+      let selectedTodo = (params.mode === EDITOR_MODES.NEW) ? todoFactory.newTodo() : params.selectedTodo;
+      _setTodoAndEmitSelection(selectedTodo);
+      _transitionTo(params.mode);
     },
 
     getSelectedTodo() {
@@ -68,5 +46,5 @@ export default function TodoEditor($state, todoFactory, eventEmitterFactory, EDI
         $state.go('workbench.todoNotSelected');
         break;
     }
-  }  
+  }
 }

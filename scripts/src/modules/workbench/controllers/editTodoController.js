@@ -1,6 +1,6 @@
 import modalTemplate from '../templates/dequeueModal.html';
 
-export default function EditController($scope, todosRequests, dequeueModalLauncher, todoEditor) {
+export default function EditController($scope, todosRequests, dequeueModalLauncher, todoEditor, EDITOR_MODES) {
   'ngInject';
   let vm = this;
 
@@ -14,7 +14,10 @@ export default function EditController($scope, todosRequests, dequeueModalLaunch
   vm.submit = () => {
     todosRequests.updateTodo(vm.todo)
     .then((updatedTodo) => {
-      todoEditor.switchToViewMode(updatedTodo);
+      todoEditor.switchModes({
+        selectedTodo: updatedTodo,
+        mode: EDITOR_MODES.VIEW
+      });
     });
   };
 }
