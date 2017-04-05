@@ -15,10 +15,10 @@ describe("TodoEditor", () => {
     todoFactory = _todoFactory_;
   }));
 
-  describe("#placeListener", () => {
+  describe("#placeSelectionListener", () => {
     it("immediately calls the listener", () => {
       let listener = jasmine.createSpy('listener');
-      todoEditor.placeListener(listener);
+      todoEditor.placeSelectionListener(listener);
       expect(listener.calls.count()).toEqual(1);
     });
 
@@ -26,7 +26,7 @@ describe("TodoEditor", () => {
       let listener = jasmine.createSpy('listener');
       let todo = { id: 1, description: "MOCK_TODO_DESCRIPTION" };
 
-      todoEditor.placeListener(listener);
+      todoEditor.placeSelectionListener(listener);
       todoEditor.setSelectedTodo(todo);
 
       expect(listener.calls.count()).toEqual(2);
@@ -35,7 +35,7 @@ describe("TodoEditor", () => {
     it("returns a callback to remove the listener", () => {
       let listener = jasmine.createSpy('listener');
       let todo = { id: 1, description: "MOCK_TODO_DESCRIPTION" };
-      let removeSubscription = todoEditor.placeListener(listener);
+      let removeSubscription = todoEditor.placeSelectionListener(listener);
 
       removeSubscription();
       todoEditor.setSelectedTodo(todo);

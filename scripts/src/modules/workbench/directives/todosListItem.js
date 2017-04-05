@@ -6,7 +6,7 @@ export default function TodosListItem(todoEditor) {
     scope: { todo: '=' },
     template: template,
     link: (scope) => {
-      let removeListener = todoEditor.placeListener(() => {
+      let removeListener = todoEditor.placeSelectionListener(() => {
         if(scope.todo === todoEditor.getSelectedTodo())
           scope.selectionStatus = "selected";
         else

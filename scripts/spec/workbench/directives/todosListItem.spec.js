@@ -44,7 +44,7 @@ describe("TodosListItem", () => {
 
     it("it removes the todoEditor listener upon scope.$destroy()", () => {
       let removeListener = jasmine.createSpy('removeListener');
-      spyOn(todoEditor, 'placeListener').and.returnValue(removeListener);
+      spyOn(todoEditor, 'placeSelectionListener').and.returnValue(removeListener);
 
       let todo = { id: 1 };
       _setupTodosListItem({ todo });

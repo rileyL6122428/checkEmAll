@@ -11,7 +11,7 @@ export default function TodoEditor($state, todoFactory, eventEmitterFactory) {
   let eventEmitter = eventEmitterFactory.newEventEmitter();
 
   return({
-    placeListener(listener) {
+    placeSelectionListener(listener) {
       return eventEmitter.addListener(listener);
     },
 
