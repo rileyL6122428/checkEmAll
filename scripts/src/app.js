@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 
 import authenticationModule from './modules/authentication/authModule.js';
 import workbenchModule from './modules/workbench/workbenchModule.js';
-import reduxModule from './modules/redux/module.js';
+import summaryModule from './modules/summary/summaryModule.js';
 
 import authHooks from './authHooks.js';
 import appConfig from './routesConfig.js';
@@ -11,7 +11,8 @@ import appConfig from './routesConfig.js';
 const todoApp = angular.module('todoApp', [
   uiRouter,
   authenticationModule,
-  workbenchModule
+  workbenchModule,
+  summaryModule
 ])
   .config(appConfig)
   .run(authHooks);

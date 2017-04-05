@@ -29,7 +29,7 @@ import ListItemColorSplash from './directives/listItemcolorSplash.js';
 
 import workbenchRoutingConfig from './workbenchRoutes.js';
 
-const workbenchModule = angular.module('todoModule', [reduxModule, uiRouter, graphModule, uiBootstrap])
+const workbenchModule = angular.module('workbenchModule', [reduxModule, uiRouter, graphModule, uiBootstrap])
 
   .controller('workbenchController', WorkbenchController)
   .controller('newTodoController', NewTodoController)
