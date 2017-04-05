@@ -7,6 +7,7 @@ export default function NewTodoController (todosRequests, todoEditor) {
   vm.submit = () => {
     todosRequests.createTodo(vm.todo)
     .then((createdTodo) => {
+      debugger
       todoEditor.switchToViewMode(createdTodo);
     });
   };

@@ -1,12 +1,6 @@
-export default function TodoEditor($state, todoFactory, eventEmitterFactory) {
-  const EDITOR_MODES = {
-    VIEW: "VIEW",
-    EDIT: "EDIT",
-    NEW: "NEW",
-    EMPTY: "EMPTY"
-  };
+export default function TodoEditor($state, todoFactory, eventEmitterFactory, EDITOR_MODES) {
 
-  let currentMode = EDITOR_MODES.VIEW;
+  let currentMode = EDITOR_MODES.EMPTY;
   let selectedTodo = null;
   let eventEmitter = eventEmitterFactory.newEventEmitter();
 
@@ -18,44 +12,37 @@ export default function TodoEditor($state, todoFactory, eventEmitterFactory) {
     setSelectedTodo(todo) {
       _setTodoAndEmitSelection(todo);
 
-      if(currentMode === EDITOR_MODES.EDIT) {
-        $state.go('workbench.editTodo', {}, { reload: 'workbench.editTodo' });
-      } else {
-        currentMode = EDITOR_MODES.VIEW;
-        $state.go('workbench.viewTodo', {}, { reload: 'workbench.viewTodo' });
-      }
+      if(currentMode === EDITOR_MODES.EDIT) _transitionTo(EDITOR_MODES.EDIT);
+
+      else _transitionTo(EDITOR_MODES.VIEW);
     },
 
     selectNewTodo() {
-      currentMode = EDITOR_MODES.NEW;
       _setTodoAndEmitSelection(todoFactory.newTodo());
-      $state.go('workbench.newTodo');
+      _transitionTo(EDITOR_MODES.NEW);
     },
 
     clearSelection() {
-      currentMode = EDITOR_MODES.EMPTY;
       _setTodoAndEmitSelection(null);
-      $state.go('workbench.todoNotSelected');
+      _transitionTo(EDITOR_MODES.EMPTY);
     },
 
-    switchToEditMode(todo) {
-      if(currentMode === EDITOR_MODES.VIEW) {
-        if(todo) _setTodoAndEmitSelection(todo);
-        currentMode = EDITOR_MODES.EDIT;
-        $state.go('workbench.editTodo');
-      }
+    switchToEditMode(todo) { //TODO needs safety check
+      if(todo) _setTodoAndEmitSelection(todo);
+      _transitionTo(EDITOR_MODES.EDIT)
     },
 
-    switchToViewMode(todo) {
-      if(currentMode === EDITOR_MODES.EDIT) {
+    switchToViewMode(todo) { //TODO needs safety check
         if(todo) _setTodoAndEmitSelection(todo);
-        currentMode = EDITOR_MODES.VIEW;
-        $state.go('workbench.viewTodo');
-      }
+        _transitionTo(EDITOR_MODES.VIEW);
     },
 
     getSelectedTodo() {
       return selectedTodo;
+    },
+
+    getCurrentMode() {
+      return currentMode;
     }
   });
 
@@ -63,4 +50,23 @@ export default function TodoEditor($state, todoFactory, eventEmitterFactory) {
     selectedTodo = todo;
     eventEmitter.callListeners();
   }
+
+  function _transitionTo(mode) {
+    currentMode = mode;
+
+    switch(mode) {
+      case EDITOR_MODES.EDIT:
+        $state.go('workbench.editTodo', {}, { reload: 'workbench.editTodo' });
+        break;
+      case EDITOR_MODES.VIEW:
+        $state.go('workbench.viewTodo', {}, { reload: 'workbench.viewTodo' });
+        break;
+      case EDITOR_MODES.NEW:
+        $state.go('workbench.newTodo');
+        break;
+      case EDITOR_MODES.EMPTY:
+        $state.go('workbench.todoNotSelected');
+        break;
+    }
+  }  
 }

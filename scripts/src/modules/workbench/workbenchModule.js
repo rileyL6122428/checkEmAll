@@ -10,6 +10,8 @@ import ViewTodoController from './controllers/viewTodoController.js';
 import EditTodoController from './controllers/editTodoController.js';
 import DequeueController from './controllers/dequeueController.js';
 
+import { EDITOR_MODES } from './constants/editorModes.js';
+
 import DateCreatedAsString from './filters/dateCreatedAsString.js';
 
 import TodosRequests from './services/todosRequests.js';
@@ -34,6 +36,8 @@ const workbenchModule = angular.module('todoModule', [reduxModule, uiRouter, gra
   .controller('viewTodoController', ViewTodoController)
   .controller('editTodoController', EditTodoController)
   .controller('dequeueController', DequeueController)
+
+  .constant('EDITOR_MODES', EDITOR_MODES)
 
   .filter('dateCreatedAsString', DateCreatedAsString)
 
