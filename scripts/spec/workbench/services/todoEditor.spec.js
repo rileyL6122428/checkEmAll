@@ -45,7 +45,34 @@ describe("TodoEditor", () => {
   });
 
   describe("setSelectedTodo", () => {
-    xit("sets the selected todo");
-    xit("calls any callbacks placed in the serice");
+    let todo;
+    beforeEach(() => todo = { id: 1 });
+
+    it("sets the selected todo", () => {
+      todoEditor.setSelectedTodo(todo);
+      expect(todoEditor.getSelectedTodo()).toBe(todo);
+    });
+
+    it("calls any selection listeners", () => {
+      let listener = jasmine.createSpy('listener');
+      todoEditor.placeSelectionListener(listener);
+      todoEditor.setSelectedTodo(todo);
+      expect(listener).toHaveBeenCalled();
+    });
+
+    it("transitions to 'workbench.editTodo' when in edit mode", () => {
+      todoEditor.setSelectedTodo(todo);
+      todoEditor.switchToEditMode();
+
+      let anotherTodo = { id: 2 };
+      spyOn($state, 'go');
+      todoEditor.setSelectedTodo(anotherTodo);
+
+      expect($state.go).toHaveBeenCalledWith('workbench.editTodo', {}, { reload: 'workbench.editTodo' });
+    });
+
+    xit("transitions to 'workbench.viewTodo' when in view mode");
+    xit("transitions to 'workbench.viewTodo' when in newTodo mode");
+    xit("transitions to 'workbench.viewTodo' when in emptyEditor mode");
   });
 });
