@@ -45,8 +45,11 @@ describe("TodoEditor", () => {
   });
 
   describe("setSelectedTodo", () => {
-    let todo;
-    beforeEach(() => todo = { id: 1 });
+    let todo, anotherTodo;
+    beforeEach(() => {
+      todo = { id: 1 };
+      anotherTodo = { id: 2 };
+    });
 
     it("sets the selected todo", () => {
       todoEditor.setSelectedTodo(todo);
@@ -64,15 +67,38 @@ describe("TodoEditor", () => {
       todoEditor.setSelectedTodo(todo);
       todoEditor.switchToEditMode();
 
-      let anotherTodo = { id: 2 };
       spyOn($state, 'go');
       todoEditor.setSelectedTodo(anotherTodo);
 
       expect($state.go).toHaveBeenCalledWith('workbench.editTodo', {}, { reload: 'workbench.editTodo' });
     });
 
-    xit("transitions to 'workbench.viewTodo' when in view mode");
-    xit("transitions to 'workbench.viewTodo' when in newTodo mode");
-    xit("transitions to 'workbench.viewTodo' when in emptyEditor mode");
+    it("transitions to 'workbench.viewTodo' when in view mode", () => {
+      todoEditor.setSelectedTodo(todo);
+      todoEditor.switchToViewMode();
+
+      spyOn($state, 'go');
+      todoEditor.setSelectedTodo(anotherTodo);
+
+      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', {}, { reload: 'workbench.viewTodo' });
+    });
+
+    it("transitions to 'workbench.viewTodo' when in newTodo mode", () => {
+      todoEditor.selectNewTodo();
+
+      spyOn($state, 'go');
+      todoEditor.setSelectedTodo(anotherTodo);
+
+      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', {}, { reload: 'workbench.viewTodo' });
+    });
+
+    it("transitions to 'workbench.viewTodo' when in emptyEditor mode", () => {
+      todoEditor.clearSelection();
+
+      spyOn($state, 'go');
+      todoEditor.setSelectedTodo(anotherTodo);
+
+      expect($state.go).toHaveBeenCalledWith('workbench.viewTodo', {}, { reload: 'workbench.viewTodo' });
+    });
   });
 });
