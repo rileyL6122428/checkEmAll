@@ -31,11 +31,11 @@ export class WeekSelector {
   }
 
   nextWeekIsAvailable() {
-
+    return this._weekIdx < 0;
   }
 
   prevWeekIsAvailable() {
-
+    return this._weekIdx > -7;
   }
 }
 

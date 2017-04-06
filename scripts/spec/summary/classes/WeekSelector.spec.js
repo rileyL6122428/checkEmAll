@@ -60,11 +60,30 @@ describe("WeekSelector", () => {
   });
 
   describe("#nextWeekIsAvailable", () => {
-    xit("returns false when weekIdx is 0", () => {
-      
+    it("returns false when weekIdx is 0", () => {
+      weekSelector._weekIdx = 0;
+      expect(weekSelector.nextWeekIsAvailable()).toBe(false);
     });
-    xit("returns true when weekIdx is less than 0", () => {
 
+    it("returns true when weekIdx is between -8 and 0", () => {
+      for(var idx = -7; idx < 0; idx++) {
+        weekSelector._weekIdx = idx;
+        expect(weekSelector.nextWeekIsAvailable()).toBe(true);
+      }
+    });
+  });
+
+  describe("#prevWeekIsAvailable", () => {
+    it("returns false when weekIdx is -7", () => {
+      weekSelector._weekIdx = -7;
+      expect(weekSelector.prevWeekIsAvailable()).toBe(false);
+    });
+
+    it("returns true when weekIdx is between -7 and 1", () => {
+      for(var idx = -6; idx < 1; idx++) {
+        weekSelector._weekIdx = idx;
+        expect(weekSelector.prevWeekIsAvailable()).toBe(true);
+      }
     });
   });
 });
