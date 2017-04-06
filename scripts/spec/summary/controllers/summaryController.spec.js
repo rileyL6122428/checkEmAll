@@ -4,8 +4,9 @@ import summaryModule from '../../../src/modules/summary/summaryModule.js';
 const {inject, module} = angular.mock;
 
 import { WeekSelector } from '../../../src/modules/summary/classes/WeekSelector.js';
+import { SummaryGraphFilter } from '../../../src/modules/summary/classes/SummaryGraphFilter.js';
 
-xdescribe("SummaryController", () => {
+describe("SummaryController", () => {
   let $controller;
   let vm, $scope;
 
@@ -16,8 +17,13 @@ xdescribe("SummaryController", () => {
     $scope = _$rootScope_.$new();
   }));
 
-  it("exposes a weekSelector to the view", () => {
+  it("exposes a WeekSelector instance to the view", () => {
     vm = $controller('summaryController');
     expect(vm.weekSelector).toEqual(jasmine.any(WeekSelector));
+  });
+
+  it("exposes a SummaryGraphFilter instance to the view", () => {
+    vm = $controller('summaryController');
+    expect(vm.summaryFilter).toEqual(jasmine.any(SummaryGraphFilter));
   });
 });

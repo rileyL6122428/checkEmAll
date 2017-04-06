@@ -1,6 +1,10 @@
-export default function SummaryController(weekSelectorFactory) {
+import { SummaryGraphFilter } from '../classes/SummaryGraphFilter.js';
+import { WeekSelector } from '../classes/WeekSelector.js';
+
+export default function SummaryController() {
   "ngInject";
   let vm = this;
 
-  vm.weekSelector = weekSelectorFactory.newWeekSelector();
+  vm.weekSelector = new WeekSelector();
+  vm.summaryFilter = new SummaryGraphFilter();
 }
