@@ -23,11 +23,11 @@ export class WeekSelector {
   }
 
   gotoNextWeek() {
-    (this._weekIdx < 0) ? this._weekIdx++ : this._weekIdx = 0;
+    (this.nextWeekIsAvailable()) ? this._weekIdx++ : this._weekIdx = 0;
   }
 
   gotoPrevWeek() {
-    (this._weekIdx > -7) ? this._weekIdx-- : this._weekIdx = -7;
+    (this.prevWeekIsAvailable()) ? this._weekIdx-- : this._weekIdx = -7;
   }
 
   nextWeekIsAvailable() {
