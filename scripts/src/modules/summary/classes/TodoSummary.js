@@ -22,12 +22,14 @@ export class TodoSummary {
       this._completedTypeTotals = {};
 
       todos
-        .filter((todo) => { return todo.finished; })
-        .forEach((todo) => {
-          this._completedTypeTotals[todo.type] ?
-            this._completedTypeTotals[todo.type] += 1 :
-            this._completedTypeTotals[todo.type] = 1;
-        });
+        .filter((todo) => todo.finished)
+        .forEach((todo) =>  this._incrementTypeTotal(todo));
+    }
 
+    _incrementTypeTotal(todo) {
+      if(this._completedTypeTotals[todo.type])
+        this._completedTypeTotals[todo.type] += 1
+      else
+        this._completedTypeTotals[todo.type] = 1;
     }
 }
