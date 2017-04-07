@@ -11,4 +11,5 @@ import com.manifest.todo.server.model.User;
 @Repository
 public interface TodoRepository extends CrudRepository<Todo, Long>{
 	public List<Todo> findByUserAndQueued(User user, Boolean queued);
+	public List<Todo> findByUser(User user);
 }
