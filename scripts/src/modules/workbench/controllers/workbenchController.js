@@ -8,7 +8,7 @@ export default function WorkbenchController($scope, todosStore, todosRequests, t
 
   $scope.$on('$destroy', removeStoreSubcription);
 
-  todosRequests.getUserTodos();
+  todosRequests.getUserTodos({ queuedOnly: true});
 
   vm.selectNewTodo = () => {
     todoEditor.switchModes({ mode: EDITOR_MODES.NEW });
