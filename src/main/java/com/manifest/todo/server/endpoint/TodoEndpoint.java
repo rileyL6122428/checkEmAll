@@ -33,9 +33,9 @@ public class TodoEndpoint extends BaseEndpoint {
 	@GET
 	@Path("/todos")
 	@Produces("application/json")
-	public Response index(@QueryParam("userId") long userId) {
+	public Response index(@QueryParam("userId") long userId, @QueryParam(value = "queuedOnly") boolean queuedOnly) {
 		try {
-			List<Todo> userTodos = todoService.getTodos(userId); 
+			List<Todo> userTodos = (queuedOnly) ? todoService.getQueuedTodos(userId) : todoService.getAllTodos(userId); 
 			return todosResponse(userTodos);
 			
 		} catch(NotFoundException notFoundException) {

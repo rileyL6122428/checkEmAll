@@ -27,14 +27,24 @@ public class TodoService {
 		this.userRepository = userRepository;
 	}
 	
-	public List<Todo> getTodos(long userId) throws NotFoundException {
+	public List<Todo> getQueuedTodos(long userId) throws NotFoundException {
 		User user = userRepository.findOne(userId);
 		
 		if(user == null) {
 			throw new NotFoundException("Could not find the provided user.");
 		} else {
-			return todoRepository.findByUserAndQueued(user, true);			
+			return todoRepository.findByUserAndQueued(user, true);						
 		}	
+	}
+	
+	public List<Todo> getAllTodos(long userId) {
+		User user = userRepository.findOne(userId);
+		
+		if(user == null) {
+			throw new NotFoundException("Could not find the provided user.");
+		} else {
+			return todoRepository.findByUser(user);						
+		}
 	}
 	
 	public Todo createTodo(NewTodoData todoData) {
@@ -63,5 +73,6 @@ public class TodoService {
 		
 		return todoRepository.save(todo);
 	}
+
 	
 }

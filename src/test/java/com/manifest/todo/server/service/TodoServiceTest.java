@@ -16,6 +16,7 @@ import java.util.List;
 import javax.ws.rs.NotFoundException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -44,7 +45,30 @@ public class TodoServiceTest {
 	}
 	
 	@Test
-	public void getTodos_userRepoReturnsUser_searchAndReturnsTodosFromTodoRepo() {
+	public void getAllTodos_userRepoReturnsUser_delegatesToTodoRepo() {
+		User user = new User(){{ setId(1); setUsername("MOCK_USERNAME"); }};
+		when(userRepository.findOne(anyLong())).thenReturn(user);
+		
+		List<Todo> todos = new ArrayList<Todo>();
+		todos.add(new Todo(){{ setId(1); }});
+		todos.add(new Todo(){{ setId(2); }});
+		when(todoRepository.findByUser(any())).thenReturn(todos);
+		
+		List<Todo> returnedTodos = todoService.getAllTodos(user.getId());
+		
+		verify(userRepository).findOne(user.getId());
+		verify(todoRepository).findByUser(user);
+		assertEquals(todos, returnedTodos);
+	}
+	
+	@Test(expected=NotFoundException.class)
+	public void getAllTodos_userRepoReturnsNull_throwsNotFoundException() {
+		when(userRepository.findOne(anyLong())).thenThrow(NotFoundException.class);
+		todoService.getAllTodos(1);
+	}
+	
+	@Test
+	public void getQueuedTodos_userRepoReturnsUser_searchAndReturnsTodosFromTodoRepo() {
 		User user = new User(){{ setId(1); setUsername("MOCK_USERNAME"); }};
 		when(userRepository.findOne(anyLong())).thenReturn(user);
 		
@@ -53,7 +77,7 @@ public class TodoServiceTest {
 		todos.add(new Todo(){{ setId(2); }});
 		when(todoRepository.findByUserAndQueued(any(), any())).thenReturn(todos);
 		
-		List<Todo> returnedTodos = todoService.getTodos(user.getId());
+		List<Todo> returnedTodos = todoService.getQueuedTodos(user.getId());
 		
 		verify(userRepository).findOne(user.getId());
 		verify(todoRepository).findByUserAndQueued(user, true);
@@ -61,9 +85,9 @@ public class TodoServiceTest {
 	}
 	
 	@Test(expected=NotFoundException.class)
-	public void getTodos_userRepoReturnsNull_throwsNotFoundException() {
+	public void getQueuedTodos_userRepoReturnsNull_throwsNotFoundException() {
 		when(userRepository.findOne(anyLong())).thenThrow(NotFoundException.class);
-		todoService.getTodos(1);
+		todoService.getQueuedTodos(1);
 	}
 	
 	@Test
