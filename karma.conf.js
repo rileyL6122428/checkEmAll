@@ -16,7 +16,7 @@ function KarmaConfig(config) {
             debug: true,
             paths: ['./node_modules', './frontend/src'],
             transform: [
-              ['babelify', { presets: ['es2015', 'react'] }],
+              ['babelify', { presets: ['es2015'] }],
               'partialify'
             ],
             extensions: ['.js', '.jsx', '.html'],
