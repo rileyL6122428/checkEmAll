@@ -33,3 +33,11 @@ export class AggregateSummary {
     return this._weekSummaries[weekIdx];
   }
 }
+
+export function SummaryFactory() {
+  return ({
+    newAggregateSummary(todos) {
+      return new AggregateSummary(todos);
+    }
+  });
+}
